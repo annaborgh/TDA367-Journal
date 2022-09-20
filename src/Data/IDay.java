@@ -1,5 +1,8 @@
 package src.Data;
 
+
+import java.util.ArrayList;
+
 public interface IDay {
 
     String getDate();
@@ -8,11 +11,17 @@ public interface IDay {
 
     int getGrade();
 
-    IMood getMood();
+    ArrayList<IMood> getAllMoods();
 
-    ITag getTags();
+    ArrayList<IMood> getActiveMoods();
 
-    void addTag(String str);
+    ArrayList<ITag> getTags();
+
+    void addActiveMood(IMood mood);
+
+    void removeActiveMood(IMood mood);
+
+    void addTag(ITag str);
 
     void removeTag(ITag tag);
 
