@@ -1,11 +1,12 @@
 package src.Data;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public interface IDay {
 
-    String getDate();
+    LocalDate getDate();
 
     String getText();
 

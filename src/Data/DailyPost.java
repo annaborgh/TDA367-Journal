@@ -1,24 +1,25 @@
 package src.Data;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class DailyPost implements IDay{
 
-    private String date = "";
+    private LocalDate date;
     private String text = "";
     private int grade = 0;
     private ArrayList<IMood> allMoods = new ArrayList<>(); // Ska ha denna här?????? (Stora livsfrågor)
     private ArrayList<IMood> activeMoods = new ArrayList<>();
     private ArrayList<ITag> tags = new ArrayList<>();
 
-    public DailyPost(String inpDate){
+    public DailyPost(LocalDate inpDate){
         this.date = inpDate;
     }
 
     @Override
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
