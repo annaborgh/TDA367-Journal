@@ -41,6 +41,8 @@ public class main {
         * Testing of Mood and IMood
         * */
 
+        /*
+
         IMood anger = new Mood("Anger");
 
         System.out.println("Initial mood name\t\t" + anger.getMoodName());
@@ -62,6 +64,8 @@ public class main {
 
         anger.changeMoodRating(100);
         System.out.println("Changed mood rating\t\t" + anger.getMoodRating());
+
+        */
 
     }
 }
