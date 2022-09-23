@@ -2,7 +2,7 @@ package src.Data;
 
 public class Mood implements IMood {
 
-    int moodRating = 0;
+    int moodRating = -1;
     int moodLimitUpper = 100;
     int moodLimitLower = 0;
     String moodName = "PlaceholderName";

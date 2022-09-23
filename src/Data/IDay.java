@@ -12,8 +12,6 @@ public interface IDay {
 
     int getGrade();
 
-    ArrayList<IMood> getAllMoods();
-
     ArrayList<IMood> getActiveMoods();
 
     ArrayList<ITag> getTags();

@@ -10,12 +10,14 @@ public class DailyPost implements IDay{
     private LocalDate date;
     private String text = "";
     private int grade = 0;
-    private ArrayList<IMood> allMoods = new ArrayList<>(); // Ska ha denna här?????? (Stora livsfrågor)
     private ArrayList<IMood> activeMoods = new ArrayList<>();
     private ArrayList<ITag> tags = new ArrayList<>();
 
     public DailyPost(LocalDate inpDate){
         this.date = inpDate;
+
+
+
     }
 
     @Override
@@ -33,10 +35,6 @@ public class DailyPost implements IDay{
         return grade;
     }
 
-    @Override
-    public ArrayList<IMood> getAllMoods() {
-        return allMoods;
-    }
 
     public ArrayList<IMood> getActiveMoods() {
         return activeMoods;
