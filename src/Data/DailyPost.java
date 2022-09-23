@@ -3,7 +3,7 @@ package src.Data;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class DailyPost implements IDay{
+public class DailyPost implements IDay {
 
     private LocalDate date;
     private String text = "";
@@ -65,7 +65,7 @@ public class DailyPost implements IDay{
         this.tags.addAll(tags);
     }
 
-    public void setConditions(ArrayList<Contition> contitions){
+    public void setConditions(ArrayList<Condition> contitions){
         this.conditions.addAll(contitions);
     }
 
