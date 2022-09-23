@@ -1,8 +1,24 @@
 package src.Data;
 
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public interface IDay {
-    Date getDate();
+    LocalDate getDate();
+    String getText();
+
+    int getGrade();
+
+    ArrayList<IMood> getActiveMoods();
+
+    ArrayList<ITag> getTags();
+
+    void addActiveMood(IMood mood);
+
+    void removeActiveMood(IMood mood);
+
+    void addTag(ITag str);
+
+    void removeTag(ITag tag);
 }
