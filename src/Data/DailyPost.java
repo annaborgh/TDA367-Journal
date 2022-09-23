@@ -10,6 +10,7 @@ public class DailyPost implements IDay{
     private int grade = 0;
     private ArrayList<IMood> activeMoods = new ArrayList<>();
     private ArrayList<ITag> tags = new ArrayList<>();
+    private ArrayList<Condition> conditions = new ArrayList<>();
 
     public DailyPost(){
 
@@ -17,27 +18,31 @@ public class DailyPost implements IDay{
 
     @Override
     public LocalDate getDate() {
-        return date;
+        return this.date;
     }
 
     @Override
     public String getText() {
-        return text;
+        return this.text;
     }
 
     @Override
     public int getGrade() {
-        return grade;
+        return this.grade;
     }
 
 
     public ArrayList<IMood> getActiveMoods() {
-        return activeMoods;
+        return this.activeMoods;
     }
 
     @Override
     public ArrayList<ITag> getTags() {
-        return tags;
+        return this.tags;
+    }
+
+    public ArrayList<Condition> getConditions(){
+        return this.conditions;
     }
 
     public void setDate(LocalDate date){
@@ -58,6 +63,10 @@ public class DailyPost implements IDay{
 
     public void setTags(ArrayList<ITag> tags){
         this.tags.addAll(tags);
+    }
+
+    public void setConditions(ArrayList<Contition> contitions){
+        this.conditions.addAll(contitions);
     }
 
     @Override
