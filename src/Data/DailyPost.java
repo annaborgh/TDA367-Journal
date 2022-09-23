@@ -16,8 +16,6 @@ public class DailyPost implements IDay{
     public DailyPost(LocalDate inpDate){
         this.date = inpDate;
 
-
-
     }
 
     @Override
