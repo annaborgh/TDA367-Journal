@@ -2,8 +2,6 @@ package src.Data;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class DailyPost implements IDay{
 
@@ -13,8 +11,7 @@ public class DailyPost implements IDay{
     private ArrayList<IMood> activeMoods = new ArrayList<>();
     private ArrayList<ITag> tags = new ArrayList<>();
 
-    public DailyPost(LocalDate inpDate){
-        this.date = inpDate;
+    public DailyPost(){
 
     }
 
@@ -43,12 +40,24 @@ public class DailyPost implements IDay{
         return tags;
     }
 
+    public void setDate(LocalDate date){
+        this.date = date;
+    }
+
     public void setText(String text){
         this.text = text;
     }
 
     public void setGrade(int grade){
         this.grade = grade;
+    }
+
+    public void setActiveMoods(ArrayList<IMood> moods){
+        this.activeMoods.addAll(moods);
+    }
+
+    public void setTags(ArrayList<ITag> tags){
+        this.tags.addAll(tags);
     }
 
     @Override
