@@ -71,17 +71,24 @@ public class DailyPost implements IDay {
 
     @Override
     public void addActiveMood(IMood mood) {
-
     }
 
     @Override
     public void removeActiveMood(IMood mood) {
+    }
 
+    @Override
+    public ITag createTag(String tagName){
+        ITag Tag = new Tag(tagName, this.tags);
+        this.tags.add(Tag);
+        return Tag;
     }
 
     @Override
     public void addTag(ITag tag) {
-        this.tags.add(tag);
+        if (!this.tags.contains(tag)) {
+            this.tags.add(tag);
+        }
     }
 
     @Override

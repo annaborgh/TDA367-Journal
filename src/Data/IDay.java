@@ -20,6 +20,8 @@ public interface IDay {
 
     void removeActiveMood(IMood mood);
 
+    ITag createTag(String tagName);
+
     void addTag(ITag str);
 
     void removeTag(ITag tag);

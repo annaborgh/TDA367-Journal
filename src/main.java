@@ -1,9 +1,14 @@
 package src;
 
+
 import src.Data.DailyPost;
 import src.Data.IDay;
 import src.Data.IMood;
 import src.Data.Mood;
+import src.Data.ITag;
+import src.Data.Tag;
+
+import java.util.ArrayList;
 
 public class main {
 
@@ -13,29 +18,34 @@ public class main {
         *    Testing of DailyPost's methods
         */
 
-        /*IDay day = new DailyPost("1");
+        IDay day = new DailyPost();
+
+        ITag skola = day.createTag("skola");
+        ITag träning = day.createTag("träning");
+        ITag jobb = day.createTag("jobb");
 
         System.out.println(day.getTags());
 
-        day.addTag("Skola");
+        day.addTag(skola);
         System.out.println(day.getTags());
 
-        for(int i = 0; i < 9; i++){
+
+        for(int i = 0; i < 4; i++){
             if (i == 3){
-                day.addTag("Stolpe");
+                day.addTag(träning);
             }
             else{
-                day.addTag("Bröd");
+                day.addTag(jobb);
             }
         }
 
         System.out.println(day.getTags());
 
-        day.removeTag("Stolpe");
+        day.removeTag(skola);
         System.out.println(day.getTags());
 
-        day.removeTag("Bröd");
-        System.out.println(day.getTags());*/
+        day.removeTag(träning);
+        System.out.println(day.getTags());
 
         /*
         * Testing of Mood and IMood
@@ -66,6 +76,7 @@ public class main {
         System.out.println("Changed mood rating\t\t" + anger.getMoodRating());
 
         */
+
 
 
     }
