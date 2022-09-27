@@ -1,6 +1,7 @@
 package src.Data;
 
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -26,4 +27,15 @@ public interface IDay {
 
     void removeTag(ITag tag);
 
+    void setText(String text);
+
+    void setDate(LocalDate date);
+
+    void setGrade(int grade);
+
+    void setTags(ArrayList<ITag> tags);
+
+    void setActiveMoods(ArrayList<IMood> moods);
+
+    void setConditions(ArrayList<ECondition> conditions);
 }

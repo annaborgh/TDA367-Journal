@@ -10,7 +10,7 @@ public class DailyPost implements IDay {
     private int grade = 0;
     private ArrayList<IMood> activeMoods = new ArrayList<>();
     private ArrayList<ITag> tags = new ArrayList<>();
-    private ArrayList<Condition> conditions = new ArrayList<>();
+    private ArrayList<ECondition> conditions = new ArrayList<>();
 
     public DailyPost(){
 
@@ -41,7 +41,7 @@ public class DailyPost implements IDay {
         return this.tags;
     }
 
-    public ArrayList<Condition> getConditions(){
+    public ArrayList<ECondition> getConditions(){
         return this.conditions;
     }
 
@@ -65,7 +65,7 @@ public class DailyPost implements IDay {
         this.tags.addAll(tags);
     }
 
-    public void setConditions(ArrayList<Condition> contitions){
+    public void setConditions(ArrayList<ECondition> contitions){
         this.conditions.addAll(contitions);
     }
 
