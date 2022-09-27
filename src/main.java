@@ -1,12 +1,7 @@
 package src;
 
 
-import src.Data.DailyPost;
-import src.Data.IDay;
-import src.Data.IMood;
-import src.Data.Mood;
-import src.Data.ITag;
-import src.Data.Tag;
+import src.Data.*;
 
 import java.util.ArrayList;
 
