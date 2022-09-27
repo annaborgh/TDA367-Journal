@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/TDA367-Journal.iml" filepath="$PROJECT_DIR$/TDA367-Journal.iml" />
     </modules>
   </component>
 </project>
