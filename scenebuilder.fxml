@@ -53,7 +53,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <children>
     <SplitPane dividerPositions="0.3" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
@@ -218,6 +218,7 @@
                            <children>
                               <RadioButton layoutX="69.0" layoutY="160.0" mnemonicParsing="false" text="???" />
                               <RadioButton layoutX="68.0" layoutY="225.0" mnemonicParsing="false" text="??" />
+                              <Button fx:id="testButton1" layoutX="59.0" layoutY="101.0" mnemonicParsing="false" text="Test1" />
                            </children>
                         </AnchorPane>
                      </children>
