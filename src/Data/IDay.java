@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public interface IDay {
-    LocalDate getDate();
+
     String getText();
 
     int getGrade();
@@ -18,7 +18,4 @@ public interface IDay {
 
     void removeActiveMood(IMood mood);
 
-    void addTag(ITag str);
-
-    void removeTag(ITag tag);
 }
