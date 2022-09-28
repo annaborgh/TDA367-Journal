@@ -11,6 +11,7 @@ public class Model {
     private HashMap<LocalDate, IDay> posts;
     private final LocalDate currentDate;
     public Model() {
+        posts = new HashMap<>();
         currentDate = LocalDate.now();
     }
 
@@ -29,6 +30,14 @@ public class Model {
 
     public ILock getLockType() {
         return lockType;
+    }
+
+    public ArrayList<ITag> getAllTags() {
+        return allTags;
+    }
+
+    public LocalDate getCurrentDate() {
+        return currentDate;
     }
 
     public HashMap<LocalDate, IDay> getPosts() {
