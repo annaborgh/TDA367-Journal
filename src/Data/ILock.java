@@ -5,5 +5,10 @@ public interface ILock {
     boolean lockActive = false;
     int lockId = 0;
     boolean getLockState = false;
+
+   void setLockState();
+
+
+
 }
 

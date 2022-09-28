@@ -4,36 +4,44 @@ import java.util.Scanner;
 
 public class PinLock {
     Scanner keypad = new Scanner(System.in);
-    String pinCode = null;
-    String correctPinCode = setPinCode();
+    int setPinCode = keypad.nextInt();
+    int pinCode = setPinCode();
+    int getPinCode = keypad.nextInt();
+    int inputPin = keypad.nextInt();
 
-    public PinLock() {
-    }
-
-    public String setPinCode() {
+        public int setPinCode () {
 
         System.out.print("Enter Pin Code: ");
 
-        correctPinCode = pinCode();
+    // int input
 
-        return pinCode();
+        return setPinCode();
     }
 
-    public String pinCode() {
-        String pinCode = keypad.nextLine();
+    // onödigt att få se sin pinkod?
+
+        public int pinCode () {
         System.out.print("Din pinkod är: " + pinCode);
-        return null;
+        return 0;
     }
 
-    public void getPinCode() {
 
-
-        }
-
-
-
-    public String inputPinCode() {
-
-        return null;
+    public int getGetPinCode() {
+            getPinCode = this.pinCode();
+        return getPinCode;
     }
+
+    public void setGetPinCode(int getPinCode) {
+        this.getPinCode = getPinCode;
+    }
+
+    public void setPinCode(int pinCode) {
+        this.pinCode = pinCode;
+    }
+
+    public int inputPinCode() {
+
+        return 0;
+    }
+
 }
