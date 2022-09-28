@@ -13,5 +13,22 @@ public class main {
 
         Controller controller = new Controller();
         Model model = controller.getModel();
+
+        Tag tag = new Tag("test", model.getAllTags());
+        tag.setTagID(42);
+
+        ArrayList<ITag> tags = new ArrayList<>();
+        tags.add(tag);
+
+        IMood mood = new Mood("testing mood");
+
+        ArrayList<IMood> moods = new ArrayList<>();
+        moods.add(mood);
+
+        ArrayList<ECondition> conditions = new ArrayList<>();
+
+        model.makePost("Hej detta är ett test", 4, tags, moods, conditions);
+
+        controller.savePosts();
     }
 }
