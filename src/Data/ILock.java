@@ -7,7 +7,3 @@ public interface ILock {
     boolean getLockState = false;
 }
 
-class pinLock {
-
-}
-
