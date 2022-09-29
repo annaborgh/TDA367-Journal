@@ -1,9 +1,9 @@
 package src.Data;
 
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IDay {
 
@@ -13,9 +13,9 @@ public interface IDay {
 
     int getGrade();
 
-    ArrayList<IMood> getActiveMoods();
+    List<IMood> getActiveMoods();
 
-    ArrayList<ITag> getTags();
+    List<ITag> getTags();
 
     void addActiveMood(IMood mood);
 
@@ -33,9 +33,11 @@ public interface IDay {
 
     void setGrade(int grade);
 
-    void setTags(ArrayList<ITag> tags);
+    void setTags(List<ITag> tags);
 
-    void setActiveMoods(ArrayList<IMood> moods);
+    void setActiveMoods(List<IMood> moods);
 
     void setConditions(ArrayList<ECondition> conditions);
+
+    void setConditions(List<src.Data.ECondition> conditions);
 }
