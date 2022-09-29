@@ -29,6 +29,6 @@ public class main {
 
         model.makePost("Hej detta är ett test", 4, tags, moods, conditions);
 
-        controller.savePosts();
+        model.savePosts();
     }
 }
