@@ -10,7 +10,7 @@ public class Model {
     private ArrayList<ITag> allTags = new ArrayList<>();
     private ILock lockType;
     private HashMap<LocalDate, IDay> posts;
-    private final LocalDate currentDate;
+    public final LocalDate currentDate;
     public Model() {
         currentDate = LocalDate.now();
     }
