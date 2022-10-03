@@ -2,15 +2,17 @@ package src.Data;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class DailyPost implements IDay {
 
     private LocalDate date;
     private String text = "";
     private int grade = 0;
-    private ArrayList<IMood> activeMoods = new ArrayList<>();
-    private ArrayList<ITag> tags = new ArrayList<>();
-    private ArrayList<ECondition> conditions = new ArrayList<>();
+    private List<IMood> activeMoods = new ArrayList<>();
+    private List<ITag> tags = new ArrayList<>();
+    private List<ECondition> conditions = new ArrayList<>();
 
     public DailyPost(){
 
@@ -32,16 +34,16 @@ public class DailyPost implements IDay {
     }
 
 
-    public ArrayList<IMood> getActiveMoods() {
+    public List<IMood> getActiveMoods() {
         return this.activeMoods;
     }
 
     @Override
-    public ArrayList<ITag> getTags() {
+    public List<ITag> getTags() {
         return this.tags;
     }
 
-    public ArrayList<ECondition> getConditions(){
+    public List<ECondition> getConditions(){
         return this.conditions;
     }
 
@@ -57,15 +59,20 @@ public class DailyPost implements IDay {
         this.grade = grade;
     }
 
-    public void setActiveMoods(ArrayList<IMood> moods){
+    public void setActiveMoods(List<IMood> moods){
         this.activeMoods.addAll(moods);
     }
 
-    public void setTags(ArrayList<ITag> tags){
+    public void setTags(List<ITag> tags){
         this.tags.addAll(tags);
     }
 
-    public void setConditions(ArrayList<ECondition> contitions){
+    @Override
+    public void setConditions(ArrayList<ECondition> conditions) {
+
+    }
+
+    public void setConditions(List<ECondition> contitions){
         this.conditions.addAll(contitions);
     }
 
