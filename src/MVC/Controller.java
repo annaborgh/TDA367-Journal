@@ -21,7 +21,6 @@ public class Controller {
     PieChart pieChart;
 
     private void populateChart(){
-        //OBS HASHMAPPEN FÅR INTE HA TOMMA ENTRIES (ETT DATUM UTAN INLÄGG)
         LocalDate date = model.currentDate;
         HashMap<LocalDate, IDay> hm = model.getPosts();
         for (IDay value : hm.values()) {
