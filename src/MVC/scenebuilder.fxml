@@ -32,11 +32,13 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
@@ -73,18 +75,91 @@
                         <RowConstraints maxHeight="144.59798049926758" minHeight="10.0" prefHeight="102.1423568725586" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="126.0" prefWidth="279.0" style="-fx-background-color: DADFFF;" text="Button" />
+                        <Button mnemonicParsing="false" prefHeight="125.0" prefWidth="280.0" style="-fx-background-color: DADFFF;" text="Button" />
                         <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="279.0" style="-fx-background-color: E8EBFF;" text="Button" GridPane.rowIndex="1" />
                         <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="279.0" style="-fx-background-color: DADFFF;" text="Button" GridPane.rowIndex="2" />
                         <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="279.0" style="-fx-background-color: E8EBFF;" text="Button" GridPane.rowIndex="3" />
                         <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="279.0" style="-fx-background-color: DADFFF;" text="Button" GridPane.rowIndex="4" />
                         <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="279.0" style="-fx-background-color: E8EBFF;" text="Button" GridPane.rowIndex="5" />
+                        <ImageView fitHeight="100.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/profile.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </ImageView>
                      </children>
                   </GridPane>
           </children>
         </AnchorPane>
             <AnchorPane prefHeight="571.0" prefWidth="617.0">
                <children>
+                  <AnchorPane prefHeight="633.0" prefWidth="613.0" style="-fx-background-color: white;">
+                     <children>
+                        <AnchorPane layoutX="9.0" layoutY="12.0" prefHeight="610.0" prefWidth="595.0" style="-fx-background-color: E8EBFF; -fx-background-radius: 15px;">
+                           <children>
+                              <ListView layoutX="430.0" layoutY="100.0" prefHeight="315.0" prefWidth="154.0" />
+                              <Button layoutX="309.0" layoutY="18.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="55.0" text="Button" />
+                              <GridPane alignment="CENTER" layoutX="415.0" layoutY="25.0" prefHeight="30.0" prefWidth="175.0" style="-fx-background-color: none;">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <RadioButton mnemonicParsing="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <RadioButton mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <RadioButton mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <RadioButton mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                    <RadioButton mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                 </children>
+                              </GridPane>
+                              <ImageView fitHeight="30.0" fitWidth="175.0" layoutX="415.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="30.0" prefHeight="20.0" prefWidth="160.0" text="date" textAlignment="CENTER" />
+                              <Button layoutX="240.0" layoutY="30.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" text="Button" />
+                              <Button layoutX="40.0" layoutY="30.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" text="Button" />
+                              <TextField layoutX="40.0" layoutY="100.0" prefHeight="480.0" prefWidth="362.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="636.0" prefWidth="615.0" style="-fx-background-color: white;">
+                     <children>
+                        <GridPane layoutX="182.0" layoutY="34.0" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: E8EBFF E8EBFF;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inställningar" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font size="32.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <image>
+                                    <Image url="@img/settings%201.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </GridPane>
+                        <AnchorPane layoutX="35.0" layoutY="136.0" prefHeight="468.0" prefWidth="539.0" style="-fx-background-radius: 15px; -fx-background-color: E8EBFF E8EBFF;">
+                           <children>
+                              <RadioButton layoutX="69.0" layoutY="160.0" mnemonicParsing="false" text="???" />
+                              <RadioButton layoutX="68.0" layoutY="225.0" mnemonicParsing="false" text="??" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="613.0" style="-fx-background-color: white;">
                      <children>
                         <TabPane layoutX="3.0" layoutY="120.0" prefHeight="515.0" prefWidth="612.0" style="-fx-background-color: white; -fx-tab-min-width: 10em; -fx-tab-min-height: 3em;" tabClosingPolicy="UNAVAILABLE">
@@ -172,76 +247,11 @@
                               </Text>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                                  <image>
-                                    <Image url="@scenebuilder/analysis%201.png" />
+                                    <Image url="@img/analysis%201.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </GridPane>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="636.0" prefWidth="615.0" style="-fx-background-color: white;">
-                     <children>
-                        <GridPane layoutX="182.0" layoutY="34.0" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: E8EBFF E8EBFF;">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Inställningar" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1">
-                                 <font>
-                                    <Font size="32.0" />
-                                 </font>
-                              </Text>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                 <image>
-                                    <Image url="@scenebuilder/settings%201.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </GridPane>
-                        <AnchorPane layoutX="35.0" layoutY="136.0" prefHeight="468.0" prefWidth="539.0" style="-fx-background-radius: 15px; -fx-background-color: E8EBFF E8EBFF;">
-                           <children>
-                              <RadioButton layoutX="69.0" layoutY="160.0" mnemonicParsing="false" text="???" />
-                              <RadioButton layoutX="68.0" layoutY="225.0" mnemonicParsing="false" text="??" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="633.0" prefWidth="613.0" style="-fx-background-color: white;">
-                     <children>
-                        <AnchorPane layoutX="9.0" layoutY="12.0" prefHeight="610.0" prefWidth="595.0" style="-fx-background-color: E8EBFF; -fx-background-radius: 15px;">
-                           <children>
-                              <ListView layoutX="427.0" layoutY="94.0" prefHeight="315.0" prefWidth="154.0" />
-                              <Button layoutX="334.0" layoutY="15.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="55.0" text="Button" />
-                              <GridPane alignment="CENTER" layoutX="421.0" layoutY="25.0" prefHeight="30.0" prefWidth="169.0" style="-fx-background-color: none;">
-                                <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <RadioButton mnemonicParsing="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <RadioButton mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <RadioButton mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <RadioButton mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                    <RadioButton mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                 </children>
-                              </GridPane>
-                              <ImageView fitHeight="60.0" fitWidth="167.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true" />
-                           </children>
-                        </AnchorPane>
-                        <Text layoutX="71.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date" textAlignment="CENTER" wrappingWidth="140.28240966796875" />
-                        <Button layoutX="37.0" layoutY="38.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" text="Button" />
-                        <Button layoutX="212.0" layoutY="39.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" text="Button" />
-                        <TextField layoutX="46.0" layoutY="108.0" prefHeight="480.0" prefWidth="362.0" />
                      </children>
                   </AnchorPane>
                </children>
