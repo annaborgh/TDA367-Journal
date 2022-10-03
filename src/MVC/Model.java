@@ -4,6 +4,7 @@ import src.Data.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Model {
     private ArrayList<ITag> allTags = new ArrayList<>();
@@ -14,7 +15,7 @@ public class Model {
         currentDate = LocalDate.now();
     }
 
-    public void makePost(String text, int grade, ArrayList<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
+    public void makePost(String text, int grade, List<ITag> tags, List<IMood> moods, List<ECondition> EConditions){
         IDay post = new DailyPost();
 
         post.setDate(currentDate);
