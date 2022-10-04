@@ -134,10 +134,101 @@
               </AnchorPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="613.0" style="-fx-background-color: white;">
+                        <AnchorPane fx:id="preferencesAnchorPane" prefHeight="636.0" prefWidth="615.0" style="-fx-background-color: white;">
+                           <children>
+                              <GridPane layoutX="182.0" layoutY="34.0" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: E8EBFF E8EBFF;">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label fx:id="preferencesLabel" prefHeight="31.0" prefWidth="112.0" text="Preferenser" textAlignment="CENTER" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font size="21.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fx:id="preferencesImageView" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                       <image>
+                                          <Image url="@scenebuilder/settings%201.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </GridPane>
+                              <AnchorPane layoutX="35.0" layoutY="136.0" prefHeight="468.0" prefWidth="539.0" style="-fx-background-radius: 15px; -fx-background-color: E8EBFF E8EBFF;" AnchorPane.bottomAnchor="31.200000000000045" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="48.19999999999993" AnchorPane.topAnchor="136.0">
+                                 <children>
+                                    <Label fx:id="lockSettingsLabel" layoutX="41.0" layoutY="38.0" text="Låsinställningar" AnchorPane.leftAnchor="41.0">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="tagsLabel" layoutX="41.0" layoutY="293.0" text="Taggar" AnchorPane.leftAnchor="41.0" />
+                                    <CheckBox fx:id="activeLockCheckBox" layoutX="41.0" layoutY="70.0" mnemonicParsing="false" text="Aktivera Lås" AnchorPane.leftAnchor="41.0" />
+                                    <Label fx:id="lockTypeLabel" layoutX="55.0" layoutY="103.0" text="Låstyp" AnchorPane.leftAnchor="55.0" />
+                                    <GridPane layoutX="55.0" layoutY="121.0" prefHeight="91.0" prefWidth="154.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <RadioButton fx:id="pinLockRadioButton" mnemonicParsing="false" text="Pinkod">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="Lock" />
+                                             </toggleGroup>
+                                          </RadioButton>
+                                          <RadioButton fx:id="passwordLockRadioButton" mnemonicParsing="false" text="Lösenord" toggleGroup="$Lock" GridPane.rowIndex="1" />
+                                          <RadioButton fx:id="patternLockRadioButton" mnemonicParsing="false" text="Mönster lås" toggleGroup="$Lock" GridPane.rowIndex="2" />
+                                       </children>
+                                    </GridPane>
+                                    <Label fx:id="changeCodeLabel" layoutX="55.0" layoutY="225.0" text="Ändra lösenord/pinkod/mönster" AnchorPane.leftAnchor="55.0" />
+                                    <PasswordField fx:id="newCodePasswordField" layoutX="55.0" layoutY="250.0" promptText="Ny låskod" AnchorPane.leftAnchor="55.0" />
+                                    <Button fx:id="changeCodeButton" layoutX="220.0" layoutY="250.0" mnemonicParsing="false" text="Byt Lås" AnchorPane.leftAnchor="220.0" />
+                                    <Button fx:id="seeTagsButton" layoutX="46.0" layoutY="320.0" mnemonicParsing="false" text="Se mina taggar" AnchorPane.leftAnchor="41.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="statisticsAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="613.0" style="-fx-background-color: white;">
                            <children>
                               <TabPane layoutX="3.0" layoutY="120.0" prefHeight="515.0" prefWidth="612.0" style="-fx-background-color: white; -fx-tab-min-width: 10em; -fx-tab-min-height: 3em;" tabClosingPolicy="UNAVAILABLE">
                                  <tabs>
+                                    <Tab style="-fx-background-color: E8EBFF;" text="Betyg">
+                                       <content>
+                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="525.0" prefWidth="415.0">
+                                             <children>
+                                                <LineChart layoutX="-3.0" prefHeight="404.0" prefWidth="621.0" style="-fx-horizontal-grid-lines-visible: false; -fx-background-color: E8EBFF;">
+                                                   <xAxis>
+                                                      <CategoryAxis side="BOTTOM" />
+                                                   </xAxis>
+                                                   <yAxis>
+                                                      <NumberAxis minorTickCount="0" side="LEFT" upperBound="5.0" />
+                                                   </yAxis>
+                                                </LineChart>
+                                                <GridPane layoutY="403.0" prefHeight="64.0" prefWidth="610.0">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <Button mnemonicParsing="false" prefHeight="102.0" prefWidth="372.0" style="-fx-background-color: E8EBFF;" text="Vecka" />
+                                                      <Button mnemonicParsing="false" prefHeight="102.0" prefWidth="372.0" style="-fx-background-color: E8EBFF;" text="Månad" GridPane.columnIndex="1" />
+                                                      <Button mnemonicParsing="false" prefHeight="102.0" prefWidth="372.0" style="-fx-background-color: E8EBFF;" text="År" GridPane.columnIndex="2" />
+                                                   </children>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </Tab>
                                     <Tab style="-fx-background-color: E8EBFF;" text="Humör">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="525.0" prefWidth="415.0">
@@ -168,37 +259,6 @@
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                              <children>
                                                 <PieChart layoutX="-2.0" layoutY="-1.0" prefHeight="468.0" prefWidth="615.0" />
-                                             </children>
-                                          </AnchorPane>
-                                       </content>
-                                    </Tab>
-                                    <Tab style="-fx-background-color: E8EBFF;" text="Betyg">
-                                       <content>
-                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="525.0" prefWidth="415.0">
-                                             <children>
-                                                <LineChart layoutX="-3.0" prefHeight="404.0" prefWidth="621.0" style="-fx-horizontal-grid-lines-visible: false; -fx-background-color: E8EBFF;">
-                                                   <xAxis>
-                                                      <CategoryAxis side="BOTTOM" />
-                                                   </xAxis>
-                                                   <yAxis>
-                                                      <NumberAxis side="LEFT" />
-                                                   </yAxis>
-                                                </LineChart>
-                                                <GridPane layoutY="403.0" prefHeight="64.0" prefWidth="610.0">
-                                                  <columnConstraints>
-                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                  </columnConstraints>
-                                                  <rowConstraints>
-                                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                  </rowConstraints>
-                                                   <children>
-                                                      <Button mnemonicParsing="false" prefHeight="102.0" prefWidth="372.0" style="-fx-background-color: E8EBFF;" text="Button" />
-                                                      <Button mnemonicParsing="false" prefHeight="102.0" prefWidth="372.0" style="-fx-background-color: E8EBFF;" text="Button" GridPane.columnIndex="2" />
-                                                      <Button mnemonicParsing="false" prefHeight="102.0" prefWidth="372.0" style="-fx-background-color: E8EBFF;" text="Button" GridPane.columnIndex="1" />
-                                                   </children>
-                                                </GridPane>
                                              </children>
                                           </AnchorPane>
                                        </content>
@@ -258,66 +318,6 @@
                                        </children>
                                     </GridPane>
                                     <ImageView fitHeight="60.0" fitWidth="167.0" layoutX="420.0" pickOnBounds="true" preserveRatio="true" />
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="636.0" prefWidth="615.0" style="-fx-background-color: white;">
-                           <children>
-                              <GridPane layoutX="182.0" layoutY="34.0" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: E8EBFF E8EBFF;">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Label fx:id="preferencesLabel" prefHeight="31.0" prefWidth="112.0" text="Preferenser" textAlignment="CENTER" GridPane.columnIndex="1">
-                                       <font>
-                                          <Font size="21.0" />
-                                       </font>
-                                    </Label>
-                                    <ImageView fx:id="preferencesImageView" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                       <image>
-                                          <Image url="@scenebuilder/settings%201.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </GridPane>
-                              <AnchorPane layoutX="35.0" layoutY="136.0" prefHeight="468.0" prefWidth="539.0" style="-fx-background-radius: 15px; -fx-background-color: E8EBFF E8EBFF;" AnchorPane.bottomAnchor="31.200000000000045" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="48.19999999999993" AnchorPane.topAnchor="136.0">
-                                 <children>
-                                    <Label layoutX="41.0" layoutY="38.0" text="Lösenordsinställningar" AnchorPane.leftAnchor="41.0">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="41.0" layoutY="293.0" text="Taggar" AnchorPane.leftAnchor="41.0" />
-                                    <CheckBox fx:id="activeLockCheckBox" layoutX="41.0" layoutY="70.0" mnemonicParsing="false" text="Aktivera Lås" AnchorPane.leftAnchor="41.0" />
-                                    <Label fx:id="lockTypeLabel" layoutX="55.0" layoutY="103.0" text="Låstyp" AnchorPane.leftAnchor="55.0" />
-                                    <GridPane layoutX="55.0" layoutY="121.0" prefHeight="91.0" prefWidth="154.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <children>
-                                          <RadioButton fx:id="pinLockRadioButton" mnemonicParsing="false" text="Pinkod">
-                                             <toggleGroup>
-                                                <ToggleGroup fx:id="Lock" />
-                                             </toggleGroup>
-                                          </RadioButton>
-                                          <RadioButton fx:id="passwordLockRadioButton" mnemonicParsing="false" text="Lösenord" toggleGroup="$Lock" GridPane.rowIndex="1" />
-                                          <RadioButton fx:id="patternLockRadioButton" mnemonicParsing="false" text="Mönster lås" toggleGroup="$Lock" GridPane.rowIndex="2" />
-                                       </children>
-                                    </GridPane>
-                                    <Label fx:id="changeCodeLabel" layoutX="55.0" layoutY="225.0" text="Ändra lösenord/pinkod/mönster" AnchorPane.leftAnchor="55.0" />
-                                    <PasswordField fx:id="newCodePasswordField" layoutX="55.0" layoutY="250.0" promptText="Ny låskod" AnchorPane.leftAnchor="55.0" />
-                                    <Button fx:id="changeCodeButton" layoutX="220.0" layoutY="250.0" mnemonicParsing="false" text="Byt Lås" AnchorPane.leftAnchor="220.0" />
-                                    <Button fx:id="seeTagsButton" layoutX="46.0" layoutY="320.0" mnemonicParsing="false" text="Se mina taggar" AnchorPane.leftAnchor="41.0" />
                                  </children>
                               </AnchorPane>
                            </children>
