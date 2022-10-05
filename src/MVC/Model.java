@@ -5,12 +5,10 @@ import src.Data.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.*;
 import java.nio.charset.Charset;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 import static java.nio.charset.StandardCharsets.ISO_8859_1;
 
@@ -20,11 +18,15 @@ public class Model {
     private HashMap<LocalDate, IDay> posts;
     private final LocalDate currentDate;
     private final Charset charsetLatin;
+    private final String typeSeparator;
+    private final String inlineSeparator;
 
     public Model() {
         posts = new HashMap<>();
         currentDate = LocalDate.now();
         charsetLatin = ISO_8859_1;
+        typeSeparator = ";" + "\n";
+        inlineSeparator = "|";
         init();
     }
 
@@ -73,27 +75,29 @@ public class Model {
                 FileOutputStream outputStream = new FileOutputStream(filename);
                 OutputStreamWriter outputWriter = new OutputStreamWriter(outputStream, charsetLatin);
                 String line;
-                String separator = ";" + "\n";
 
                 // date
                 line = post.getDate() + "\n";
                 outputWriter.write(line);
+                outputWriter.write(typeSeparator);
 
                 // text
                 line = post.getText() + "\n";
                 outputWriter.write(line);
+                outputWriter.write(typeSeparator);
 
                 // grade
                 line = post.getGrade() + "\n";
                 outputWriter.write(line);
+                outputWriter.write(typeSeparator);
 
                 // moods
                 ArrayList<IMood> moods = post.getActiveMoods();
                 for (IMood mood : moods) {
-                    line = mood.getMoodName() + "|" + mood.getMoodRating() + "\n";
+                    line = mood.getMoodName() + inlineSeparator + mood.getMoodRating() + "\n";
                     outputWriter.write(line);
                 }
-                outputWriter.write(separator);
+                outputWriter.write(typeSeparator);
 
                 // tags
                 ArrayList<ITag> tags = post.getTags();
@@ -101,7 +105,7 @@ public class Model {
                     line = tag.getTagID() + "\n";
                     outputWriter.write(line);
                 }
-                outputWriter.write(separator);
+                outputWriter.write(typeSeparator);
 
                 // conditions
                 ArrayList<ECondition> conditions = post.getConditions();
@@ -109,7 +113,7 @@ public class Model {
                     line = condition.name() + "\n";
                     outputWriter.write(line);
                 }
-                outputWriter.write(separator);
+                outputWriter.write(typeSeparator);
 
                 outputWriter.flush();
                 outputWriter.close();
@@ -119,7 +123,7 @@ public class Model {
         }
     }
 
-    private void loadPosts(){
+    public void loadPosts(){
         File postDirectory = new File(getPostsDirectoryPath());
 
         if (postDirectory.isDirectory()){
@@ -134,7 +138,7 @@ public class Model {
         }
     }
 
-    private void loadPost(File file){
+    public void loadPost(File file){
         try {
             FileInputStream fileInput = new FileInputStream(file);
             InputStreamReader inputStream = new InputStreamReader(fileInput);
@@ -145,16 +149,47 @@ public class Model {
 
             line = reader.readLine();
 
-            // read date
+            //date
             if (line != null){
                 LocalDate date;
                 date = LocalDate.parse(line);
                 post.setDate(date);
+                line = reader.readLine();
             }
+
+            line = ifSeparatorReadNew(reader, line);
+
+            //text
+            StringBuilder stringBuilder = new StringBuilder();
+            while (!Objects.equals(line, typeSeparator)){
+                stringBuilder.append(line).append("\n");
+                line = reader.readLine();
+            }
+            post.setText(stringBuilder.toString());
+            line = reader.readLine();
+
+            //grade
+            if (line != null){
+                post.setGrade(Integer.parseInt(line));
+                line = reader.readLine();
+            }
+
+            line = ifSeparatorReadNew(reader, line);
+
+            //moods
+            //tags
+            //conditions
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private String ifSeparatorReadNew(BufferedReader reader, String line) throws IOException {
+        if (Objects.equals(line, typeSeparator)){
+            line = reader.readLine();
+        }
+        return line;
     }
 
     //create directories
