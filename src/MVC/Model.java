@@ -145,6 +145,13 @@ public class Model {
 
             line = reader.readLine();
 
+            // read date
+            if (line != null){
+                LocalDate date;
+                date = LocalDate.parse(line);
+                post.setDate(date);
+            }
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
