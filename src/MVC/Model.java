@@ -101,7 +101,11 @@ public class Model {
                 }
 
                 // conditions
-                // TODO getConditions not available, fix during meeting (scared of merge conflicts :/)
+                ArrayList<ECondition> conditions = post.getConditions();
+                for (ECondition condition : conditions){
+                    line = condition.name() + "\n";
+                    outputWriter.write(line);
+                }
 
                 outputWriter.flush();
                 outputWriter.close();
