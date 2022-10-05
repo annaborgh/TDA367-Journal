@@ -3,11 +3,11 @@ package src.MVC;
 import src.Data.*;
 
 import javax.swing.filechooser.FileSystemView;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.nio.charset.Charset;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +24,7 @@ public class Model {
     public Model() {
         posts = new HashMap<>();
         currentDate = LocalDate.now();
-        this.charsetLatin = ISO_8859_1;
+        charsetLatin = ISO_8859_1;
         init();
     }
 
@@ -63,7 +63,7 @@ public class Model {
         return posts;
     }
 
-    //functionality for saving orders goes here
+    //saves posts to text files
     public void savePosts() {
         for (IDay post : posts.values()){
             // create file name
@@ -119,6 +119,36 @@ public class Model {
         }
     }
 
+    private void loadPosts(){
+        File postDirectory = new File(getPostsDirectoryPath());
+
+        if (postDirectory.isDirectory()){
+            File[] files = postDirectory.listFiles();
+
+            assert files != null;
+            for (File currentFile : files) {
+                if (currentFile.getName().endsWith(".txt")) {
+                    loadPost(currentFile);
+                }
+            }
+        }
+    }
+
+    private void loadPost(File file){
+        try {
+            FileInputStream fileInput = new FileInputStream(file);
+            InputStreamReader inputStream = new InputStreamReader(fileInput);
+            BufferedReader reader = new BufferedReader(inputStream);
+
+            DailyPost post = new DailyPost();
+            String line;
+
+            line = reader.readLine();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     //create directories
     private void createAppDirectory(){
