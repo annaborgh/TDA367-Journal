@@ -78,14 +78,17 @@ public class Model {
                 // date
                 line = post.getDate() + "\n";
                 outputWriter.write(line);
+                outputWriter.write(separator);
 
                 // text
                 line = post.getText() + "\n";
                 outputWriter.write(line);
+                outputWriter.write(separator);
 
                 // grade
                 line = post.getGrade() + "\n";
                 outputWriter.write(line);
+                outputWriter.write(separator);
 
                 // moods
                 ArrayList<IMood> moods = post.getActiveMoods();
