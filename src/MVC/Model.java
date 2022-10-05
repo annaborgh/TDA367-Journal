@@ -161,6 +161,7 @@ public class Model {
             line = findNewLine(reader, line);
 
             //text
+            //TODO läsa in åäö korrekt
             StringBuilder stringBuilder = new StringBuilder();
             while (line != null && !Objects.equals(line, typeSeparator)){
                 stringBuilder.append(line).append("\n");
