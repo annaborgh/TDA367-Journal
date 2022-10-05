@@ -73,7 +73,7 @@ public class Model {
                 FileOutputStream outputStream = new FileOutputStream(filename);
                 OutputStreamWriter outputWriter = new OutputStreamWriter(outputStream, charsetLatin);
                 String line;
-                String separator = ";";
+                String separator = ";" + "\n";
 
                 // date
                 line = post.getDate() + "\n";

@@ -26,6 +26,7 @@ public class main {
         moods.add(mood);
 
         ArrayList<ECondition> conditions = new ArrayList<>();
+        conditions.add(ECondition.SICK);
 
         model.makePost("Hej detta är ett test", 4, tags, moods, conditions);
 

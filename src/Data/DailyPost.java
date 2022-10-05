@@ -65,8 +65,8 @@ public class DailyPost implements IDay {
         this.tags.addAll(tags);
     }
 
-    public void setConditions(ArrayList<ECondition> contitions){
-        this.conditions.addAll(contitions);
+    public void setConditions(ArrayList<ECondition> conditions){
+        this.conditions.addAll(conditions);
     }
 
     @Override

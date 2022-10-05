@@ -6,5 +6,5 @@ public enum ECondition {
     HOT,
     COLD,
     TIRED,
-    HURT;
+    HURT
 }
