@@ -18,15 +18,15 @@ public class Model {
     private HashMap<LocalDate, IDay> posts;
     private final LocalDate currentDate;
     private final Charset charsetLatin;
-    private final String typeSeparator;
+    private String typeSeparator;
     private final String inlineSeparator;
 
     public Model() {
         posts = new HashMap<>();
         currentDate = LocalDate.now();
         charsetLatin = ISO_8859_1;
-        typeSeparator = ";" + "\n";
-        inlineSeparator = "|";
+        typeSeparator = ";";
+        inlineSeparator = ",";
         init();
     }
 
@@ -68,6 +68,7 @@ public class Model {
     //saves posts to text files
     public void savePosts() {
         for (IDay post : posts.values()){
+            String newline = "\n";
             // create file name
             String filename = getPostsDirectoryPath() + File.separatorChar + "post_" + post.getDate() + ".txt";
 
@@ -79,17 +80,17 @@ public class Model {
                 // date
                 line = post.getDate() + "\n";
                 outputWriter.write(line);
-                outputWriter.write(typeSeparator);
+                outputWriter.write(typeSeparator + newline);
 
                 // text
                 line = post.getText() + "\n";
                 outputWriter.write(line);
-                outputWriter.write(typeSeparator);
+                outputWriter.write(typeSeparator + newline);
 
                 // grade
                 line = post.getGrade() + "\n";
                 outputWriter.write(line);
-                outputWriter.write(typeSeparator);
+                outputWriter.write(typeSeparator + newline);
 
                 // moods
                 ArrayList<IMood> moods = post.getActiveMoods();
@@ -97,7 +98,7 @@ public class Model {
                     line = mood.getMoodName() + inlineSeparator + mood.getMoodRating() + "\n";
                     outputWriter.write(line);
                 }
-                outputWriter.write(typeSeparator);
+                outputWriter.write(typeSeparator + newline);
 
                 // tags
                 ArrayList<ITag> tags = post.getTags();
@@ -105,7 +106,7 @@ public class Model {
                     line = tag.getTagID() + "\n";
                     outputWriter.write(line);
                 }
-                outputWriter.write(typeSeparator);
+                outputWriter.write(typeSeparator + newline);
 
                 // conditions
                 ArrayList<ECondition> conditions = post.getConditions();
@@ -113,7 +114,7 @@ public class Model {
                     line = condition.name() + "\n";
                     outputWriter.write(line);
                 }
-                outputWriter.write(typeSeparator);
+                outputWriter.write(typeSeparator + newline);
 
                 outputWriter.flush();
                 outputWriter.close();
@@ -121,6 +122,7 @@ public class Model {
                 throw new RuntimeException(e);
             }
         }
+        posts.clear();
     }
 
     public void loadPosts(){
@@ -154,38 +156,50 @@ public class Model {
                 LocalDate date;
                 date = LocalDate.parse(line);
                 post.setDate(date);
-                line = reader.readLine();
             }
 
-            line = ifSeparatorReadNew(reader, line);
+            line = findNewLine(reader, line);
 
             //text
             StringBuilder stringBuilder = new StringBuilder();
-            while (!Objects.equals(line, typeSeparator)){
+            while (line != null && !Objects.equals(line, typeSeparator)){
                 stringBuilder.append(line).append("\n");
                 line = reader.readLine();
             }
             post.setText(stringBuilder.toString());
-            line = reader.readLine();
+
+            line = findNewLine(reader,line);
 
             //grade
             if (line != null){
                 post.setGrade(Integer.parseInt(line));
-                line = reader.readLine();
             }
 
-            line = ifSeparatorReadNew(reader, line);
+            line = findNewLine(reader, line);
 
             //moods
+            while (line != null && !Objects.equals(line, typeSeparator)){
+                IMood mood = new Mood();
+                String[] tokens = line.split(inlineSeparator);
+                //name
+                mood.setName(tokens[0]);
+                //rating
+                mood.setMoodRating(Integer.parseInt(tokens[1]));
+
+                line = reader.readLine();
+            }
             //tags
             //conditions
 
+            //finish
+            posts.put(post.getDate(), post);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private String ifSeparatorReadNew(BufferedReader reader, String line) throws IOException {
+    private String findNewLine(BufferedReader reader, String line) throws IOException {
+        line = reader.readLine();
         if (Objects.equals(line, typeSeparator)){
             line = reader.readLine();
         }

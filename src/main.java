@@ -21,7 +21,9 @@ public class main {
         tag.setTagID(42);
         ArrayList<ITag> tags = new ArrayList<>();
         tags.add(tag);
-        IMood mood = new Mood("testing mood");
+        IMood mood = new Mood();
+        mood.setName("testing");
+        mood.setMoodRating(42);
         ArrayList<IMood> moods = new ArrayList<>();
         moods.add(mood);
         ArrayList<ECondition> conditions = new ArrayList<>();
