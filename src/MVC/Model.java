@@ -73,6 +73,7 @@ public class Model {
                 FileOutputStream outputStream = new FileOutputStream(filename);
                 OutputStreamWriter outputWriter = new OutputStreamWriter(outputStream, charsetLatin);
                 String line;
+                String separator = ";";
 
                 // date
                 line = post.getDate() + "\n";
@@ -92,6 +93,7 @@ public class Model {
                     line = mood.getMoodName() + "|" + mood.getMoodRating() + "\n";
                     outputWriter.write(line);
                 }
+                outputWriter.write(separator);
 
                 // tags
                 ArrayList<ITag> tags = post.getTags();
@@ -99,6 +101,7 @@ public class Model {
                     line = tag.getTagID() + "\n";
                     outputWriter.write(line);
                 }
+                outputWriter.write(separator);
 
                 // conditions
                 ArrayList<ECondition> conditions = post.getConditions();
@@ -106,6 +109,7 @@ public class Model {
                     line = condition.name() + "\n";
                     outputWriter.write(line);
                 }
+                outputWriter.write(separator);
 
                 outputWriter.flush();
                 outputWriter.close();
