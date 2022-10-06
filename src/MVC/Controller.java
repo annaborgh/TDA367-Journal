@@ -20,15 +20,20 @@ public class Controller {
     LineChart lineChart;
     PieChart pieChart;
 
-    private void populateChart(){
+    /*private void populateChart(){ //Split into more methods later potentially
         LocalDate date = model.currentDate;
         HashMap<LocalDate, IDay> hm = model.getPosts();
-        for (IDay value : hm.values()) {
+        //This will gather all data available.
+        *//*for (IDay value : hm.values()) {
             dateList.add(value.getDate());
             dayRatingList.add(value.getGrade());
             moodList.add(value.getActiveMoods());
-        }
-    }
+        }*//*
 
+    }*/
+    private void populateMoodChart(){}
+    private void populateConditionChart(){}
+    private void populateDayRatingChart(){}
+    private void populateTagsChart(){}
     //-----------------------Statistics logic end-----------------------
 }
