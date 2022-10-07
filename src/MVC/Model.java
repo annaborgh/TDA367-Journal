@@ -1,28 +1,27 @@
 package src.MVC;
-import src.Data.*;
 
+import src.Data.*;
 import javax.swing.filechooser.FileSystemView;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 import static java.nio.charset.StandardCharsets.ISO_8859_1;
 
 public class Model {
-    private ArrayList<ITag> allTags = new ArrayList<>();
+    private List<ITag> allTags = new ArrayList<>();
     private ILock lockType;
-    private HashMap<LocalDate, IDay> posts;
+    private HashMap<LocalDate, IDay> posts = new HashMap<>();
     private final LocalDate currentDate;
     private final Charset charsetLatin;
+    private final String typeSeparator = ";";
+    private final String inlineSeparator = ",";
 
     public Model() {
-        posts = new HashMap<>();
         currentDate = LocalDate.now();
         this.charsetLatin = ISO_8859_1;
         init();
@@ -51,7 +50,7 @@ public class Model {
         return lockType;
     }
 
-    public ArrayList<ITag> getAllTags() {
+    public List<ITag> getAllTags() {
         return allTags;
     }
 
@@ -63,9 +62,10 @@ public class Model {
         return posts;
     }
 
-    //functionality for saving orders goes here
+    //saves posts to text files
     public void savePosts() {
         for (IDay post : posts.values()){
+            String newline = "\n";
             // create file name
             String filename = getPostsDirectoryPath() + File.separatorChar + "post_" + post.getDate() + ".txt";
 
@@ -73,30 +73,29 @@ public class Model {
                 FileOutputStream outputStream = new FileOutputStream(filename);
                 OutputStreamWriter outputWriter = new OutputStreamWriter(outputStream, charsetLatin);
                 String line;
-                String separator = ";" + "\n";
 
                 // date
                 line = post.getDate() + "\n";
                 outputWriter.write(line);
-                outputWriter.write(separator);
+                outputWriter.write(typeSeparator + newline);
 
                 // text
                 line = post.getText() + "\n";
                 outputWriter.write(line);
-                outputWriter.write(separator);
+                outputWriter.write(typeSeparator + newline);
 
                 // grade
                 line = post.getGrade() + "\n";
                 outputWriter.write(line);
-                outputWriter.write(separator);
+                outputWriter.write(typeSeparator + newline);
 
                 // moods
                 List<IMood> moods = post.getActiveMoods();
                 for (IMood mood : moods) {
-                    line = mood.getMoodName() + "|" + mood.getMoodRating() + "\n";
+                    line = mood.getMoodName() + inlineSeparator + mood.getMoodRating() + "\n";
                     outputWriter.write(line);
                 }
-                outputWriter.write(separator);
+                outputWriter.write(typeSeparator + newline);
 
                 // tags
                 List<ITag> tags = post.getTags();
@@ -104,7 +103,7 @@ public class Model {
                     line = tag.getTagID() + "\n";
                     outputWriter.write(line);
                 }
-                outputWriter.write(separator);
+                outputWriter.write(typeSeparator + newline);
 
                 // conditions
                 List<ECondition> conditions = post.getConditions();
@@ -112,7 +111,7 @@ public class Model {
                     line = condition.name() + "\n";
                     outputWriter.write(line);
                 }
-                outputWriter.write(separator);
+                outputWriter.write(typeSeparator + newline);
 
                 outputWriter.flush();
                 outputWriter.close();
@@ -121,7 +120,113 @@ public class Model {
             }
         }
     }
+    public void loadPosts(){
+        File postDirectory = new File(getPostsDirectoryPath());
 
+        if (postDirectory.isDirectory()){
+            File[] files = postDirectory.listFiles();
+
+            assert files != null;
+            for (File currentFile : files) {
+                if (currentFile.getName().endsWith(".txt")) {
+                    loadPost(currentFile);
+                }
+            }
+        }
+    }
+
+    public void loadPost(File file){
+        try {
+            FileInputStream fileInput = new FileInputStream(file);
+            InputStreamReader inputStream = new InputStreamReader(fileInput, charsetLatin);
+            BufferedReader reader = new BufferedReader(inputStream);
+
+            DailyPost post = new DailyPost();
+            String line;
+
+            line = reader.readLine();
+
+            //date
+            if (line != null){
+                LocalDate date;
+                date = LocalDate.parse(line);
+                post.setDate(date);
+            }
+
+            line = findNewLine(reader, line);
+
+            //text
+            StringBuilder stringBuilder = new StringBuilder();
+            while (line != null && !Objects.equals(line, typeSeparator)){
+                stringBuilder.append(line).append("\n");
+                line = reader.readLine();
+            }
+            post.setText(stringBuilder.toString());
+
+            line = findNewLine(reader,line);
+
+            //grade
+            if (line != null){
+                post.setGrade(Integer.parseInt(line));
+            }
+
+            line = findNewLine(reader, line);
+
+            //moods
+            while (line != null && !Objects.equals(line, typeSeparator)){
+                IMood mood = new Mood();
+                String[] tokens = line.split(inlineSeparator);
+                //name
+                mood.setName(tokens[0]);
+                //rating
+                mood.setMoodRating(Integer.parseInt(tokens[1]));
+                post.addActiveMood(mood);
+
+                line = reader.readLine();
+            }
+
+            line = findNewLine(reader,line);
+
+            //tags
+            while (line != null && !Objects.equals(line, typeSeparator)){
+                String tagName;
+                int tagID;
+
+                String[] tokens = line.split(inlineSeparator);
+                tagName = tokens[0];
+                tagID = Integer.parseInt(tokens[1]);
+
+                ITag tag = new Tag(tagName,tagID);
+                post.addTag(tag);
+
+                line = reader.readLine();
+            }
+
+            line = findNewLine(reader, line);
+
+            //conditions
+            while (line != null && !Objects.equals(line, typeSeparator)){
+                ECondition condition;
+                condition = Enum.valueOf(ECondition.class, line);
+                post.addCondition(condition);
+                line = reader.readLine();
+            }
+
+            //finish
+            posts.put(post.getDate(), post);
+            inputStream.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String findNewLine(BufferedReader reader, String line) throws IOException {
+        line = reader.readLine();
+        if (Objects.equals(line, typeSeparator)){
+            line = reader.readLine();
+        }
+        return line;
+    }
 
     //create directories
     private void createAppDirectory(){

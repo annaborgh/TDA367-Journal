@@ -73,7 +73,13 @@ public class DailyPost implements IDay {
     }
 
     @Override
+    public void addCondition(ECondition condition) {
+        conditions.add(condition);
+    }
+
+    @Override
     public void addActiveMood(IMood mood) {
+        activeMoods.add(mood);
     }
 
     @Override
@@ -82,7 +88,7 @@ public class DailyPost implements IDay {
 
     @Override
     public ITag createTag(String tagName){
-        ITag Tag = new Tag(tagName, this.tags);
+        ITag Tag = new Tag(tagName, this.tags.size() + 1);
         this.tags.add(Tag);
         return Tag;
     }
