@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import static java.nio.charset.StandardCharsets.ISO_8859_1;
 
@@ -22,6 +23,7 @@ public class Model {
     private final Charset charsetLatin;
 
     private boolean lockActive = false;
+    private boolean lockState = true;
 
     public Model() {
         posts = new HashMap<>();
@@ -153,7 +155,31 @@ public class Model {
         return this.getAppDirectoryPath() + File.separatorChar + "Posts";
     }
 
-//-----------------------"Lock model" start-----------------------
+    //-----------------------"Lock model" start--------------------
+
+    public void lockLogic(){
+        String code = "";
+        boolean lockValid;
+
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Enter pin: ");
+
+        code = reader.nextLine();
+        lockValid = checkValidInput(code);
+
+        if (!lockValid){
+           System.out.println("Invalid code!");
+        }
+    }
+
+    public boolean checkValidInput(String codeLen){
+        for (int i = 0; i < codeLen.length(); i++) {
+            if (Character.isLetter(codeLen.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 
 
