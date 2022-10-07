@@ -8,6 +8,7 @@ import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import static java.nio.charset.StandardCharsets.ISO_8859_1;
@@ -97,7 +98,7 @@ public class Model {
                 outputWriter.write(typeSeparator + newline);
 
                 // moods
-                ArrayList<IMood> moods = post.getActiveMoods();
+                List<IMood> moods = post.getActiveMoods();
                 for (IMood mood : moods) {
                     line = mood.getMoodName() + inlineSeparator + mood.getMoodRating() + "\n";
                     outputWriter.write(line);
@@ -105,7 +106,7 @@ public class Model {
                 outputWriter.write(typeSeparator + newline);
 
                 // tags
-                ArrayList<ITag> tags = post.getTags();
+                List<ITag> tags = post.getTags();
                 for (ITag tag : tags){
                     line = tag.getTagID() + "\n";
                     outputWriter.write(line);
@@ -113,7 +114,7 @@ public class Model {
                 outputWriter.write(typeSeparator + newline);
 
                 // conditions
-                ArrayList<ECondition> conditions = post.getConditions();
+                List<ECondition> conditions = post.getConditions();
                 for (ECondition condition : conditions){
                     line = condition.name() + "\n";
                     outputWriter.write(line);

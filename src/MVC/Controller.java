@@ -1,15 +1,12 @@
 package src.MVC;
 
-import javax.swing.filechooser.FileSystemView;
-import java.io.*;
-import java.nio.charset.Charset;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import src.Data.*;
 
-import static java.nio.charset.StandardCharsets.ISO_8859_1;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.List;
 
 public class Controller {
     private Model model;
@@ -30,4 +27,24 @@ public class Controller {
     public Model getModel() {
         return model;
     }
+
+    //-----------------------Statistics logic start-----------------------
+    List<List<IMood>> moodList;
+    List<Integer> dayRatingList;
+    List<LocalDate> dateList;
+
+    LineChart lineChart;
+    PieChart pieChart;
+
+    private void populateChart(){
+        LocalDate date = model.getCurrentDate();
+        HashMap<LocalDate, IDay> hm = model.getPosts();
+        for (IDay value : hm.values()) {
+            dateList.add(value.getDate());
+            dayRatingList.add(value.getGrade());
+            moodList.add(value.getActiveMoods());
+        }
+    }
+
+    //-----------------------Statistics logic end-----------------------
 }
