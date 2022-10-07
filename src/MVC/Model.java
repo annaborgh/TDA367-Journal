@@ -18,7 +18,7 @@ public class Model {
     private HashMap<LocalDate, IDay> posts;
     private final LocalDate currentDate;
     private final Charset charsetLatin;
-    private String typeSeparator;
+    private final String typeSeparator;
     private final String inlineSeparator;
 
     public Model() {
@@ -31,9 +31,13 @@ public class Model {
     }
 
     private void init(){
-        // load posts
         createAppDirectory();
         createPostsDirectory();
+        //loadPosts();
+    }
+
+    private void shutdown(){
+        savePosts();
     }
 
     public void makePost(String text, int grade, ArrayList<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
@@ -122,7 +126,6 @@ public class Model {
                 throw new RuntimeException(e);
             }
         }
-        posts.clear();
     }
 
     public void loadPosts(){
@@ -185,11 +188,37 @@ public class Model {
                 mood.setName(tokens[0]);
                 //rating
                 mood.setMoodRating(Integer.parseInt(tokens[1]));
+                post.addMood(mood);
 
                 line = reader.readLine();
             }
+
+            line = findNewLine(reader,line);
+
             //tags
+            while (line != null && !Objects.equals(line, typeSeparator)){
+                String tagName;
+                int tagID;
+
+                String[] tokens = line.split(inlineSeparator);
+                tagName = tokens[0];
+                tagID = Integer.parseInt(tokens[1]);
+
+                ITag tag = new Tag(tagName,tagID);
+                post.addTag(tag);
+
+                line = reader.readLine();
+            }
+
+            line = findNewLine(reader, line);
+
             //conditions
+            while (line != null && !Objects.equals(line, typeSeparator)){
+                ECondition condition;
+                condition = Enum.valueOf(ECondition.class, line);
+                post.addCondition(condition);
+                line = reader.readLine();
+            }
 
             //finish
             posts.put(post.getDate(), post);

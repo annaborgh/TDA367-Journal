@@ -1,6 +1,5 @@
 package src;
 
-
 import src.Data.*;
 import src.MVC.*;
 
@@ -17,10 +16,11 @@ public class main {
         Model model = controller.getModel();
 
         //save
-        Tag tag = new Tag("test", model.getAllTags());
-        tag.setTagID(42);
+        Tag tag = new Tag("test", model.getAllTags().size()+1);
+
         ArrayList<ITag> tags = new ArrayList<>();
         tags.add(tag);
+
         IMood mood = new Mood();
         mood.setName("testing");
         mood.setMoodRating(42);
@@ -32,11 +32,12 @@ public class main {
         model.savePosts();
 
         //load
-        model.loadPosts();
         HashMap<LocalDate, IDay> posts = model.getPosts();
         IDay post = posts.get(LocalDate.now());
 
         System.out.println(post.getDate());
         System.out.println(post.getText());
+        System.out.println(post.getTags());
+        System.out.println(post.getConditions());
     }
 }

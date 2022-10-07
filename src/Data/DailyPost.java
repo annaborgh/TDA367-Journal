@@ -45,6 +45,16 @@ public class DailyPost implements IDay {
         return this.conditions;
     }
 
+    @Override
+    public void addMood(IMood mood) {
+        activeMoods.add(mood);
+    }
+
+    @Override
+    public void addCondition(ECondition condition) {
+        conditions.add(condition);
+    }
+
     public void setDate(LocalDate date){
         this.date = date;
     }
@@ -79,7 +89,8 @@ public class DailyPost implements IDay {
 
     @Override
     public ITag createTag(String tagName){
-        ITag Tag = new Tag(tagName, this.tags);
+        int tagID = tags.size() + 1;
+        ITag Tag = new Tag(tagName, tagID);
         this.tags.add(Tag);
         return Tag;
     }
