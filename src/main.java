@@ -3,10 +3,27 @@ import src.Data.*;
 import src.MVC.*;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class main {
 
     public static void main(String[] args){
+
+        // Testing logic for the lock
+
+        String code = "";
+        boolean lockValid;
+
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Enter pin: ");
+
+        code = reader.nextLine();
+        lockValid = Model.checkValidInput(code);
+
+        if (!lockValid){
+            System.out.println("Invalid code!");
+        }
+
 
         /* ~~Testing Controller~~ */
 

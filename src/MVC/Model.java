@@ -172,7 +172,7 @@ public class Model {
         }
     }
 
-    public boolean checkValidInput(String codeLen){
+    public static boolean checkValidInput(String codeLen){
         for (int i = 0; i < codeLen.length(); i++) {
             if (Character.isLetter(codeLen.charAt(i))) {
                 return false;
