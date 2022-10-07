@@ -37,7 +37,5 @@ public interface IDay {
 
     void setActiveMoods(List<IMood> moods);
 
-    void setConditions(ArrayList<ECondition> conditions);
-
-    void setConditions(List<src.Data.ECondition> conditions);
+    void setConditions(List<ECondition> conditions);
 }
