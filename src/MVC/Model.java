@@ -143,7 +143,7 @@ public class Model {
     public void loadPost(File file){
         try {
             FileInputStream fileInput = new FileInputStream(file);
-            InputStreamReader inputStream = new InputStreamReader(fileInput);
+            InputStreamReader inputStream = new InputStreamReader(fileInput, charsetLatin);
             BufferedReader reader = new BufferedReader(inputStream);
 
             DailyPost post = new DailyPost();
@@ -161,7 +161,6 @@ public class Model {
             line = findNewLine(reader, line);
 
             //text
-            //TODO läsa in åäö korrekt
             StringBuilder stringBuilder = new StringBuilder();
             while (line != null && !Objects.equals(line, typeSeparator)){
                 stringBuilder.append(line).append("\n");
@@ -194,6 +193,7 @@ public class Model {
 
             //finish
             posts.put(post.getDate(), post);
+            inputStream.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
