@@ -68,12 +68,8 @@ public class DailyPost implements IDay {
     }
 
     @Override
-    public void setConditions(ArrayList<ECondition> conditions) {
-
-    }
-
-    public void setConditions(List<ECondition> contitions){
-        this.conditions.addAll(contitions);
+    public void setConditions(List<ECondition> conditions){
+        this.conditions.addAll(conditions);
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface IDay {
-
+    List<ECondition> getConditions();
     LocalDate getDate();
 
     String getText();
@@ -37,7 +37,5 @@ public interface IDay {
 
     void setActiveMoods(List<IMood> moods);
 
-    void setConditions(ArrayList<ECondition> conditions);
-
-    void setConditions(List<src.Data.ECondition> conditions);
+    void setConditions(List<ECondition> conditions);
 }
