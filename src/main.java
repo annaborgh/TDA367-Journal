@@ -11,19 +11,26 @@ public class main {
 
         // Testing logic for the lock
 
-        String code = "";
-        boolean lockValid;
+        String code = "a";
+        boolean lockValid = false;
 
         Scanner reader = new Scanner(System.in);
         System.out.println("Enter pin: ");
 
-        code = reader.nextLine();
-        lockValid = Model.checkValidInput(code);
 
-        if (!lockValid){
-            System.out.println("Invalid code!");
-        }
+        /*while (Model.checkValidInput(code) == false) {
+            code = reader.nextLine();
+            lockValid = Model.checkValidInput(code);
+                if (!lockValid) {
+                    System.out.println("Invalid code!");
+                }
+            }
 
+         */
+
+        PinLock pinLock = new PinLock(code, 0);
+
+        System.out.println(pinLock.getPinCode());
 
         /* ~~Testing Controller~~ */
 

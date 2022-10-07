@@ -157,6 +157,10 @@ public class Model {
 
     //-----------------------"Lock model" start--------------------
 
+    public PinLock pinLock;
+    private String pinCode;
+
+
     public void lockLogic(){
         String code = "";
         boolean lockValid;
@@ -165,11 +169,32 @@ public class Model {
         System.out.println("Enter pin: ");
 
         code = reader.nextLine();
-        lockValid = checkValidInput(code);
+        PinLock pinLock = new PinLock(code, 0);
 
-        if (!lockValid){
-           System.out.println("Invalid code!");
+        System.out.println(pinLock.getPinCode());
+
+
+
+    }
+
+    public void createPinLock(){
+        boolean lockValid = false;
+        int tempPinID = 0;
+        while (!lockValid) {
+
+            lockValid = true;
+            // Manual input to the console
+            // code = reader.nextLine();
+            /*lockValid = Model.checkValidInput(pinCode);
+            if (!lockValid) {
+                System.out.println("Invalid code!");
+            }
+             */
         }
+        if (this.pinLock != null){
+            tempPinID = this.pinLock.getLockId() + 1;
+        {
+        this.pinLock = new PinLock(pinCode, tempPinID);
     }
 
     public static boolean checkValidInput(String codeLen){
@@ -180,10 +205,6 @@ public class Model {
         }
         return true;
     }
-
-
-
-
 
     //-----------------------"Lock model" end-----------------------
 
