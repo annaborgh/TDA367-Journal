@@ -21,6 +21,8 @@ public class Model {
     private final LocalDate currentDate;
     private final Charset charsetLatin;
 
+    private boolean lockActive = false;
+
     public Model() {
         posts = new HashMap<>();
         currentDate = LocalDate.now();
@@ -150,4 +152,13 @@ public class Model {
     private String getPostsDirectoryPath(){
         return this.getAppDirectoryPath() + File.separatorChar + "Posts";
     }
+
+//-----------------------"Lock model" start-----------------------
+
+
+
+
+
+    //-----------------------"Lock model" end-----------------------
+
 }

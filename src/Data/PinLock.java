@@ -6,7 +6,6 @@ public class PinLock implements ILock {
     private int pinCode;
     private int lockId = 0;
     private boolean lockState = false;
-    private boolean lockActive = false;
 
     public PinLock(int pinCode, int lockId) {
         this.pinCode = pinCode;
