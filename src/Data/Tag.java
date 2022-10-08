@@ -1,13 +1,14 @@
 package src.Data;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Tag implements ITag{
 
     String tagTitle = "";
     int tagID = 0;
 
-    public Tag(String tagTitle, ArrayList<ITag> tags){
+    public Tag(String tagTitle, List<ITag> tags){
         this.tagTitle = tagTitle;
         this.tagID = tags.size()+1;
     }
