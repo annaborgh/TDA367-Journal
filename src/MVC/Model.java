@@ -7,6 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Model {
+    public ArrayList<ITag> getAllTags() {
+        return allTags;
+    }
+
     private ArrayList<ITag> allTags = new ArrayList<>();
     private ILock lockType;
     private HashMap<LocalDate, IDay> posts;
@@ -15,7 +19,7 @@ public class Model {
         posts = new HashMap<>();
         currentDate = LocalDate.now();
     }
-
+    
     public void makePost(String text, int grade, List<ITag> tags, List<IMood> moods, List<ECondition> EConditions){
         IDay post = new DailyPost();
 

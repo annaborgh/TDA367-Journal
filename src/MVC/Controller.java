@@ -2,15 +2,13 @@ package src.MVC;
 
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
-import src.Data.DailyPost;
 import src.Data.IDay;
 import src.Data.IMood;
+import src.Data.ITag;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Controller {
     private static Model model = new Model();//model måste populate dates from backend
@@ -20,10 +18,9 @@ public class Controller {
     ArrayList<LocalDate> dateList;
 
     LineChart moodChart;
-    LineChart dayRatingChart;
+    PieChart dayRatingChart;
     PieChart tagsChart;
     PieChart conditionChart;
-
     public static void main(String[] args) {
         model.makePost("a",2,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
         model.makePost("a",2,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
@@ -33,8 +30,7 @@ public class Controller {
         model.makePost("a",2,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
         model.makePost("a",4,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
         model.makePost("a",2,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        System.out.println(model.getPosts());
-        populateDayRatingChart();
+        new Controller().populateMoodChart();
     }
     /*private void populateChart(){ //Split into more methods later potentially
         LocalDate date = model.currentDate;
@@ -49,8 +45,11 @@ public class Controller {
     }*/
     //Assume functionality exists in model
     private void populateMoodChart(){
-        ArrayList<LocalDate> dates = new ArrayList<>();
-     /*   HashMap<LocalDate, ArrayList<IMood>> moodMap = model.getMoodMap();*/
+
+        HashMap<LocalDate, IDay> moodMap = model.getPosts();
+        /*moodMap.values().stream().map(e->e.getActiveMoods()).collect(Collectors.toList());*/
+        moodMap.entrySet().clear();
+        System.out.println(moodMap.toString());
         /*for (LocalDate value : moodMap.keySet()) {
             dates.add(value);
         }*/
@@ -60,19 +59,38 @@ public class Controller {
        /* HashMap<LocalDate, ArrayList<IMood>> conditionMap = model.getConditionMap();*/
 
     }
-    private static void populateDayRatingChart(){
-     /*   HashMap<LocalDate, ArrayList<IMood>> dayRatingMap = model.getDayRatingMap();*/
-        ArrayList<Integer> intlist= new ArrayList<>();
-        for (IDay d: model.getPosts().values()) {
-            intlist.add(d.getGrade());
+    public void populateDayRatingChart(){
+        //this code below
+        Map<Integer, Long> chartData = model.getPosts().values().stream()
+                .collect(Collectors.groupingBy(p -> p.getGrade(),
+                        Collectors.counting()));
+        for (int x = 1; x <= 5; x++){
+            chartData.putIfAbsent(x,0L);
         }
-        List<Integer> twolist= intlist.stream().filter(e-> e==2).collect(Collectors.toList());
-        Map<Integer, List<Integer>> ratios = intlist.stream().collect(Collectors.groupingBy(Integer::intValue));
-        System.out.println(ratios);
+
+        ArrayList<Integer> intlist= new ArrayList<>();
+        intlist.add(1);intlist.add(1);intlist.add(2);intlist.add(4);intlist.add(4);intlist.add(4);intlist.add(5);
+
+        Map<Integer, Long> counters = intlist.stream()
+                .collect(Collectors.groupingBy(p -> p.intValue(),
+                        Collectors.counting()));
+        for (int x = 1; x <= 5; x++){
+            counters.putIfAbsent(x,0L);
+        }
+
+        System.out.println(counters);
+
     }
     private void populateTagsChart(){
+        ArrayList<ITag> tags = model.getAllTags();
         /*HashMap<LocalDate, ArrayList<IMood>> tagsMap = model.getTagsMap();*/
-
+        Map<Object, Long> chartData = model.getPosts().values().stream()
+                .collect(Collectors.groupingBy(p -> p.getTags(),
+                        Collectors.counting()));
+        for (int x = 0; x < tags.size(); x++){
+            chartData.putIfAbsent(tags.get(x),0L);
+        }
+        System.out.println(tags);
     }
     //-----------------------Statistics logic end-----------------------
 }
