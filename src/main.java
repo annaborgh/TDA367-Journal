@@ -1,12 +1,33 @@
 package src;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import src.Data.*;
 import src.MVC.*;
+import src.MVC.ViewHandler;
 
 import java.util.ArrayList;
 
-public class main {
+public class main extends Application {
 
-    public static void main(String[] args){
+    @Override
+    public void start(Stage stage) throws Exception{
+
+        Parent root = FXMLLoader.load(main.class.getResource("MVC/scenebuilder.fxml"));
+
+        Scene scene = new Scene(root);
+        scene.setRoot(root);
+
+        stage.setScene(scene);
+        stage.show();
+
+        /*ViewHandler viewHandler = new ViewHandler(stage);
+        viewHandler.start();*/
+
+
+    }
 
         /* ~~Testing Controller~~ */
 
@@ -96,5 +117,5 @@ public class main {
 
 
 
-    }
+    //}
 }
