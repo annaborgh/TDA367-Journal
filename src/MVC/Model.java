@@ -177,7 +177,7 @@ public class Model {
 
     }
 
-    public void createPinLock(){
+    public void createPinLock() {
         boolean lockValid = false;
         int tempPinID = 0;
         while (!lockValid) {
@@ -191,13 +191,13 @@ public class Model {
             }
              */
         }
-        if (this.pinLock != null){
+        if (this.pinLock != null) {
             tempPinID = this.pinLock.getLockId() + 1;
-        {
-        this.pinLock = new PinLock(pinCode, tempPinID);
-    }
+            {
+                this.pinLock = new PinLock(pinCode, tempPinID);
+            }
 
-    public static boolean checkValidInput(String codeLen){
+    /*public static boolean checkValidInput(String codeLen){
         for (int i = 0; i < codeLen.length(); i++) {
             if (Character.isLetter(codeLen.charAt(i))) {
                 return false;
@@ -206,6 +206,9 @@ public class Model {
         return true;
     }
 
-    //-----------------------"Lock model" end-----------------------
+     */
 
-}
+            //-----------------------"Lock model" end-----------------------
+
+        }
+    }}
