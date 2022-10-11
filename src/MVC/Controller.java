@@ -9,11 +9,12 @@ import src.Data.IMood;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Controller {
     private Model model = new Model();//model måste populate dates from backend
     //-----------------------Statistics logic start-----------------------
-    ArrayList<ArrayList<IMood>> moodList;
+    List<List<IMood>> moodList;
     ArrayList<Integer> dayRatingList;
     ArrayList<LocalDate> dateList;
 
