@@ -38,4 +38,6 @@ public interface IDay {
     void setActiveMoods(List<IMood> moods);
 
     void setConditions(List<ECondition> conditions);
+
+    List<ECondition> getConditions();
 }

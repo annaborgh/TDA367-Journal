@@ -14,9 +14,9 @@ public class Tag implements ITag{
      * Constructor of Tag
      *
      * @param tagTitle      The title of the tag
-     * @param tags          A List of existing tags
+     * @param tagID          A List of existing tags
      */
-    public Tag(String tagTitle, List<ITag> tags){
+    public Tag(String tagTitle, int tagID){
         this.tagTitle = tagTitle;
         this.tagID = tagID;
     }

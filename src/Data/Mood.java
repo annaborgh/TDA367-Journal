@@ -12,11 +12,9 @@ public class Mood implements IMood {
 
     /**
      * Constructor of Mood
-     *
-     * @param moodName      The name of the new Mood
      */
-    public Mood(String moodName) {
-        this.moodName = moodName;
+    public Mood() {
+
     }
 
     /**
@@ -39,17 +37,9 @@ public class Mood implements IMood {
         return moodRating;
     }
 
-    /**
-     * Method to change moodRating value. Contains logic for preventing illegal values
-     *
-     * @param newRating        The new moodRating
-     */
     @Override
-    public void changeMoodRating(int newRating){
-        if (newRating <= this.moodLimitUpper && newRating >= moodLimitLower){
-            this.moodRating = newRating;
-        }
-
+    public void setMoodRating(int newMood) {
+        this.moodRating = newMood;
     }
 
     @Override

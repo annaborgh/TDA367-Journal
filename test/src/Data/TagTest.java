@@ -22,10 +22,10 @@ public class TagTest {
     @Test
     public void testTagGetters() {
 
-        ITag testTag1 = new Tag("Skola", testTagList);
+        ITag testTag1 = new Tag("Skola", testTagList.size()+1);
         testTagList.add(testTag1);
 
-        ITag testTag2 = new Tag("Fritid", testTagList);
+        ITag testTag2 = new Tag("Fritid", testTagList.size()+1);
         testTagList.add(testTag2);
 
         // Test that the tag gets it's assigned title upon creation
@@ -48,10 +48,10 @@ public class TagTest {
     @Test
     public void testTagSetters(){
 
-        ITag testTag1 = new Tag("Skola", testTagList);
+        ITag testTag1 = new Tag("Skola", testTagList.size()+1);
         testTagList.add(testTag1);
 
-        ITag testTag2 = new Tag("Fritid", testTagList);
+        ITag testTag2 = new Tag("Fritid", testTagList.size()+1);
         testTagList.add(testTag2);
 
         // Test that the tagID changes correctly when setter is called

@@ -48,7 +48,7 @@ public class Model {
     }
 
     public List<ITag> getAllTags() {
-        return allTags;
+        return this.allTags;
     }
 
     public LocalDate getCurrentDate() {

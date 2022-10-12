@@ -77,7 +77,8 @@ public class DailyPostTest {
 
 
         // Testing the setActiveMoods method
-        IMood tempMood = new Mood("Happy");
+        IMood tempMood = new Mood();
+        tempMood.setName("Happy");
         List<IMood> tempMoodList = new ArrayList<>();
         tempMoodList.add(tempMood);
         post.setActiveMoods(tempMoodList);
@@ -97,7 +98,7 @@ public class DailyPostTest {
 
         // Testing so that it is possible to add tags
         List<ITag> listOfTags = new ArrayList<ITag>();
-        ITag tempTag = new Tag("name", post.getTags());
+        ITag tempTag = new Tag("name", post.getTags().size()+1);
         listOfTags.add(tempTag);
         post.setTags(listOfTags);
         assertTrue(post.getTags().size() == 1);

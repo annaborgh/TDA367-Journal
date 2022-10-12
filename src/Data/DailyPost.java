@@ -147,7 +147,9 @@ public class DailyPost implements IDay {
         this.conditions.addAll(conditions);
     }
 
-
+    public void addCondition(ECondition condition){
+        this.conditions.add(condition);
+    }
 
     /**
      * A method to add a mood to the list ActiveMoods.
@@ -173,7 +175,7 @@ public class DailyPost implements IDay {
      */
     @Override
     public ITag createTag(String tagName){
-        ITag Tag = new Tag(tagName, this.tags);
+        ITag Tag = new Tag(tagName, this.tags.size()+1);
         this.tags.add(Tag);
         return Tag;
     }
