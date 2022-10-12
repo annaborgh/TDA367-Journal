@@ -1,7 +1,7 @@
 package src.MVC;
 
-/*import javafx.scene.chart.LineChart;
-import javafx.scene.chart.PieChart;*/
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
 import src.Data.DailyPost;
 import src.Data.IDay;
 import src.Data.IMood;
@@ -23,8 +23,8 @@ public class Controller {
     }
 
     //matching shutdown-method goes here
-    private void shutdown(){
-        model.savePosts();
+    public void shutdown(){
+        model.shutdown();
     }
 
     public Model getModel() {
