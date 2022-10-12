@@ -22,6 +22,10 @@ public class Model {
     private final LocalDate currentDate;
     private final Charset charsetLatin;
 
+    /**
+     * Variables for the lock.
+     */
+    public PinLock lock;
     private boolean lockActive = false;
     private boolean lockState = true;
 
@@ -157,56 +161,57 @@ public class Model {
 
     //-----------------------"Lock model" start--------------------
 
-    public PinLock pinLock;
-    private String pinCode;
-
-
-    public void lockLogic(){
-        String code = "";
-        boolean lockValid;
-
-        Scanner reader = new Scanner(System.in);
-        System.out.println("Enter pin: ");
-
-        code = reader.nextLine();
-        PinLock pinLock = new PinLock(code, 0);
-
-        System.out.println(pinLock.getPinCode());
-
-
-
+    /**
+     * Method to create the pin lock.
+     *
+     * @param pinCode The pin code that is to be assigned to the pin lock.
+     */
+    public void createPinLock(String pinCode) {
+        if(lock != null) {
+            if (checkValidInput(pinCode)) {
+                this.lock = new PinLock(pinCode);
+                lockActive = true;
+            }
+        }
     }
 
-    public void createPinLock() {
-        boolean lockValid = false;
-        int tempPinID = 0;
-        while (!lockValid) {
-
-            lockValid = true;
-            // Manual input to the console
-            // code = reader.nextLine();
-            /*lockValid = Model.checkValidInput(pinCode);
-            if (!lockValid) {
-                System.out.println("Invalid code!");
-            }
-             */
-        }
-        if (this.pinLock != null) {
-            tempPinID = this.pinLock.getLockId() + 1;
-            {
-                this.pinLock = new PinLock(pinCode, tempPinID);
-            }
-
-    /*public static boolean checkValidInput(String codeLen){
-        for (int i = 0; i < codeLen.length(); i++) {
-            if (Character.isLetter(codeLen.charAt(i))) {
+    /**
+     * Method to check if attempted pincode for new lock is valid, i.e. only contains numbers.
+     *
+     * @param inp   The input given.
+     * @return      A boolean symbolizing if input is valid.
+     */
+    private boolean checkValidInput(String inp){
+        for (int i = 0; i < inp.length(); i++){
+            if(!Character.isDigit(inp.charAt(i))){
                 return false;
             }
         }
         return true;
     }
 
+    /**
+     * Method to unlock the lock. To unlock the lock, the input must be the same as the pin code.
+     * If the input is correct, lock state is turned off - the lock unlocks.
+     *
+     * @param inp   The input given.
      */
+    public void unlockLock(String inp){
+        if (lockActive) {
+            if (inp == lock.getPinCode()) {
+                lockState = false;
+            }
+        }
+    }
+
+    /**
+     * Method to lock the lock.
+     */
+    public void lockLock(){
+        if(lockActive) {
+            lockState = true;
+        }
+    }
 
             //-----------------------"Lock model" end-----------------------
 
