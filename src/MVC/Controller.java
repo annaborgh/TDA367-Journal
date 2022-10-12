@@ -12,17 +12,35 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Controller {
-    private Model model = new Model();//model måste populate dates from backend
+    private Model model;
+
+    public Controller() {
+        this.startUp();
+    }
+
+    private void startUp(){
+        this.model = new Model();
+    }
+
+    //matching shutdown-method goes here
+    public void shutdown(){
+        model.shutdown();
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
     //-----------------------Statistics logic start-----------------------
     List<List<IMood>> moodList;
-    ArrayList<Integer> dayRatingList;
-    ArrayList<LocalDate> dateList;
+    List<Integer> dayRatingList;
+    List<LocalDate> dateList;
 
     LineChart lineChart;
     PieChart pieChart;
 
     private void populateChart(){
-        LocalDate date = model.currentDate;
+        LocalDate date = model.getCurrentDate();
         HashMap<LocalDate, IDay> hm = model.getPosts();
         for (IDay value : hm.values()) {
             dateList.add(value.getDate());

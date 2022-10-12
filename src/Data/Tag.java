@@ -10,7 +10,6 @@ public class Tag implements ITag{
 
     String tagTitle = "";
     int tagID = 0;
-
     /**
      * Constructor of Tag
      *
@@ -19,7 +18,7 @@ public class Tag implements ITag{
      */
     public Tag(String tagTitle, List<ITag> tags){
         this.tagTitle = tagTitle;
-        this.tagID = tags.size()+1;
+        this.tagID = tagID;
     }
 
     /**

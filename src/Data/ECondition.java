@@ -1,10 +1,10 @@
 package src.Data;
 
 public enum ECondition {
-    Happy("Happy"),
-    Angry("Angry");
-
-
-    ECondition(String happy) {
-    }
+    SICK,
+    NAUSEATED,
+    HOT,
+    COLD,
+    TIRED,
+    HURT
 }

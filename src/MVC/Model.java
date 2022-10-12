@@ -1,21 +1,36 @@
 package src.MVC;
-import src.Data.*;
 
+import src.Data.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Model {
-    private ArrayList<ITag> allTags = new ArrayList<>();
+    private final List<ITag> allTags = new ArrayList<>();
     private ILock lockType;
-    private HashMap<LocalDate, IDay> posts;
-    public final LocalDate currentDate;
+    private HashMap<LocalDate, IDay> posts = new HashMap<>();
+    private final LocalDate currentDate;
+    private final IPersistence persistence;
+
     public Model() {
         currentDate = LocalDate.now();
+        persistence = new Persistence();
+        init();
     }
 
-    public void makePost(String text, int grade, List<ITag> tags, List<IMood> moods, List<ECondition> EConditions){
+    private void init(){
+        //load posts
+        posts = persistence.loadPosts();
+    }
+
+    protected void shutdown(){
+        //save posts
+        persistence.savePosts(posts);
+        posts.clear();
+    }
+
+    public void makePost(String text, int grade, ArrayList<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
         IDay post = new DailyPost();
 
         post.setDate(currentDate);
@@ -32,7 +47,16 @@ public class Model {
         return lockType;
     }
 
+    public List<ITag> getAllTags() {
+        return allTags;
+    }
+
+    public LocalDate getCurrentDate() {
+        return currentDate;
+    }
+
     public HashMap<LocalDate, IDay> getPosts() {
         return posts;
     }
+
 }

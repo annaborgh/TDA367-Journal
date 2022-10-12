@@ -51,4 +51,9 @@ public class Mood implements IMood {
         }
 
     }
+
+    @Override
+    public void setName(String name) {
+        moodName = name;
+    }
 }
