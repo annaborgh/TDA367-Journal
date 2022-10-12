@@ -9,28 +9,26 @@ public class main {
 
     public static void main(String[] args){
 
+        //Model model = new Model();
+
         // Testing logic for the lock
 
-        String code = "a";
-        boolean lockValid = false;
+        /*
 
-        Scanner reader = new Scanner(System.in);
-        System.out.println("Enter pin: ");
+        System.out.println(model.getLock());
 
+        model.createPinLock("1234");
+        System.out.println(model.getLock());
 
-        /*while (Model.checkValidInput(code) == false) {
-            code = reader.nextLine();
-            lockValid = Model.checkValidInput(code);
-                if (!lockValid) {
-                    System.out.println("Invalid code!");
-                }
-            }
+        System.out.println("If lockstate is true then lock is locked, othewise unlocked");
+        System.out.println("Lockstate is: " + model.getLockState());
+        model.unlockLock("hej");
+        System.out.println("Lockstate is: " + model.getLockState());
 
-         */
+        model.unlockLock("1234");
+        System.out.println("Lockstate is: " + model.getLockState());
 
-        PinLock pinLock = new PinLock(code, 0);
-
-        System.out.println(pinLock.getPinCode());
+        */
 
         /* ~~Testing Controller~~ */
 

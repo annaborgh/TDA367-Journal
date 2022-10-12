@@ -16,6 +16,10 @@ import java.util.Scanner;
 import static java.nio.charset.StandardCharsets.ISO_8859_1;
 
 public class Model {
+
+    /**
+     * General variables.
+     */
     private ArrayList<ITag> allTags = new ArrayList<>();
     private ILock lockType;
     private HashMap<LocalDate, IDay> posts;
@@ -55,20 +59,52 @@ public class Model {
         posts.put(currentDate, post);
     }
 
+    /**
+     *
+     * @return
+     */
     public ILock getLockType() {
         return lockType;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<ITag> getAllTags() {
         return allTags;
     }
 
+    /**
+     *
+     * @return
+     */
     public LocalDate getCurrentDate() {
         return currentDate;
     }
 
+    /**
+     *
+     * @return
+     */
     public HashMap<LocalDate, IDay> getPosts() {
         return posts;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public PinLock getLock(){
+        return this.lock;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean getLockState(){
+        return this.lockState;
     }
 
     //functionality for saving orders goes here
@@ -215,5 +251,5 @@ public class Model {
 
             //-----------------------"Lock model" end-----------------------
 
-        }
-    }}
+
+}

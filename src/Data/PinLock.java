@@ -1,14 +1,11 @@
 package src.Data;
 
-
 public class PinLock implements ILock {
 
     private String pinCode;
-    private int lockId = 0;
 
-    public PinLock(String pinCode, int lockId) {
+    public PinLock(String pinCode) {
         this.pinCode = pinCode;
-        this.lockId = lockId;
     }
 
     public String getPinCode() {
@@ -19,8 +16,4 @@ public class PinLock implements ILock {
         this.pinCode = newPin;
     }
 
-        public int getLockId() {
-            return lockId;
-        }
-
-    }
+}
