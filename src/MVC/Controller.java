@@ -1,39 +1,68 @@
 package src.MVC;
 
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.PieChart;
-import src.Data.IDay;
-import src.Data.IMood;
-import src.Data.ITag;
+import javafx.scene.chart.*;
+/*import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;*/
+import javafx.util.Pair;
+import src.Data.*;
 
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+
+
+
 
 public class Controller {
-    private static Model model = new Model();//model måste populate dates from backend
+    private Model model;
+
+    public Controller() {
+        this.startUp();
+    }
+
+    private void startUp(){
+        this.model = new Model();
+    }
+
+    //matching shutdown-method goes here
+    private void shutdown(){
+        model.savePosts();
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
     //-----------------------Statistics logic start-----------------------
-    ArrayList<ArrayList<IMood>> moodList;
-    ArrayList<Integer> dayRatingList;
-    ArrayList<LocalDate> dateList;
 
     LineChart moodChart;
     PieChart dayRatingChart;
     PieChart tagsChart;
     PieChart conditionChart;
+
+    /*final CategoryAxis xAxis = new CategoryAxis();
+    final NumberAxis yAxis = new NumberAxis();
+    XYChart.Series series1 = new XYChart.Series();
+    XYChart.Series series2 = new XYChart.Series();
+    XYChart.Series series3 = new XYChart.Series();
+    XYChart.Series series4 = new XYChart.Series();*/
     public static void main(String[] args) {
-        model.makePost("a",2,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        model.makePost("a",2,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        model.makePost("a",2,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        model.makePost("a",3,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        model.makePost("a",4,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        model.makePost("a",2,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        model.makePost("a",4,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        model.makePost("a",2,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
-        new Controller().populateMoodChart();
+        Controller c = new Controller();
+        c.getModel().makePost("a",3,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+        c.populateMoodChart();
+
     }
     /*private void populateChart(){ //Split into more methods later potentially
         LocalDate date = model.currentDate;
+    LineChart lineChart;
+    PieChart pieChart;
+
+    private void populateChart(){
+        LocalDate date = model.getCurrentDate();
         HashMap<LocalDate, IDay> hm = model.getPosts();
         //This will gather all data available.
         *//*for (IDay value : hm.values()) {
@@ -44,29 +73,72 @@ public class Controller {
 
     }*/
     //Assume functionality exists in model
-    private void populateMoodChart(){
 
-        HashMap<LocalDate, IDay> moodMap = model.getPosts();
-        /*moodMap.values().stream().map(e->e.getActiveMoods()).collect(Collectors.toList());*/
-        moodMap.entrySet().clear();
-        System.out.println(moodMap.toString());
+    //This method returns a hashmap with the correct dates that will be in the X axis of the chart.
+     HashMap<LocalDate,IMood> intervalToDatesMap(TimeInterval ti){
+         HashMap<LocalDate,IMood> dates = new HashMap<>();
+        if(ti==null) return dates;
+        switch (ti){
+            case WEEK -> {
+                LocalDate d = LocalDate.now();
+                for (int i = 0; i < 7; i++) {
+                    dates.put(d.minusDays(i),null);
+                }
+                System.out.println(dates);
+            }
+            case MONTH -> {
+                LocalDate d = LocalDate.now();
+                for (int i = 0; i < d.getMonth().length(d.isLeapYear()); i++) {
+                    dates.put(d.minusDays(i),null);
+                }
+                System.out.println(dates);
+            }
+            case YEAR -> {
+                LocalDate d = LocalDate.now();
+                for (int i = 0; i < 52; i++) {
+                    dates.put(d.minusWeeks(i),null);
+                }
+                System.out.println(dates);
+            }
+        }
+        return dates;
+    }
+    private void populateMoodChart(){
+        TimeInterval t = TimeInterval.MONTH;
+        HashMap dates = intervalToDatesMap(t);
         /*for (LocalDate value : moodMap.keySet()) {
             dates.add(value);
         }*/
         //Check if better to iterate through map altogether.t
+        Map<LocalDate, List<IMood>> moodMap = model.getPosts().values().stream().collect(Collectors.toMap(IDay::getDate, IDay::getActiveMoods));
+        System.out.println(moodMap);
+
     }
     private void populateConditionChart(){
-       /* HashMap<LocalDate, ArrayList<IMood>> conditionMap = model.getConditionMap();*/
+        Map<ECondition, Integer> conditionCountMap = new HashMap<>();
+        for (ECondition e:ECondition.values()) {
+            conditionCountMap.put(e,0);
+        }
+        model.getPosts().values().stream().map(e->{
+            List<ECondition> conditions = e.getConditions();
+            for (ECondition eCondition: conditions) {
+                int x = conditionCountMap.get(eCondition).intValue();
+                conditionCountMap.put(eCondition, x++);
+            }
+            return null;
+        });
+
+
 
     }
     public void populateDayRatingChart(){
         //this code below
-        Map<Integer, Long> chartData = model.getPosts().values().stream()
+        /*Map<Integer, Long> chartData = model.getPosts().values().stream()
                 .collect(Collectors.groupingBy(p -> p.getGrade(),
                         Collectors.counting()));
         for (int x = 1; x <= 5; x++){
             chartData.putIfAbsent(x,0L);
-        }
+        }*/
 
         ArrayList<Integer> intlist= new ArrayList<>();
         intlist.add(1);intlist.add(1);intlist.add(2);intlist.add(4);intlist.add(4);intlist.add(4);intlist.add(5);

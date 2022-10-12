@@ -7,8 +7,7 @@ public class Mood implements IMood {
     int moodLimitLower = 0;
     String moodName = "PlaceholderName";
 
-    public Mood(String moodName) {
-        this.moodName = moodName;
+    public Mood() {
     }
 
     @Override
@@ -22,7 +21,7 @@ public class Mood implements IMood {
     }
 
     @Override
-    public void changeMoodRating(int newRating){
+    public void setMoodRating(int newRating){
         if (newRating <= this.moodLimitUpper && newRating >= moodLimitLower){
             this.moodRating = newRating;
         }
@@ -31,5 +30,10 @@ public class Mood implements IMood {
             System.out.println("INVALID MOOD RATING! INT MUST BE IN RANGE [0, 100]");
             System.out.println("You attempted to change mood rating to " + newRating);
         }
+    }
+
+    @Override
+    public void setName(String name) {
+        moodName = name;
     }
 }
