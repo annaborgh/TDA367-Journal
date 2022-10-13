@@ -4,11 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import src.Data.*;
-import src.MVC.*;
-import src.MVC.ViewHandler;
-
-import java.util.ArrayList;
 
 public class main extends Application {
 
@@ -22,9 +17,6 @@ public class main extends Application {
 
         stage.setScene(scene);
         stage.show();
-
-        /*ViewHandler viewHandler = new ViewHandler(stage);
-        viewHandler.start();*/
 
 
     }

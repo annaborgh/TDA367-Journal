@@ -1,7 +1,14 @@
 package src.MVC;
 
+import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import src.Data.DailyPost;
 import src.Data.IDay;
 import src.Data.IMood;
@@ -48,6 +55,7 @@ public class Controller {
             moodList.add(value.getActiveMoods());
         }
     }
+
 
     //-----------------------Statistics logic end-----------------------
 }

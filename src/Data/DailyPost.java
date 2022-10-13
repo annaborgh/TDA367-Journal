@@ -33,7 +33,6 @@ public class DailyPost implements IDay {
         return this.grade;
     }
 
-
     public List<IMood> getActiveMoods() {
         return this.activeMoods;
     }
@@ -104,4 +103,5 @@ public class DailyPost implements IDay {
         }
 
     }
+
 }

@@ -11,61 +11,112 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import src.MVC.Model;
+import src.Data.DailyPost;
 
 public class View {
 
-    @FXML private ToggleGroup Lock;
-    @FXML private CheckBox activeLockCheckBox;
+
+
+
+    @FXML private AnchorPane dailyPostAnchorPane;
+    @FXML private AnchorPane miniCalendarAnchorPane; //Finns inte?
+    @FXML private AnchorPane moodAnchorPane;
+    @FXML private AnchorPane preferencesAnchorPane;
+    @FXML private AnchorPane statisticsAnchorPane;
+    @FXML private AnchorPane tagsAnchorPane;
+
     @FXML private Button calendarButton;
     @FXML private Button changeCodeButton;
-    @FXML private Label changeCodeLabel;
-    @FXML private AnchorPane dailyPostAnchorPane;
-    @FXML private TextField dailyPostTextField;
-    @FXML private Text dateText;
-    @FXML private RadioButton fiveRatingRadioButton;
-    @FXML private RadioButton fourRatingRadioButton;
-    @FXML private Label lockSettingsLabel;
-    @FXML private Label lockTypeLabel;
-    @FXML private AnchorPane miniCalendarAnchorPane;
-    @FXML private AnchorPane moodAnchorPane;
-    @FXML private Slider moodSliderFour;
-    @FXML private Label moodSliderFourLabel;
-    @FXML private Slider moodSliderOne;
-    @FXML private Label moodSliderOneLabel;
-    @FXML private Slider moodSliderThree;
-    @FXML private Label moodSliderThreeLabel;
-    @FXML private Slider moodSliderTwo;
-    @FXML private Label moodSliderTwoLabel;
     @FXML private Button moodsButton;
     @FXML private Button myJournalButton;
-    @FXML private Label myTagsLabel;
-    @FXML private PasswordField newCodePasswordField;
     @FXML private Button newPostButton;
     @FXML private Button nextDayButton;
+    @FXML private Button searchButton; //Finns inte??
+    @FXML private Button seeTagsButton;
+    @FXML private Button statisticsButton;
+    @FXML private Button preferencesButton; //Dates?
+    @FXML private Button previousDayButton; //Dates??
+
+    @FXML private CheckBox activeLockCheckBox;
+
+    @FXML private FlowPane tagsFlowPane;
+
+    @FXML private GridPane ratingGridPane;
+
+    @FXML private ImageView preferencesImageView;
+
+    @FXML private Label lockSettingsLabel;
+    @FXML private Label lockTypeLabel;
+    @FXML private Label tagsLabel;
+    @FXML private Label changeCodeLabel;
+    @FXML private Label moodSliderFourLabel;
+    @FXML private Label moodSliderOneLabel;
+    @FXML private Label moodSliderThreeLabel;
+    @FXML private Label moodSliderTwoLabel;
+    @FXML private Label myTagsLabel;
+    @FXML private Label preferencesLabel;
+
+    @FXML private ListView<?> tagsListView;
+
+    @FXML private PasswordField newCodePasswordField;
+
     @FXML private RadioButton oneRatingRadioButton;
+    @FXML private RadioButton twoRatingRadioButton;
+    @FXML private RadioButton threeRatingRadioButton;
+    @FXML private RadioButton fourRatingRadioButton;
+    @FXML private RadioButton fiveRatingRadioButton;
     @FXML private RadioButton passwordLockRadioButton;
     @FXML private RadioButton patternLockRadioButton;
     @FXML private RadioButton pinLockRadioButton;
-    @FXML private AnchorPane preferencesAnchorPane;
-    @FXML private Button preferencesButton;
-    @FXML private ImageView preferencesImageView;
-    @FXML private Label preferencesLabel;
-    @FXML private Button previousDayButton;
-    @FXML private GridPane ratingGridPane;
-    @FXML private Button searchButton;
-    @FXML private Button seeTagsButton;
-    @FXML private AnchorPane statisticsAnchorPane;
-    @FXML private Button statisticsButton;
-    @FXML private AnchorPane tagsAnchorPane;
-    @FXML private FlowPane tagsFlowPane;
-    @FXML private Label tagsLabel;
-    @FXML private ListView<?> tagsListView;
-    @FXML private RadioButton threeRatingRadioButton;
-    @FXML private RadioButton twoRatingRadioButton;
 
-    private ViewHandler viewHandler;
+    @FXML private Slider moodSliderFour;
+    @FXML private Slider moodSliderOne;
+    @FXML private Slider moodSliderThree;
+    @FXML private Slider moodSliderTwo;
+
+    @FXML private ToggleGroup Lock;
+    @FXML private TextField dailyPostTextField;
+    @FXML private Text dateText;
+
+    private Model model;
+    private DailyPost dp;
+
+    public void init(Model model){
+        this.model = model;
+        this.dp = dp;
+        dateText.setText(model.getCurrentDate().toString());
+
+
+        //dailyPostTextField = dp.;
+    }
+
+    @FXML
+    public void goToMoods() {
+        moodAnchorPane.toFront();
+    }
+    @FXML public void goToTags(){
+        tagsAnchorPane.toFront();
+    }
+    @FXML public void closeMoods(){
+        moodAnchorPane.toBack();
+    }
+    @FXML public void closeTags(){
+        tagsAnchorPane.toBack();
+    }
+    @FXML public void goToStats(){
+        statisticsAnchorPane.toFront();
+    }
+    @FXML public void goToPrefs(){
+        preferencesAnchorPane.toFront();
+    }
+    @FXML public void goToPosts(){
+        dailyPostAnchorPane.toFront();
+    }
+
 }
