@@ -30,8 +30,8 @@ public class Controller {
     }
 
     //matching shutdown-method goes here
-    private void shutdown(){
-        model.savePosts();
+    public void shutdown(){
+        model.shutdown();
     }
 
     public Model getModel() {

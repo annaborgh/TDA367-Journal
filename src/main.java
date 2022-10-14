@@ -1,48 +1,45 @@
 package src;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+import src.Data.*;
+import src.MVC.*;
 
-public class main extends Application {
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-    @Override
-    public void start(Stage stage) throws Exception{
+public class main {
 
-        Parent root = FXMLLoader.load(main.class.getResource("MVC/scenebuilder.fxml"));
+    public static void main(String[] args){
 
-        Scene scene = new Scene(root);
-        scene.setRoot(root);
+        /* ~~Testing save & load~~ */
 
-        stage.setScene(scene);
-        stage.show();
-
-
-    }
-
-        /* ~~Testing Controller~~ */
-
-        /*Controller controller = new Controller();
+        Controller controller = new Controller();
         Model model = controller.getModel();
 
-        Tag tag = new Tag("test", model.getAllTags());
-        tag.setTagID(42);
+        //save
+        Tag tag = new Tag("test", model.getAllTags().size()+1);
 
         ArrayList<ITag> tags = new ArrayList<>();
         tags.add(tag);
 
-        IMood mood = new Mood("testing mood");
-
+        IMood mood = new Mood();
+        mood.setName("testingMood");
+        mood.setMoodRating(42);
         ArrayList<IMood> moods = new ArrayList<>();
         moods.add(mood);
-
         ArrayList<ECondition> conditions = new ArrayList<>();
         conditions.add(ECondition.SICK);
+        model.makePost("Hej detta är ett test" + "\n\n" + "fungerar det med dubbla radbyten också?", 4, tags, moods, conditions);
+        controller.shutdown();
 
-        model.makePost("Hej detta är ett test", 4, tags, moods, conditions);
+        //load
+        model = new Model();
+        HashMap<LocalDate, IDay> posts = model.getPosts();
+        IDay post = posts.get(LocalDate.now());
 
-        model.savePosts();*/
+        System.out.println(post.getDate());
+        System.out.println(post.getText());
+        System.out.println(post.getTags());
+        System.out.println(post.getConditions());
 
         /*
         *    Testing of DailyPost's methods
@@ -109,5 +106,5 @@ public class main extends Application {
 
 
 
-    //}
+    }
 }
