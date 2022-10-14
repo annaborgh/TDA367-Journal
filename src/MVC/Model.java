@@ -30,7 +30,7 @@ public class Model {
         posts.clear();
     }
 
-    public void makePost(String text, int grade, ArrayList<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
+    public void makePost(String text, int grade, List<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
         IDay post = new DailyPost();
 
         post.setDate(currentDate);

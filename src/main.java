@@ -1,18 +1,27 @@
 package src;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import src.Data.*;
 import src.MVC.*;
 
+import javax.naming.ldap.Control;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class main {
+public class main extends Application {
 
-    public static void main(String[] args){
 
+    /*public static void main(String[] args) throws Exception {
+
+        Stage stage = new Stage();
+        start(stage);
         /* ~~Testing save & load~~ */
 
-        Controller controller = new Controller();
+        /*Controller controller = new Controller();
         Model model = controller.getModel();
 
         //save
@@ -106,5 +115,18 @@ public class main {
 
 
 
+    //}
+    public void start(Stage stage) throws Exception {
+        Controller control = new Controller();
+
+        Parent root = (Parent) FXMLLoader.load(main.class.getResource("MVC/scenebuilder.fxml"));
+        Scene scene = new Scene(root);
+        scene.setRoot(root);
+        stage.setScene(scene);
+        stage.show();
+
+
+
     }
 }
+

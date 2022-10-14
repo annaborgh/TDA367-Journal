@@ -38,6 +38,7 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
@@ -61,7 +62,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.MVC.View">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.MVC.Controller">
   <children>
       <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
@@ -83,6 +84,25 @@
                         <Label fx:id="moodSliderThreeLabel" layoutX="259.0" layoutY="216.0" text="Mood Slider 3" />
                         <Label fx:id="moodSliderFourLabel" layoutX="259.0" layoutY="267.0" text="Mood Slider 4" />
                         <Button fx:id="closeMoodsTab" layoutX="662.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeMoods" text="X" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="tagsAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+                     <children>
+                        <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="76.0" prefHeight="336.0" prefWidth="659.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="75.0">
+                           <content>
+                              <FlowPane fx:id="tagsFlowPane" prefHeight="334.0" prefWidth="650.0" style="-fx-background-color: EFEFFF;" />
+                           </content>
+                        </ScrollPane>
+                        <Label fx:id="myTagsLabel" layoutX="318.0" layoutY="30.0" text="Mina Taggar" textAlignment="RIGHT" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="closeTagsTab" layoutX="663.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeTags" text="X" />
                      </children>
                   </AnchorPane>
                </children>
@@ -211,39 +231,6 @@
                               </GridPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="dailyPostAnchorPane" prefHeight="633.0" prefWidth="613.0" style="-fx-background-color: white;">
-                           <children>
-                              <AnchorPane layoutX="9.0" layoutY="12.0" prefHeight="610.0" prefWidth="595.0" style="-fx-background-color: E8EBFF; -fx-background-radius: 15px;" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="9.0">
-                                 <children>
-                                    <TextField fx:id="dailyPostTextField" prefHeight="480.0" prefWidth="362.0" AnchorPane.bottomAnchor="47.200000000000045" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="94.0" />
-                                    <Button fx:id="nextDayButton" layoutX="212.0" layoutY="30.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="38.0" text="&gt;&gt;" AnchorPane.leftAnchor="249.0" />
-                                    <Button fx:id="previousDayButton" layoutX="37.0" layoutY="30.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="38.0" text="&lt;&lt;" AnchorPane.leftAnchor="37.0" />
-                                    <Text fx:id="dateText" layoutX="75.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date" textAlignment="CENTER" wrappingWidth="136.282470703125" AnchorPane.bottomAnchor="565.0" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="35.0" />
-                                    <ListView fx:id="tagsListView" layoutX="427.0" layoutY="94.0" prefHeight="315.0" prefWidth="154.0" AnchorPane.leftAnchor="427.0" AnchorPane.topAnchor="94.0" />
-                                    <Button fx:id="moodsButton" layoutX="334.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToMoods" prefHeight="45.0" prefWidth="55.0" text="Moods" />
-                                    <GridPane fx:id="ratingGridPane" alignment="CENTER" layoutX="421.0" layoutY="25.0" prefHeight="30.0" prefWidth="169.0" style="-fx-background-color: none;">
-                                      <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
-                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <children>
-                                          <RadioButton fx:id="oneRatingRadioButton" mnemonicParsing="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                          <RadioButton fx:id="twoRatingRadioButton" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                          <RadioButton fx:id="threeRatingRadioButton" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                          <RadioButton fx:id="fourRatingRadioButton" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                          <RadioButton fx:id="fiveRatingRadioButton" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </AnchorPane>
-                           </children>
-                        </AnchorPane>
                         <AnchorPane fx:id="preferencesAnchorPane" prefHeight="636.0" prefWidth="615.0" style="-fx-background-color: white;">
                            <children>
                               <GridPane layoutX="182.0" layoutY="34.0" prefHeight="50.0" prefWidth="231.0" style="-fx-background-color: E8EBFF E8EBFF;">
@@ -304,29 +291,44 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
+                        <AnchorPane fx:id="dailyPostAnchorPane" prefHeight="633.0" prefWidth="613.0" style="-fx-background-color: white;">
+                           <children>
+                              <AnchorPane layoutX="9.0" layoutY="12.0" prefHeight="610.0" prefWidth="595.0" style="-fx-background-color: E8EBFF; -fx-background-radius: 15px;" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="9.0">
+                                 <children>
+                                    <TextField fx:id="dailyPostTextField" prefHeight="480.0" prefWidth="362.0" AnchorPane.bottomAnchor="47.200000000000045" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="94.0" />
+                                    <Button fx:id="nextDayButton" layoutX="212.0" layoutY="30.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="38.0" text="&gt;&gt;" AnchorPane.leftAnchor="249.0" />
+                                    <Button fx:id="previousDayButton" layoutX="37.0" layoutY="30.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="38.0" text="&lt;&lt;" AnchorPane.leftAnchor="37.0" />
+                                    <Text fx:id="dateText" layoutX="75.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date" textAlignment="CENTER" wrappingWidth="136.282470703125" AnchorPane.bottomAnchor="583.98828125" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="16.05078125" />
+                                    <ListView fx:id="tagsListView" layoutX="427.0" layoutY="94.0" prefHeight="315.0" prefWidth="154.0" AnchorPane.leftAnchor="427.0" AnchorPane.topAnchor="94.0" />
+                                    <Button fx:id="moodsButton" layoutX="334.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToMoods" prefHeight="45.0" prefWidth="55.0" text="Moods" />
+                                    <GridPane fx:id="ratingGridPane" alignment="CENTER" layoutX="421.0" layoutY="25.0" prefHeight="30.0" prefWidth="169.0" style="-fx-background-color: none;">
+                                      <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.678955078125" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <RadioButton fx:id="oneRatingRadioButton" mnemonicParsing="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                          <RadioButton fx:id="twoRatingRadioButton" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                          <RadioButton fx:id="threeRatingRadioButton" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                          <RadioButton fx:id="fourRatingRadioButton" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                          <RadioButton fx:id="fiveRatingRadioButton" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                       </children>
+                                    </GridPane>
+                                    <DatePicker fx:id="datePicker" layoutX="75.0" layoutY="31.0" onAction="#somethingDate" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </StackPane>
             </items>
           </SplitPane>
-            <AnchorPane fx:id="tagsAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);">
-               <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
-                     <children>
-                        <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="76.0" prefHeight="336.0" prefWidth="659.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="75.0">
-                           <content>
-                              <FlowPane fx:id="tagsFlowPane" prefHeight="334.0" prefWidth="650.0" style="-fx-background-color: EFEFFF;" />
-                           </content>
-                        </ScrollPane>
-                        <Label fx:id="myTagsLabel" layoutX="318.0" layoutY="30.0" text="Mina Taggar" textAlignment="RIGHT" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="closeTagsTab" layoutX="663.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeTags" text="X" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </AnchorPane>
          </children>
       </StackPane>
   </children>
