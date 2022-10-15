@@ -1,6 +1,8 @@
 package src.Data;
 
 /**
+ * @author Adam
+ *
  * Class that creates objects of type Mood
  */
 public class Mood implements IMood {

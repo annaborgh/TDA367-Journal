@@ -6,12 +6,20 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * @author Adam
+ * @author Julia
+ * @author Wilma
+ * @author Anna
+ *
+ * Main class for running the program
+ */
 public class main {
 
     public static void main(String[] args){
 
         /* ~~Testing save & load~~ */
-
+        /*
         Controller controller = new Controller();
         Model model = controller.getModel();
 
@@ -44,7 +52,7 @@ public class main {
         /*
         *    Testing of DailyPost's methods
         */
-
+        /*
         IDay day = new DailyPost();
 
         ITag skola = day.createTag("skola");
@@ -72,7 +80,7 @@ public class main {
         System.out.println(day.getTags());
 
         day.removeTag(träning);
-        System.out.println(day.getTags());
+        System.out.println(day.getTags());*/
 
         /*
         * Testing of Mood and IMood

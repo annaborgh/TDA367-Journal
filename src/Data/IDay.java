@@ -5,6 +5,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Adam
+ * @author Julia
+ *
+ * Interface for DailyPost objects
+ */
 public interface IDay {
 
     LocalDate getDate();

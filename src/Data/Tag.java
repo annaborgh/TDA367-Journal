@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @author Adam
+ * @author Julia
+ *
  * Class that creates Tag objects
  */
 public class Tag implements ITag{

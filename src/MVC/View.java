@@ -16,6 +16,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;*/
 
+/**
+ * View class for program
+ */
 public class View {
 /*
     @FXML
