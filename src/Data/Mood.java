@@ -24,6 +24,7 @@ public class Mood implements IMood {
      */
     @Override
     public String getMoodName() {
+
         return this.moodName;
     }
 
