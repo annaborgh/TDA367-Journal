@@ -52,7 +52,8 @@ public class Controller {
     XYChart.Series series4 = new XYChart.Series();*/
     public static void main(String[] args) {
         Controller c = new Controller();
-        c.getModel().makePost("a",3,new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+        c.getModel().makePost("a",3,new ArrayList<>(), new ArrayList<>(Arrays.asList(new Mood("MISCONTENTTOCONTENT",10),new Mood("SADTOHAPPY",12),new Mood("SCAREDTOSAFE",25),new Mood("DISGUSTEDTOSURPRISED",57))),new ArrayList<>());
+        c.getModel().makePost(LocalDate.now().minusDays(1),"a",3,new ArrayList<>(), new ArrayList<>(Arrays.asList(new Mood("MISCONTENTTOCONTENT",20),new Mood("SADTOHAPPY",20),new Mood("SCAREDTOSAFE",10),new Mood("DISGUSTEDTOSURPRISED",38))),new ArrayList<>());
         c.populateMoodChart();
 
     }
@@ -75,43 +76,69 @@ public class Controller {
     //Assume functionality exists in model
 
     //This method returns a hashmap with the correct dates that will be in the X axis of the chart.
-     HashMap<LocalDate,IMood> intervalToDatesMap(TimeInterval ti){
-         HashMap<LocalDate,IMood> dates = new HashMap<>();
+     HashMap<LocalDate, HashMap<String, Integer>> intervalToDataMap(ETimeInterval ti){
+         HashMap<LocalDate,HashMap<String,Integer>> dates = new HashMap<>();
         if(ti==null) return dates;
         switch (ti){
             case WEEK -> {
-                LocalDate d = LocalDate.now();
+                LocalDate currentDate = LocalDate.now();
                 for (int i = 0; i < 7; i++) {
-                    dates.put(d.minusDays(i),null);
+                    LocalDate d = currentDate.minusDays(i);
+                    HashMap<String,Integer> tmpMap = new HashMap<>();
+                    model.getPosts().get(d).getActiveMoods().forEach(e->{
+                        tmpMap.put(e.getMoodName(),e.getMoodRating());
+                    });
+                    dates.put(d,tmpMap);
                 }
                 System.out.println(dates);
             }
             case MONTH -> {
-                LocalDate d = LocalDate.now();
-                for (int i = 0; i < d.getMonth().length(d.isLeapYear()); i++) {
-                    dates.put(d.minusDays(i),null);
+                LocalDate currentDate = LocalDate.now();
+                for (int i = 0; i < currentDate.getMonth().length(currentDate.isLeapYear()); i++) {
+                    LocalDate d = currentDate.minusDays(i);
+                    HashMap<String, Integer> tmpMap= new HashMap<>();
+                    model.getPosts().get(d).getActiveMoods().forEach(e->{
+                        tmpMap.put(e.getMoodName(),e.getMoodRating());
+                    });
+
+                    dates.put(d,tmpMap);
                 }
-                System.out.println(dates);
             }
             case YEAR -> {
-                LocalDate d = LocalDate.now();
-                for (int i = 0; i < 52; i++) {
-                    dates.put(d.minusWeeks(i),null);
+
+                for (int i = 0; i < 1; i++) {
+                    LocalDate d = LocalDate.now().minusWeeks(i);
+                    /*HashMap<EMood,IMood> weeklyMoodMap;*/
+                    HashMap<String, Integer> weeklyMoodMap = new HashMap<>() ;
+                    HashMap<String, Pair<Integer,Integer>> tmpMoodMap = new HashMap<>() ;
+                    IMood m = null;
+                    for (int j = 0; j < 7; j++) {
+                       LocalDate currentDay =  d.minusDays(d.getDayOfWeek().getValue()-1 - j);
+                       if(model.getPosts().get(currentDay)==null) {
+                           System.out.println(currentDay);
+                       }
+                       else{
+                           model.getPosts().get(currentDay).getActiveMoods().forEach(e -> {
+                               tmpMoodMap.putIfAbsent(e.getMoodName(),new Pair<>(0,0));
+                               Pair<Integer, Integer> p = tmpMoodMap.get(e.getMoodName());
+                               tmpMoodMap.put(e.getMoodName(),
+                                       new Pair<>(p.getKey()+1,p.getValue().intValue()+e.getMoodRating())) ;
+                           });
+                       }
+                    }
+                    tmpMoodMap.forEach((k,v)-> weeklyMoodMap.put(k,v.getValue()/v.getKey()));
+                    dates.put(d, weeklyMoodMap);
+                    System.out.println(weeklyMoodMap );
                 }
                 System.out.println(dates);
             }
         }
+
         return dates;
     }
     private void populateMoodChart(){
-        TimeInterval t = TimeInterval.MONTH;
-        HashMap dates = intervalToDatesMap(t);
-        /*for (LocalDate value : moodMap.keySet()) {
-            dates.add(value);
-        }*/
-        //Check if better to iterate through map altogether.t
-        Map<LocalDate, List<IMood>> moodMap = model.getPosts().values().stream().collect(Collectors.toMap(IDay::getDate, IDay::getActiveMoods));
-        System.out.println(moodMap);
+        ETimeInterval t = ETimeInterval.YEAR;
+        HashMap data = intervalToDataMap(t);
 
     }
     private void populateConditionChart(){
