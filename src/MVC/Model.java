@@ -1,5 +1,6 @@
 package src.MVC;
 
+import javafx.scene.control.DatePicker;
 import src.Data.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class Model {
     private final List<ITag> allTags = new ArrayList<>();
     private ILock lockType;
     private HashMap<LocalDate, IDay> posts = new HashMap<>();
-    private final LocalDate currentDate;
+    private LocalDate currentDate;
     private final IPersistence persistence;
 
     public Model() {
@@ -30,17 +31,17 @@ public class Model {
         posts.clear();
     }
 
-    public void makePost(String text, int grade, List<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
+    public void makePost(LocalDate date, String text, int grade, List<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
         IDay post = new DailyPost();
 
-        post.setDate(currentDate);
+        post.setDate(date);
         post.setText(text);
         post.setGrade(grade);
         post.setTags(tags);
         post.setActiveMoods(moods);
         post.setConditions(EConditions);
 
-        posts.put(currentDate, post);
+        posts.put(date, post);
     }
 
     public ILock getLockType() {
@@ -57,6 +58,11 @@ public class Model {
 
     public HashMap<LocalDate, IDay> getPosts() {
         return posts;
+    }
+
+    public void setDefaultDate(DatePicker datePicker){
+        datePicker.setValue(currentDate);
+
     }
 
 }

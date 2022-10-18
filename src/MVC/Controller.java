@@ -8,7 +8,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 import src.Data.DailyPost;
 import src.Data.ECondition;
 import src.Data.IDay;
@@ -78,28 +77,73 @@ public class Controller {
     @FXML private Slider moodSliderTwo;
 
     @FXML private ToggleGroup Lock;
+    @FXML private ToggleGroup Grade;
     @FXML private TextField dailyPostTextField = new TextField();
     @FXML private DatePicker datePicker;
 
     private Model model;
     private IDay dp;
+    private LocalDate currentDate = LocalDate.now();
 
 
-    /*public void init(Model model) {
-        //this.dp = dp;
-        //dp.setDate(datePicker.getValue());
-        //model.getCurrentDate();
-        this.dp = model.getPosts().get(model.getCurrentDate());
+    public void Model(Model model) {
+        this.model = model;
+    }
+
+    public void init(Model model) {
+        ArrayList<IMood> moods = new ArrayList<>();
+        ArrayList<ECondition> eConditions = new ArrayList<>();
+        model.setDefaultDate(datePicker);
+
+        if (model.getPosts().get(model.getCurrentDate()) == null) {
+            model.makePost(currentDate,"",0, model.getAllTags(), moods, eConditions);
+        }
+
+        populatePost(currentDate);
+
+
+        /*this.dp = model.getPosts().get(model.getCurrentDate());
         this.dp.setText("Halloj worlden");
         System.out.println(dp.getText());
-        this.dailyPostTextField.setText("Halojsan");
-        /*datePicker = new DatePicker(model.getCurrentDate());
-        datePicker.setValue(model.getCurrentDate());
-        datePicker.getDayCellFactory();
-        datePicker.setPromptText("Hejsan!");
-        dp.setDate(datePicker.getValue());
-        datePicker.getEditor().setText("Hello!");
-    }*/
+        this.dailyPostTextField.setText(dp.getText());*/
+    }
+
+    private void onGradeChanged(int grade){
+        switch (grade){
+            case 0: Grade.selectToggle(null);
+            case 1: oneRatingRadioButton.fire();
+            case 2: twoRatingRadioButton.fire();
+            case 3: threeRatingRadioButton.fire();
+            case 4: fourRatingRadioButton.fire();
+            case 5: fiveRatingRadioButton.fire();
+        }
+    }
+
+    private void populatePost(LocalDate chosenDate){
+
+        onGradeChanged(0);
+        if (model.getPosts().get(chosenDate) == null){
+            ArrayList<IMood> moods = new ArrayList<>();
+            ArrayList<ECondition> eConditions = new ArrayList<>();
+            model.makePost(chosenDate,"",0, model.getAllTags(), moods, eConditions);
+        }
+
+        IDay temp = model.getPosts().get(chosenDate);
+        //temp.setDate(currentDate);
+        this.dailyPostTextField.setText(temp.getText());
+        datePicker.setValue(chosenDate);
+        onGradeChanged(temp.getGrade());
+    }
+
+    @FXML public void nextDay(){
+        currentDate = currentDate.plusDays(1);
+        populatePost(currentDate);
+    }
+
+    @FXML public void previousDay(){
+        currentDate = currentDate.minusDays(1);
+        populatePost(currentDate);
+    }
 
     @FXML public void somethingDate(){
         datePicker.setPromptText("Hejsan!");
@@ -135,7 +179,7 @@ public class Controller {
 
     private void startUp(){
         this.model = new Model();
-        model.makePost("hej", 3, model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
+        model.makePost(currentDate,"hej", 3, model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
         populatePost(model.getPosts().get(LocalDate.now()).getText());
     }
 
@@ -170,6 +214,8 @@ public class Controller {
             moodList.add(value.getActiveMoods());
         }
     }
+
+
 
 
     //-----------------------Statistics logic end-----------------------

@@ -117,15 +117,26 @@ public class main extends Application {
 
     //}
     public void start(Stage stage) throws Exception {
-        Controller control = new Controller();
+        Model model = new Model();
+        Controller controller = new Controller();
 
-        Parent root = (Parent) FXMLLoader.load(main.class.getResource("MVC/scenebuilder.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("MVC/scenebuilder.fxml"));
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+
+        controller.init(model);
+
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
+
+        /*Parent root = (Parent) FXMLLoader.load(main.class.getResource("MVC/scenebuilder.fxml"));
         Scene scene = new Scene(root);
         scene.setRoot(root);
         stage.setScene(scene);
         stage.show();
 
-
+    controller.init(controller.getModel());*/
 
     }
 }

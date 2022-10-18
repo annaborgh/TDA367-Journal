@@ -62,7 +62,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.MVC.Controller">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <children>
       <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
@@ -295,10 +295,9 @@
                            <children>
                               <AnchorPane layoutX="9.0" layoutY="12.0" prefHeight="610.0" prefWidth="595.0" style="-fx-background-color: E8EBFF; -fx-background-radius: 15px;" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="9.0">
                                  <children>
-                                    <TextField fx:id="dailyPostTextField" prefHeight="480.0" prefWidth="362.0" AnchorPane.bottomAnchor="47.200000000000045" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="94.0" />
-                                    <Button fx:id="nextDayButton" layoutX="212.0" layoutY="30.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="38.0" text="&gt;&gt;" AnchorPane.leftAnchor="249.0" />
-                                    <Button fx:id="previousDayButton" layoutX="37.0" layoutY="30.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="38.0" text="&lt;&lt;" AnchorPane.leftAnchor="37.0" />
-                                    <Text fx:id="dateText" layoutX="75.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date" textAlignment="CENTER" wrappingWidth="136.282470703125" AnchorPane.bottomAnchor="583.98828125" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="16.05078125" />
+                                    <TextField fx:id="dailyPostTextField" alignment="TOP_LEFT" prefHeight="480.0" prefWidth="362.0" AnchorPane.bottomAnchor="47.200000000000045" AnchorPane.leftAnchor="46.0" AnchorPane.topAnchor="94.0" />
+                                    <Button fx:id="nextDayButton" layoutX="212.0" layoutY="30.0" mnemonicParsing="false" onAction="#nextDay" prefHeight="26.0" prefWidth="38.0" text="&gt;&gt;" AnchorPane.leftAnchor="249.0" />
+                                    <Button fx:id="previousDayButton" layoutX="37.0" layoutY="30.0" mnemonicParsing="false" onAction="#previousDay" prefHeight="26.0" prefWidth="38.0" text="&lt;&lt;" AnchorPane.leftAnchor="37.0" />
                                     <ListView fx:id="tagsListView" layoutX="427.0" layoutY="94.0" prefHeight="315.0" prefWidth="154.0" AnchorPane.leftAnchor="427.0" AnchorPane.topAnchor="94.0" />
                                     <Button fx:id="moodsButton" layoutX="334.0" layoutY="15.0" mnemonicParsing="false" onAction="#goToMoods" prefHeight="45.0" prefWidth="55.0" text="Moods" />
                                     <GridPane fx:id="ratingGridPane" alignment="CENTER" layoutX="421.0" layoutY="25.0" prefHeight="30.0" prefWidth="169.0" style="-fx-background-color: none;">
@@ -313,14 +312,17 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <RadioButton fx:id="oneRatingRadioButton" mnemonicParsing="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                          <RadioButton fx:id="twoRatingRadioButton" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                          <RadioButton fx:id="threeRatingRadioButton" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                          <RadioButton fx:id="fourRatingRadioButton" mnemonicParsing="false" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                          <RadioButton fx:id="fiveRatingRadioButton" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                          <RadioButton fx:id="oneRatingRadioButton" mnemonicParsing="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="Grade" />
+                                             </toggleGroup></RadioButton>
+                                          <RadioButton fx:id="twoRatingRadioButton" mnemonicParsing="false" toggleGroup="$Grade" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                          <RadioButton fx:id="threeRatingRadioButton" mnemonicParsing="false" toggleGroup="$Grade" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                          <RadioButton fx:id="fourRatingRadioButton" mnemonicParsing="false" toggleGroup="$Grade" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                          <RadioButton fx:id="fiveRatingRadioButton" mnemonicParsing="false" toggleGroup="$Grade" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                                        </children>
                                     </GridPane>
-                                    <DatePicker fx:id="datePicker" layoutX="75.0" layoutY="31.0" onAction="#somethingDate" />
+                                    <DatePicker fx:id="datePicker" layoutX="75.0" layoutY="31.0" />
                                  </children>
                               </AnchorPane>
                            </children>
