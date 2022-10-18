@@ -186,7 +186,7 @@ public class Controller {
 
     }
     private void populateTagsChart(){
-        ArrayList<ITag> tags = model.getAllTags();
+        ArrayList<ITag> tags = new ArrayList<>(model.getAllTags());
         /*HashMap<LocalDate, ArrayList<IMood>> tagsMap = model.getTagsMap();*/
         Map<Object, Long> chartData = model.getPosts().values().stream()
                 .collect(Collectors.groupingBy(p -> p.getTags(),

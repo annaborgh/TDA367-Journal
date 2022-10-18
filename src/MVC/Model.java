@@ -7,9 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Model {
-
     private final List<ITag> allTags = new ArrayList<>();
-
     private ILock lockType;
     private HashMap<LocalDate, IDay> posts = new HashMap<>();
     private final LocalDate currentDate;
@@ -23,14 +21,11 @@ public class Model {
     private boolean lockState = true;
 
     public Model() {
-        posts = new HashMap<>();
         currentDate = LocalDate.now();
         persistence = new Persistence();
         init();
     }
 
-    public void makePost(String text, int grade, List<ITag> tags, List<IMood> moods, List<ECondition> EConditions) {
-    }
     private void init(){
         //load posts
         posts = persistence.loadPosts();
@@ -71,7 +66,9 @@ public class Model {
         return lockType;
     }
 
-
+    public List<ITag> getAllTags() {
+        return allTags;
+    }
 
     public LocalDate getCurrentDate() {
         return currentDate;
@@ -151,27 +148,8 @@ public class Model {
         }
     }
 
-<<<<<<< HEAD
-    //create directories
-    private void createAppDirectory(){
-        File directory = new File(getAppDirectoryPath());
-        if (!directory.exists()){
-            directory.mkdirs();
-            System.out.println("App directory created");
-        } else {
-            System.out.println("App directory already exists");
-        }
-    }
-    private void createPostsDirectory(){
-        File directory = new File(getPostsDirectoryPath());
-        if (!directory.exists()){
-            directory.mkdirs();
-            System.out.println("Posts directory created");
-        } else {
-            System.out.println("Posts directory already exists");
-            System.out.println(FileSystemView.getFileSystemView().getDefaultDirectory().getPath());
-        }
-    }
+
+
     //-----------------------"Lock model" end-----------------------
 
 
