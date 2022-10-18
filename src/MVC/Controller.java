@@ -5,6 +5,11 @@ import javafx.scene.chart.*;
 import javafx.scene.chart.PieChart;*/
 import javafx.util.Pair;
 import src.Data.*;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
+import src.Data.DailyPost;
+import src.Data.IDay;
+import src.Data.IMood;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -29,8 +34,8 @@ public class Controller {
     }
 
     //matching shutdown-method goes here
-    private void shutdown(){
-        model.savePosts();
+    public void shutdown(){
+        model.shutdown();
     }
 
     public Model getModel() {
