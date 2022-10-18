@@ -13,6 +13,13 @@ public class Model {
     private final LocalDate currentDate;
     private final IPersistence persistence;
 
+    /**
+     * Variables for the lock.
+     */
+    public PinLock lock;
+    private boolean lockActive = false;
+    private boolean lockState = true;
+
     public Model() {
         currentDate = LocalDate.now();
         persistence = new Persistence();
@@ -58,5 +65,78 @@ public class Model {
     public HashMap<LocalDate, IDay> getPosts() {
         return posts;
     }
+
+    /**
+     *
+     * @return
+     */
+    public PinLock getLock(){
+        return this.lock;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean getLockState(){
+        return this.lockState;
+    }
+
+    //-----------------------"Lock model" start--------------------
+
+    /**
+     * Method to create the pin lock.
+     *
+     * @param pinCode The pin code that is to be assigned to the pin lock.
+     */
+    public void createPinLock(String pinCode) {
+        if(lock != null) {
+            if (checkValidInput(pinCode)) {
+                this.lock = new PinLock(pinCode);
+                lockActive = true;
+            }
+        }
+    }
+
+    /**
+     * Method to check if attempted pincode for new lock is valid, i.e. only contains numbers.
+     *
+     * @param inp   The input given.
+     * @return      A boolean symbolizing if input is valid.
+     */
+    private boolean checkValidInput(String inp){
+        for (int i = 0; i < inp.length(); i++){
+            if(!Character.isDigit(inp.charAt(i))){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Method to unlock the lock. To unlock the lock, the input must be the same as the pin code.
+     * If the input is correct, lock state is turned off - the lock unlocks.
+     *
+     * @param inp   The input given.
+     */
+    public void unlockLock(String inp){
+        if (lockActive) {
+            if (inp == lock.getPinCode()) {
+                lockState = false;
+            }
+        }
+    }
+
+    /**
+     * Method to lock the lock.
+     */
+    public void lockLock(){
+        if(lockActive) {
+            lockState = true;
+        }
+    }
+
+    //-----------------------"Lock model" end-----------------------
+
 
 }
