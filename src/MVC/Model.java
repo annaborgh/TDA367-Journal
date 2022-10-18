@@ -6,6 +6,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * @author Adam
+ * @author Anna
+ * @author Wilma
+ *
+ * forts. här
+ */
 public class Model {
     private final List<ITag> allTags = new ArrayList<>();
     private ILock lockType;
@@ -20,6 +27,9 @@ public class Model {
     private boolean lockActive = false;
     private boolean lockState = true;
 
+    /**
+     * General variables.
+     */
     public Model() {
         currentDate = LocalDate.now();
         persistence = new Persistence();
@@ -99,6 +109,9 @@ public class Model {
     }
 
     /**
+     * @author Wilma
+     * @author Adam
+     *
      * Method to check if attempted pincode for new lock is valid, i.e. only contains numbers.
      *
      * @param inp   The input given.
@@ -114,6 +127,9 @@ public class Model {
     }
 
     /**
+     * @author Wilma
+     * @author Adam
+     *
      * Method to unlock the lock. To unlock the lock, the input must be the same as the pin code.
      * If the input is correct, lock state is turned off - the lock unlocks.
      *
@@ -128,6 +144,9 @@ public class Model {
     }
 
     /**
+     * @author Wilma
+     * @author Adam
+     *
      * Method to lock the lock.
      */
     public void lockLock(){
