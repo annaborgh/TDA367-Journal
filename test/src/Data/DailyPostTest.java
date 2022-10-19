@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -84,6 +83,16 @@ public class DailyPostTest {
         post.setActiveMoods(tempMoodList);
 
         assertEquals(tempMoodList, post.getActiveMoods());
+
+        // Testing the add- and removeActiveMood methods
+        IMood tempMood2 = new Mood();
+        tempMood2.setName("TestName2");
+
+        post.addActiveMood(tempMood2);
+        assertTrue(post.getActiveMoods().contains(tempMood2));
+
+        post.removeActiveMood(tempMood2);
+        assertFalse(post.getActiveMoods().contains(tempMood2));
     }
 
     /**
@@ -97,11 +106,11 @@ public class DailyPostTest {
 
 
         // Testing so that it is possible to add tags
-        List<ITag> listOfTags = new ArrayList<ITag>();
         ITag tempTag = new Tag("name", post.getTags().size()+1);
-        listOfTags.add(tempTag);
-        post.setTags(listOfTags);
-        assertTrue(post.getTags().size() == 1);
+        post.addTag(tempTag);
+        ITag tempTag2 = new Tag("name2", post.getTags().size()+1);
+        post.addTag(tempTag2);
+        assertEquals(2, post.getTags().size());
 
 
         // Testing createTag method
@@ -111,18 +120,31 @@ public class DailyPostTest {
 
         // Testing addTag method
         post.addTag(testCreateTag);
-        assertEquals(testCreateTag, post.getTags().get(1));
-        int tagsListSize = post.getTags().size();
+        assertTrue(post.getTags().contains(testCreateTag));
 
-        post.addTag(testCreateTag);
-        assertEquals(tagsListSize, post.getTags().size());
-
+        ITag addTagTestTag = new Tag("addTagTestTag", post.getTags().size()+1);
+        post.addTag(addTagTestTag);
+        for (int k = 0; k < post.getTags().size(); k++){
+            System.out.println(post.getTags().get(k).getTitle());
+        }
 
         // Testing removeTag method
-        assertEquals(testCreateTag, post.getTags().get(1));
+        assertEquals(testCreateTag, post.getTags().get(2));
         post.removeTag(testCreateTag);
         assertFalse(post.getTags().contains(testCreateTag));
 
+        // Testing setTags method
+        List<ITag> tempListOfTags = new ArrayList<>();
+        for (int i = 1; i <= 5; i++){
+            ITag tempTag3 = new Tag("Tag "+i, post.getTags().size()+i);
+            tempListOfTags.add(tempTag3);
+        }
+        post.setTags(tempListOfTags);
+        assertEquals(8, post.getTags().size());
+
+        for (int k = 0; k < post.getTags().size(); k++){
+            System.out.println(post.getTags().get(k).getTitle());
+        }
     }
 
     /**
@@ -132,15 +154,27 @@ public class DailyPostTest {
     public void testConditions(){
 
         // Testing so that the default list of conditions is empty
-        assertTrue(post.getConditions().size() == 0);
+        assertEquals(0, post.getConditions().size());
 
 
-        // Testing setConditions method
-        List<ECondition> tempConditions = new ArrayList<>();
-        tempConditions = Arrays.asList(ECondition.values());
-        post.setConditions(tempConditions);
+        // Testing addCondition method
+        post.addCondition(ECondition.HOT);
+        assertEquals(1, post.getConditions().size());
 
-        assertEquals(tempConditions, post.getConditions());
+        // Testing setCondition method
+        List<ECondition> tempListOfConditions = new ArrayList<>();
+
+        for (int i = 0; i < ECondition.values().length; i++){
+            if (!post.getConditions().contains(ECondition.values()[i])){
+                tempListOfConditions.add(ECondition.values()[i]);
+            }
+        }
+
+        post.setConditions(tempListOfConditions);
+
+        assertTrue(ECondition.values().length == post.getConditions().size());
+
+
     }
 
 

@@ -158,6 +158,7 @@ public class DailyPost implements IDay {
      */
     @Override
     public void addActiveMood(IMood mood) {
+        activeMoods.add(mood);
     }
 
     /**
@@ -167,6 +168,7 @@ public class DailyPost implements IDay {
      */
     @Override
     public void removeActiveMood(IMood mood) {
+        activeMoods.remove(mood);
     }
 
     /**
