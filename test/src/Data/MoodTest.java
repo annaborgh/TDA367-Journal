@@ -13,19 +13,36 @@ public class MoodTest {
 
     IMood testMood = new Mood();
 
+    /**
+     * Method to test the setters of the Mood class
+     */
+    @Test
+    public void testMoodSetters(){
+
+        // Testing the setName method
+        testMood.setName("Happy");
+        assertEquals("Happy", testMood.getMoodName());
+
+        // Testing the setMoodRating method
+        testMood.setMoodRating(69);
+        assertEquals(69, testMood.getMoodRating());
+
+    }
 
     /**
      * Method to test the getters of the Mood class
      */
     @Test
     public void testMoodGetters() {
+
+        // Assigning the mood a name
         testMood.setName("Happy");
 
-        // Testing that a Mood gets its assigned name at creation correctly
-        assertTrue("Happy" == testMood.getMoodName());
+        // Testing that a Mood has its assigned name
+        assertEquals("Happy", testMood.getMoodName());
 
         // Testing that the default mood rating is -1
-        assertTrue(-1 == testMood.getMoodRating());
+        assertEquals(-1, testMood.getMoodRating());
     }
 
 }
