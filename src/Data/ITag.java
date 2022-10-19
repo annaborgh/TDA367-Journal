@@ -1,7 +1,9 @@
 package src.Data;
 
 /**
- * @author Adam
+ * @author Adam Wikström
+ *
+ * Interface for Tag objects.
  */
 
 public interface ITag {

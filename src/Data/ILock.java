@@ -1,10 +1,10 @@
 package src.Data;
 
 /**
- * @author Adam
- * @author Wilma
+ * @author Adam Wikström
+ * @author Wilma Nordlund
  *
- * Interface for Lock class.
+ * Interface for PinLock class.
  */
 
 public interface ILock {

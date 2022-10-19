@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * @author Adam
+ * @author Adam Wikström
  *
- * Controller class
+ * Controller class.
  */
 public class Controller {
     private Model model;
@@ -42,6 +42,9 @@ public class Controller {
     LineChart lineChart;
     PieChart pieChart;
 
+    /**
+     * @authors TODO
+     */
     private void populateChart(){
         LocalDate date = model.getCurrentDate();
         HashMap<LocalDate, IDay> hm = model.getPosts();
