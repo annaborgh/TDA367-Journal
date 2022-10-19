@@ -1,13 +1,11 @@
 package src.MVC;
 
-//import javafx.scene.chart.LineChart;
-//import javafx.scene.chart.PieChart;
-//import src.Data.DailyPost;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
 import src.Data.IDay;
 import src.Data.IMood;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -41,8 +39,8 @@ public class Controller {
     List<Integer> dayRatingList;
     List<LocalDate> dateList;
 
-    //LineChart lineChart;
-    //PieChart pieChart;
+    LineChart lineChart;
+    PieChart pieChart;
 
     private void populateChart(){
         LocalDate date = model.getCurrentDate();
