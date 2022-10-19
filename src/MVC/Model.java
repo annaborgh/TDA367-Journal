@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * @author Adam
- * @author Anna
- * @author Wilma
+ * @author Adam Wikström
+ * @author Anna Borgh
+ * @author Wilma Nordlund
  *
- * forts. här
+ * TODO
  */
 public class Model {
     private final List<ITag> allTags = new ArrayList<>();
@@ -29,6 +29,7 @@ public class Model {
 
     /**
      * General variables.
+     * Variables for date and persistence.
      */
     public Model() {
         currentDate = LocalDate.now();
@@ -37,7 +38,9 @@ public class Model {
     }
 
     /**
-     * @author Anna
+     * @author Anna Borgh
+     *
+     * A method to load posts.
      */
     private void init(){
         //load posts
@@ -45,7 +48,9 @@ public class Model {
     }
 
     /**
-     * @author Anna
+     * @author Anna Borgh
+     *
+     * A method to save posts.
      */
     protected void shutdown(){
         //save posts
@@ -54,13 +59,15 @@ public class Model {
     }
 
     /**
-     * @author Anna
+     * @author Anna Borgh
      *
-     * @param text
-     * @param grade
-     * @param tags
-     * @param moods
-     * @param EConditions
+     * A method to make a new post.
+     *
+     * @param text  A String which contains the text.
+     * @param grade An int which contains the grade.
+     * @param tags  An ArrayList with tag objects.
+     * @param moods An ArrayList with the mood objects.
+     * @param EConditions   An ArrayList with the EConditions.
      */
     public void makePost(String text, int grade, ArrayList<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
         IDay post = new DailyPost();
@@ -92,20 +99,24 @@ public class Model {
     }
 
     /**
-     * @author Wilma
-     * @author Adam
+     * @author Adam Wikström
+     * @author Wilma Nordlund
      *
-     * @return
+     * Getter for the lock.
+     *
+     * @return A PinLock which contains the lock.
      */
     public PinLock getLock(){
         return this.lock;
     }
 
     /**
-     * @author Wilma
-     * @author Adam
+     * @author Adam Wikström
+     * @author Wilma Nordlund
      *
-     * @return
+     * Getter for the lock state.
+     *
+     * @return A boolean which contains the LockState on the lock.
      */
     public boolean getLockState(){
         return this.lockState;
@@ -114,12 +125,12 @@ public class Model {
     //-----------------------"Lock model" start--------------------
 
     /**
-     * @author Wilma
-     * @author Adam
+     * @author Adam Wikström
+     * @author Wilma Nordlund
      *
      * Method to create the pin lock.
      *
-     * @param pinCode The pin code that is to be assigned to the pin lock.
+     * @param pinCode   The pin code that is to be assigned to the pin lock.
      */
     public void createPinLock(String pinCode) {
         if(lock != null) {
@@ -131,13 +142,14 @@ public class Model {
     }
 
     /**
-     * @author Wilma
-     * @author Adam
+     * @author Adam Wikström
+     * @author Wilma Nordlund
      *
-     * Method to check if attempted pincode for new lock is valid, i.e. only contains numbers.
+     * Method to check if attempted pincode for new lock is valid,
+     * i.e. only contains numbers.
      *
      * @param inp   The input given.
-     * @return      A boolean symbolizing if input is valid.
+     * @return A boolean symbolizing if input is valid.
      */
     private boolean checkValidInput(String inp){
         for (int i = 0; i < inp.length(); i++){
@@ -149,11 +161,13 @@ public class Model {
     }
 
     /**
-     * @author Wilma
-     * @author Adam
+     * @author Adam Wikström
+     * @author Wilma Nordlund
      *
-     * Method to unlock the lock. To unlock the lock, the input must be the same as the pin code.
-     * If the input is correct, lock state is turned off - the lock unlocks.
+     * Method to unlock the lock. To unlock the lock,
+     * the input must be the same as the pin code.
+     * If the input is correct,
+     * lock state is turned off - the lock unlocks.
      *
      * @param inp   The input given.
      */
@@ -166,8 +180,8 @@ public class Model {
     }
 
     /**
-     * @author Wilma
-     * @author Adam
+     * @author Adam Wikström
+     * @author Wilma Nordlund
      *
      * Method to lock the lock.
      */

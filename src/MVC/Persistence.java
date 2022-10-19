@@ -106,7 +106,7 @@ public class Persistence implements IPersistence{
      *
      * A method to load posts from text files in MyDocuments.
      *
-     * @return  The posts that are to be loaded.
+     * @return The posts that are to be loaded.
      */
     //loads posts from text files in MyDocuments
     public HashMap<LocalDate, IDay> loadPosts(){
@@ -134,7 +134,7 @@ public class Persistence implements IPersistence{
      * A method to... TODO
      *
      * @param file  A File to be loaded.
-     * @return  The posts from MyDocuments.
+     * @return The posts from MyDocuments.
      */
     private IDay loadPost(File file){
 
@@ -227,10 +227,10 @@ public class Persistence implements IPersistence{
      *
      * A method... TODO
      *
-     * @param reader A BufferReader.
-     * @param line  A String.
-     * @return  The line which consists of a String.
-     * @throws IOException  TODO
+     * @param   reader A BufferReader.
+     * @param   line  A String.
+     * @return The line which consists of a String.
+     * @throws  IOException  TODO
      */
     private String findNewLine(BufferedReader reader, String line) throws IOException {
         line = reader.readLine();
@@ -281,7 +281,7 @@ public class Persistence implements IPersistence{
      *
      * Getter for the directory path for the program.
      *
-     * @return  The directory path, which consists of... TODO
+     * @return The directory path, which consists of... TODO
      */
     //creates directory names
     private String getAppDirectoryPath(){
@@ -293,7 +293,7 @@ public class Persistence implements IPersistence{
      *
      * Getter for the directory path for the program's posts.
      *
-     * @return  The directory path, which consists of... TODO
+     * @return The directory path, which consists of... TODO
      */
     private String getPostsDirectoryPath(){
         return this.getAppDirectoryPath() + File.separatorChar + "Posts";
