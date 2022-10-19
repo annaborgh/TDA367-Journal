@@ -6,7 +6,6 @@ import javax.swing.filechooser.FileSystemView;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -133,10 +132,12 @@ public class Persistence implements IPersistence{
      *
      * A method to... TODO
      *
+     * Was private, changed to protected for testing purposes
+     *
      * @param file  A File to be loaded.
      * @return  The posts from MyDocuments.
      */
-    private IDay loadPost(File file){
+    protected IDay loadPost(File file){
 
         try {
             FileInputStream fileInput = new FileInputStream(file);

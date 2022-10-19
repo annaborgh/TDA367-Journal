@@ -5,6 +5,11 @@ import src.Data.ECondition;
 import src.Data.IMood;
 import src.Data.ITag;
 
+import javax.swing.filechooser.FileSystemView;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -70,8 +75,6 @@ public class ModelTest {
         assertEquals(LocalDate.now(), model.getCurrentDate());
 
         // Testing the Post getters
-        assertEquals(0, model.getPosts().size());
-
         ArrayList<ITag> testListTags = new ArrayList<>();
         ArrayList<IMood> testListMoods = new ArrayList<>();
         ArrayList<ECondition> testListEConditions = new ArrayList<>();
@@ -115,5 +118,13 @@ public class ModelTest {
         model.unlockLock("1234");
         model.lockLock();
         assertTrue(model.getLockState());
+    }
+
+    /**
+     * Method to delete the save directory of the project if it exists
+     * @throws IOException  Exception is thrown if the directory to be deleted doesn't exist
+     */
+    private void deleteDirectory() throws IOException {
+        Files.deleteIfExists(Path.of(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separatorChar + "TDA367_Journal"));
     }
 }
