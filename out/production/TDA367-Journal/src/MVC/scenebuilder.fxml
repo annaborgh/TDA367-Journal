@@ -32,10 +32,7 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<<<<<<< HEAD
 <?import javafx.geometry.Insets?>
-=======
->>>>>>> origin/main
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -73,7 +70,6 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                      <children>
-<<<<<<< HEAD
                         <Button mnemonicParsing="false" prefHeight="125.0" prefWidth="280.0" style="-fx-background-color: DADFFF;" text="Button" />
                         <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="279.0" style="-fx-background-color: E8EBFF;" text="Button" GridPane.rowIndex="1" />
                         <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="279.0" style="-fx-background-color: DADFFF;" text="Button" GridPane.rowIndex="2" />
@@ -88,8 +84,6 @@
                               <Insets left="10.0" />
                            </GridPane.margin>
                         </ImageView>
-=======
->>>>>>> origin/main
                         <ScrollPane hbarPolicy="NEVER" layoutX="14.0" layoutY="76.0" prefHeight="336.0" prefWidth="659.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="75.0">
                            <content>
                               <FlowPane fx:id="tagsFlowPane" prefHeight="334.0" prefWidth="650.0" style="-fx-background-color: EFEFFF;" />
@@ -106,7 +100,6 @@
             </AnchorPane>
             <AnchorPane fx:id="moodAnchorPane" prefHeight="571.0" prefWidth="617.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);">
                <children>
-<<<<<<< HEAD
                   <AnchorPane prefHeight="633.0" prefWidth="613.0" style="-fx-background-color: white;">
                      <children>
                         <AnchorPane layoutX="9.0" layoutY="12.0" prefHeight="610.0" prefWidth="595.0" style="-fx-background-color: E8EBFF; -fx-background-radius: 15px;">
@@ -173,8 +166,6 @@
                      </children>
                   </AnchorPane>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="613.0" style="-fx-background-color: white;">
-=======
->>>>>>> origin/main
                   <AnchorPane layoutX="350.0" layoutY="218.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
                      <children>
                         <Slider fx:id="moodSliderOne" layoutX="64.0" layoutY="119.0" AnchorPane.leftAnchor="64.0" />
@@ -212,7 +203,6 @@
                               <RowConstraints maxHeight="144.59798049926758" minHeight="10.0" prefHeight="102.1423568725586" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-<<<<<<< HEAD
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Statistik" textAlignment="CENTER" wrappingWidth="200.0" GridPane.columnIndex="1">
                                  <font>
                                     <Font size="32.0" />
@@ -231,8 +221,6 @@
             </AnchorPane>
       </items>
     </SplitPane>
-=======
->>>>>>> origin/main
                               <Button fx:id="myJournalButton" mnemonicParsing="false" prefHeight="126.0" prefWidth="279.0" style="-fx-background-color: DADFFF;" text="Min Dagbok" />
                               <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="279.0" style="-fx-background-color: E8EBFF;" text="Sök" GridPane.rowIndex="1" />
                               <Button fx:id="calendarButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="279.0" style="-fx-background-color: DADFFF;" text="Kalender" GridPane.rowIndex="2" />
