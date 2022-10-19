@@ -14,20 +14,30 @@ import java.util.Objects;
 import static java.nio.charset.StandardCharsets.ISO_8859_1;
 
 /**
- * @author Anna
+ * @author Anna Borgh
+ *
+ * Class for persistence functionality. TODO
  */
 public class Persistence implements IPersistence{
     private final Charset charsetLatin = ISO_8859_1;
     private final String typeSeparator = ";";
     private final String inlineSeparator = ",";
 
+    /**
+     * Constructor of Persistence.
+     *
+     * The constructor is empty, since... TODO
+     */
     public Persistence() {
     }
 
     /**
-     * @author Anna
+     * @author Anna Borgh
      *
-     * @param posts
+     * A method to save posts to text files.
+     *
+     * @param posts A HashMap of LocalDate and DailyPost objects,
+     *              that is the posts to be saved to text files.
      */
     //saves posts to text files in MyDocuments
     public void savePosts(HashMap<LocalDate, IDay> posts) {
@@ -92,9 +102,11 @@ public class Persistence implements IPersistence{
     }
 
     /**
-     * @author Anna
+     * @author Anna Borgh
      *
-     * @return
+     * A method to load posts from text files in MyDocuments.
+     *
+     * @return  The posts that are to be loaded.
      */
     //loads posts from text files in MyDocuments
     public HashMap<LocalDate, IDay> loadPosts(){
@@ -117,10 +129,12 @@ public class Persistence implements IPersistence{
     }
 
     /**
-     * @author Anna
+     * @author Anna Borgh
      *
-     * @param file
-     * @return
+     * A method to... TODO
+     *
+     * @param file  A File to be loaded.
+     * @return  The posts from MyDocuments.
      */
     private IDay loadPost(File file){
 
@@ -209,12 +223,14 @@ public class Persistence implements IPersistence{
     }
 
     /**
-     * @author Anna
+     * @author Anna Borgh
      *
-     * @param reader
-     * @param line
-     * @return
-     * @throws IOException
+     * A method... TODO
+     *
+     * @param reader A BufferReader.
+     * @param line  A String.
+     * @return  The line which consists of a String.
+     * @throws IOException  TODO
      */
     private String findNewLine(BufferedReader reader, String line) throws IOException {
         line = reader.readLine();
@@ -225,7 +241,11 @@ public class Persistence implements IPersistence{
     }
 
     /**
-     * @author Anna
+     * @author Anna Borgh
+     *
+     * A method that is to create a directory for the program.
+     *
+     * The method creates a directory if it does not already exist.
      */
     //creates directories
     private void createAppDirectory(){
@@ -239,7 +259,12 @@ public class Persistence implements IPersistence{
     }
 
     /**
-     * @author Anna
+     * @author Anna Borgh
+     *
+     * A method that is to create a directory for the files
+     * containing posts from the program.
+     *
+     * The method creates a directory if it does not already exist.
      */
     private void createPostsDirectory(){
         File directory = new File(getPostsDirectoryPath());
@@ -252,9 +277,11 @@ public class Persistence implements IPersistence{
     }
 
     /**
-     * @author Anna
+     * @author Anna Borgh
      *
-     * @return
+     * Getter for the directory path for the program.
+     *
+     * @return  The directory path, which consists of... TODO
      */
     //creates directory names
     private String getAppDirectoryPath(){
@@ -262,9 +289,11 @@ public class Persistence implements IPersistence{
     }
 
     /**
-     * @author Anna
+     * @author Anna Borgh
      *
-     * @return
+     * Getter for the directory path for the program's posts.
+     *
+     * @return  The directory path, which consists of... TODO
      */
     private String getPostsDirectoryPath(){
         return this.getAppDirectoryPath() + File.separatorChar + "Posts";
