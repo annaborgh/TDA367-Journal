@@ -1,8 +1,8 @@
 package src.Data;
 
 /**
- * @author Adam
  * @author Wilma
+ * @author Adam
  *
  * Class that creates Lock object.
  */
@@ -15,6 +15,9 @@ public class PinLock implements ILock {
     }
 
     /**
+     * @author Wilma
+     * @author Adam
+     *
      * Getter of the pin code.
      *
      * @return A string containing the pin code.
@@ -24,6 +27,9 @@ public class PinLock implements ILock {
     }
 
     /**
+     * @author Wilma
+     * @author Adam
+     *
      * Setter of the pin code.
      *
      * @param newPin    The new pin code.

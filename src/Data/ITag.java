@@ -1,5 +1,9 @@
 package src.Data;
 
+/**
+ * @author Adam
+ */
+
 public interface ITag {
 
     String getTitle();

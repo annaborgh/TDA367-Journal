@@ -1,5 +1,8 @@
 package src.Data;
 
+/**
+ * @author Anna
+ */
 public enum ECondition {
     SICK,
     NAUSEATED,
