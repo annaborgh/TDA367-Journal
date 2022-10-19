@@ -1,9 +1,9 @@
 package src.Data;
 
 /**
- * @author Adam
+ * @author Adam Wikström
  *
- * Class that creates objects of type Mood
+ * Class that creates objects of type Mood.
  */
 public class Mood implements IMood {
 
@@ -13,18 +13,18 @@ public class Mood implements IMood {
     String moodName = "PlaceholderName";
 
     /**
-     * Constructor of Mood
+     * Constructor of Mood.
      */
     public Mood() {
 
     }
 
     /**
-     * @author Adam
+     * @author Adam Wikström
      *
-     * Getter method for the Mood's name
+     * Getter method for the Mood's name.
      *
-     * @return A String containing the Mood's name
+     * @return A String containing the Mood's name.
      */
     @Override
     public String getMoodName() {
@@ -33,11 +33,11 @@ public class Mood implements IMood {
     }
 
     /**
-     * @author Adam
+     * @author Adam Wikström
      *
-     * Getter method for the Mood's current rating
+     * Getter method for the Mood's current rating.
      *
-     * @return An int of the Mood's current rating
+     * @return An int of the Mood's current rating.
      */
     @Override
     public int getMoodRating() {
@@ -45,9 +45,11 @@ public class Mood implements IMood {
     }
 
     /**
-     * @author Adam
+     * @author Adam Wikström
      *
-     * @param newMood
+     * A method to set the Mood's rating.
+     *
+     * @param newMood   An int which contains the Mood's rating.
      */
     @Override
     public void setMoodRating(int newMood) {
@@ -55,9 +57,11 @@ public class Mood implements IMood {
     }
 
     /**
-     * @author Adam
+     * @author Adam Wikström
      *
-     * @param name
+     * A method to set the Mood's name.
+     *
+     * @param name  A String which contains the Mood's name.
      */
     @Override
     public void setName(String name) {

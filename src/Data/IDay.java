@@ -1,15 +1,14 @@
 package src.Data;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Adam
- * @author Julia
+ * @author Adam Wikström
+ * @author Julia Ekeblad
  *
- * Interface for DailyPost objects
+ * Interface for DailyPost objects.
  */
 public interface IDay {
 

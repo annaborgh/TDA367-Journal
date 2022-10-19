@@ -211,7 +211,7 @@ public class DailyPost implements IDay {
      * A method to create a new tag.
      *
      * @param tagName   A String which is the new tag name.
-     * @return  A Tag which implements ITag. #TODO
+     * @return  A Tag which implements ITag.
      */
     @Override
     public ITag createTag(String tagName){
@@ -226,7 +226,7 @@ public class DailyPost implements IDay {
      *
      * A method to add a tag to the list of ITags.
      *
-     * @param tag   An ITag that is to be added to the list of ITags.
+     * @param tag   A Tag object that is to be added to the list of ITags.
      */
     @Override
     public void addTag(ITag tag) {
@@ -241,7 +241,7 @@ public class DailyPost implements IDay {
      *
      * A method to remove tags from the list ITags.
      *
-     * @param tag   An ITag.
+     * @param tag   A Tag of type ITag.
      */
     @Override
     public void removeTag(ITag tag) {
