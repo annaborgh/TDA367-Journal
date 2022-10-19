@@ -9,4 +9,8 @@ package src.Data;
 
 public interface ILock {
     int lockId = 0;
+
+    String getPinCode();
+
+    void setPinCode(String s);
 }

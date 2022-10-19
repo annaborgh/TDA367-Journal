@@ -124,9 +124,6 @@ public class DailyPostTest {
 
         ITag addTagTestTag = new Tag("addTagTestTag", post.getTags().size()+1);
         post.addTag(addTagTestTag);
-        for (int k = 0; k < post.getTags().size(); k++){
-            System.out.println(post.getTags().get(k).getTitle());
-        }
 
         // Testing removeTag method
         assertEquals(testCreateTag, post.getTags().get(2));
@@ -142,9 +139,6 @@ public class DailyPostTest {
         post.setTags(tempListOfTags);
         assertEquals(8, post.getTags().size());
 
-        for (int k = 0; k < post.getTags().size(); k++){
-            System.out.println(post.getTags().get(k).getTitle());
-        }
     }
 
     /**
