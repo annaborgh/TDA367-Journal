@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Model {
+    private static Model instance = null;
     private final List<ITag> allTags = new ArrayList<>();
     private ILock lockType;
     private HashMap<LocalDate, IDay> posts = new HashMap<>();
@@ -18,7 +19,7 @@ public class Model {
      * Variables for the lock.
      */
     public PinLock lock;
-    private boolean lockActive = false;
+    private boolean lockActive = true;
     private boolean lockState = true;
 
     public Model() {
@@ -32,7 +33,7 @@ public class Model {
         posts = persistence.loadPosts();
     }
 
-    protected void shutdown(){
+    public void shutdown(){
         //save posts
         persistence.savePosts(posts);
         posts.clear();
@@ -86,6 +87,17 @@ public class Model {
      */
     public boolean getLockState(){
         return this.lockState;
+    }
+    /**
+     *
+     * @return
+     */
+    public boolean getLockActive(){
+        return this.lockActive;
+    }
+
+    public void setLockActive(Boolean lockActive){
+        this.lockActive = lockActive;
     }
 
     //-----------------------"Lock model" start--------------------

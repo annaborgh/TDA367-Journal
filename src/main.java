@@ -19,8 +19,7 @@ public class main extends Application {
 
         // Testing logic for the lock
 
-
-        System.out.println(model.getLock());
+        /*System.out.println(model.getLock());
         model.createPinLock("1234");
         System.out.println(model.getLock());
         System.out.println("If lockstate is true then lock is locked, othewise unlocked");
@@ -28,7 +27,7 @@ public class main extends Application {
         model.unlockLock("hej");
         System.out.println("Lockstate is: " + model.getLockState());
         model.unlockLock("1234");
-        System.out.println("Lockstate is: " + model.getLockState());
+        System.out.println("Lockstate is: " + model.getLockState());*/
 
 
     /*public static void main(String[] args) throws Exception {
@@ -144,9 +143,11 @@ public class main extends Application {
 
         controller.init(model);
 
-        stage.setTitle("Hello!");
+        stage.setTitle("Min Dagbok");
         stage.setScene(scene);
         stage.show();
+
+        //Runtime.getRuntime().addShutdownHook(new Thread(()-> model.shutdown()));
 
         /*Parent root = (Parent) FXMLLoader.load(main.class.getResource("MVC/scenebuilder.fxml"));
         Scene scene = new Scene(root);
