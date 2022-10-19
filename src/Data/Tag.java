@@ -20,7 +20,7 @@ public class Tag implements ITag{
      * Constructor of Tag.
      *
      * @param tagTitle  A String which contains the title of the tag.
-     * @param tagID     A List of existing tags.
+     * @param tagID A List of existing tags.
      */
     public Tag(String tagTitle, int tagID){
         this.tagTitle = tagTitle;
@@ -32,7 +32,7 @@ public class Tag implements ITag{
      *
      * Getter of the tag title.
      *
-     * @return  A String containing the tag title.
+     * @return A String containing the tag title.
      */
     @Override
     public String getTitle() {
@@ -44,7 +44,7 @@ public class Tag implements ITag{
      *
      * Getter of the tagID.
      *
-     * @return  An int which contains the tagID.
+     * @return An int which contains the tagID.
      */
     @Override
     public int getTagID() {

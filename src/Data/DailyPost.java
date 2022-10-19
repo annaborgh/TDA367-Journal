@@ -211,7 +211,7 @@ public class DailyPost implements IDay {
      * A method to create a new tag.
      *
      * @param tagName   A String which is the new tag name.
-     * @return  A Tag which implements ITag.
+     * @return A Tag which implements ITag.
      */
     @Override
     public ITag createTag(String tagName){

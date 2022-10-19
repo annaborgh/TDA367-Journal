@@ -17,7 +17,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;*/
 
 /**
- * View class for program
+ * @author TODO
+ *
+ * View class for the program.
  */
 public class View {
 /*

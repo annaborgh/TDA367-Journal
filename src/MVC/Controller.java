@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @author Adam Wikström
  *
- * Controller class.
+ * Controller class for the program.
  */
 public class Controller {
     private Model model;
@@ -44,6 +44,8 @@ public class Controller {
 
     /**
      * @authors TODO
+     *
+     * This is... TODO
      */
     private void populateChart(){
         LocalDate date = model.getCurrentDate();

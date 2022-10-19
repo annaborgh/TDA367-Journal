@@ -7,21 +7,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * @author Adam
- * @author Julia
- * @author Wilma
- * @author Anna
+ * @author Adam Wikström
+ * @author Anna Borg
+ * @author Julia Ekeblad
+ * @author Wilma Nordlund
  *
- * Main class for running the program
+ * Main class for running the program.
  */
 public class main {
 
     public static void main(String[] args){
 
+        /**
+         * @author Adam Wikström
+         * @author Wilma Nordlund
+         */
+
+        /*
         Model model = new Model();
 
-        // Testing logic for the lock
-
+        // ~~Testing logic for the lock~~
 
         System.out.println(model.getLock());
         model.createPinLock("1234");
@@ -33,13 +38,17 @@ public class main {
         model.unlockLock("1234");
         System.out.println("Lockstate is: " + model.getLockState());
 
-
-        /* ~~Testing save & load~~ */
-        /*
-        /**
-         * @author Anna
          */
+
+
+        /**
+         * @author Anna Borgh
+         */
+
+        // ~~Testing save & load~~
+
         /*
+
         Controller controller = new Controller();
 
         model = controller.getModel();
@@ -69,10 +78,18 @@ public class main {
         System.out.println(post.getText());
         System.out.println(post.getTags());
         System.out.println(post.getConditions());
+
+         */
+
+
+        /**
+         * @author TODO
+         */
+
+        // ~~Testing of DailyPost's methods~~
+
         /*
-        *    Testing of DailyPost's methods
-        */
-        /*
+
         IDay day = new DailyPost();
 
         ITag skola = day.createTag("skola");
@@ -100,11 +117,16 @@ public class main {
         System.out.println(day.getTags());
 
         day.removeTag(träning);
-        System.out.println(day.getTags());*/
+        System.out.println(day.getTags());
 
-        /*
-        * Testing of Mood and IMood
-        * */
+         */
+
+
+        /**
+         * @author TODO
+         */
+
+        // ~~Testing of Mood and IMood~~
 
         /*
 
@@ -131,7 +153,6 @@ public class main {
         System.out.println("Changed mood rating\t\t" + anger.getMoodRating());
 
          */
-
 
 
     }
