@@ -14,6 +14,9 @@ import java.util.List;
  * TODO
  */
 public class Model {
+    /**
+     * General variables.
+     */
     private final List<ITag> allTags = new ArrayList<>();
     private ILock lockType;
     private HashMap<LocalDate, IDay> posts = new HashMap<>();
@@ -133,7 +136,7 @@ public class Model {
      * @param pinCode   The pin code that is to be assigned to the pin lock.
      */
     public void createPinLock(String pinCode) {
-        if(lock != null) {
+        if(lock == null) {
             if (checkValidInput(pinCode)) {
                 this.lock = new PinLock(pinCode);
                 lockActive = true;
