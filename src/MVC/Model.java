@@ -36,17 +36,32 @@ public class Model {
         init();
     }
 
+    /**
+     * @author Anna
+     */
     private void init(){
         //load posts
         posts = persistence.loadPosts();
     }
 
+    /**
+     * @author Anna
+     */
     protected void shutdown(){
         //save posts
         persistence.savePosts(posts);
         posts.clear();
     }
 
+    /**
+     * @author Anna
+     *
+     * @param text
+     * @param grade
+     * @param tags
+     * @param moods
+     * @param EConditions
+     */
     public void makePost(String text, int grade, ArrayList<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
         IDay post = new DailyPost();
 
@@ -77,6 +92,8 @@ public class Model {
     }
 
     /**
+     * @author Wilma
+     * @author Adam
      *
      * @return
      */
@@ -85,6 +102,8 @@ public class Model {
     }
 
     /**
+     * @author Wilma
+     * @author Adam
      *
      * @return
      */
@@ -95,6 +114,9 @@ public class Model {
     //-----------------------"Lock model" start--------------------
 
     /**
+     * @author Wilma
+     * @author Adam
+     *
      * Method to create the pin lock.
      *
      * @param pinCode The pin code that is to be assigned to the pin lock.

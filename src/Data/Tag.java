@@ -25,6 +25,8 @@ public class Tag implements ITag{
     }
 
     /**
+     * @author Adam
+     *
      * Getter of the tag title
      *
      * @return  A String containing the Tag title
@@ -35,6 +37,8 @@ public class Tag implements ITag{
     }
 
     /**
+     * @author Adam
+     *
      * Getter of the tagID
      *
      * @return  An int of the tagID
@@ -45,6 +49,8 @@ public class Tag implements ITag{
     }
 
     /**
+     * @author Adam
+     *
      * Setter of the tagID
      *
      * @param tagID     The new tagID
@@ -54,6 +60,8 @@ public class Tag implements ITag{
     }
 
     /**
+     * @author Adam
+     *
      * Setter of the tagTitle
      *
      * @param tagTitle      The new tagTitle

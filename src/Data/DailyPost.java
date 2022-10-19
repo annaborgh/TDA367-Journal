@@ -32,6 +32,9 @@ public class DailyPost implements IDay {
 
 
     /**
+     * @author Anna
+     * @author Adam
+     *
      * A method to get the date of the object.
      *
      * @return A LocalDate
@@ -42,6 +45,9 @@ public class DailyPost implements IDay {
     }
 
     /**
+     * @author Anna
+     * @author Adam
+     *
      * A method to get the text assigned to the object.
      *
      * @return A String contaning the text of the object
@@ -52,6 +58,9 @@ public class DailyPost implements IDay {
     }
 
     /**
+     * @author Anna
+     * @author Adam
+     *
      * A method to get the grade assigned to the object.
      *
      * @return An int contaning the object's grade.
@@ -63,6 +72,9 @@ public class DailyPost implements IDay {
 
 
     /**
+     * @author Anna
+     * @author Adam
+     *
      * A method to get a List of the moods assigned to the object.
      *
      * @return A List of IMoods
@@ -72,6 +84,9 @@ public class DailyPost implements IDay {
     }
 
     /**
+     * @author Anna
+     * @author Adam
+     *
      * A method to get a List of the tags assigned to the object.
      *
      * @return A List of ITags
@@ -82,6 +97,9 @@ public class DailyPost implements IDay {
     }
 
     /**
+     * @author Anna
+     * @author Adam
+     *
      * A method to get the conditions assigned to the object.
      *
      * @return A List of EConditions
@@ -91,6 +109,9 @@ public class DailyPost implements IDay {
     }
 
     /**
+     * @author Anna
+     * @author Adam
+     *
      * A method to set the date of the object.
      *
      * @param date      The new date.
@@ -100,6 +121,9 @@ public class DailyPost implements IDay {
     }
 
     /**
+     * @author Anna
+     * @author Adam
+     *
      * A method to set the text of the object.
      *
      * @param text      The new text.
@@ -109,6 +133,9 @@ public class DailyPost implements IDay {
     }
 
     /**
+     * @author Anna
+     * @author Adam
+     *
      * A method to set the grade of the object.
      *
      * @param grade     The new grade.
@@ -118,6 +145,9 @@ public class DailyPost implements IDay {
     }
 
     /**
+     * @author Anna
+     * @author Adam
+     *
      * A method to set/add moods to the object.
      *
      * @param moods     A list of IMoods.
@@ -129,6 +159,9 @@ public class DailyPost implements IDay {
 
 
     /**
+     * @author Anna
+     * @author Adam
+     *
      * A method to set/add tags to the object.
      *
      * @param tags      A list of ITags
@@ -138,6 +171,8 @@ public class DailyPost implements IDay {
     }
 
     /**
+     * @author Adam
+     *
      * A method to set/add conditions to the object.
      *
      * @param conditions        A list of EConditions
@@ -152,6 +187,8 @@ public class DailyPost implements IDay {
     }
 
     /**
+     * @author Adam
+     *
      * A method to add a mood to the list ActiveMoods.
      *
      * @param mood      An IMood
@@ -162,6 +199,8 @@ public class DailyPost implements IDay {
     }
 
     /**
+     * @author Adam
+     *
      * A method to remove IMoods from the list ActiveMoods.
      *
      * @param mood      An IMood
@@ -172,6 +211,8 @@ public class DailyPost implements IDay {
     }
 
     /**
+     * @author Adam
+     *
      * @param tagName
      * @return
      */
@@ -183,6 +224,9 @@ public class DailyPost implements IDay {
     }
 
     /**
+     * @author Anna
+     * @author Adam
+     *
      * @param tag
      */
     @Override
@@ -193,6 +237,9 @@ public class DailyPost implements IDay {
     }
 
     /**
+     * @author Anna
+     * @author Adam
+     *
      * @param tag
      */
     @Override

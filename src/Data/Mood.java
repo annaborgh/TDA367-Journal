@@ -20,6 +20,8 @@ public class Mood implements IMood {
     }
 
     /**
+     * @author Adam
+     *
      * Getter method for the Mood's name
      *
      * @return A String containing the Mood's name
@@ -31,6 +33,8 @@ public class Mood implements IMood {
     }
 
     /**
+     * @author Adam
+     *
      * Getter method for the Mood's current rating
      *
      * @return An int of the Mood's current rating
@@ -40,11 +44,21 @@ public class Mood implements IMood {
         return moodRating;
     }
 
+    /**
+     * @author Adam
+     *
+     * @param newMood
+     */
     @Override
     public void setMoodRating(int newMood) {
         this.moodRating = newMood;
     }
 
+    /**
+     * @author Adam
+     *
+     * @param name
+     */
     @Override
     public void setName(String name) {
         moodName = name;

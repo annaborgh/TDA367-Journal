@@ -13,6 +13,9 @@ import java.util.Objects;
 
 import static java.nio.charset.StandardCharsets.ISO_8859_1;
 
+/**
+ * @author Anna
+ */
 public class Persistence implements IPersistence{
     private final Charset charsetLatin = ISO_8859_1;
     private final String typeSeparator = ";";
@@ -21,6 +24,11 @@ public class Persistence implements IPersistence{
     public Persistence() {
     }
 
+    /**
+     * @author Anna
+     *
+     * @param posts
+     */
     //saves posts to text files in MyDocuments
     public void savePosts(HashMap<LocalDate, IDay> posts) {
         createAppDirectory();
@@ -83,6 +91,11 @@ public class Persistence implements IPersistence{
         }
     }
 
+    /**
+     * @author Anna
+     *
+     * @return
+     */
     //loads posts from text files in MyDocuments
     public HashMap<LocalDate, IDay> loadPosts(){
         HashMap<LocalDate, IDay> posts = new HashMap<>();
@@ -102,6 +115,13 @@ public class Persistence implements IPersistence{
 
         return posts;
     }
+
+    /**
+     * @author Anna
+     *
+     * @param file
+     * @return
+     */
     private IDay loadPost(File file){
 
         try {
@@ -188,6 +208,14 @@ public class Persistence implements IPersistence{
         }
     }
 
+    /**
+     * @author Anna
+     *
+     * @param reader
+     * @param line
+     * @return
+     * @throws IOException
+     */
     private String findNewLine(BufferedReader reader, String line) throws IOException {
         line = reader.readLine();
         if (Objects.equals(line, typeSeparator)){
@@ -196,6 +224,9 @@ public class Persistence implements IPersistence{
         return line;
     }
 
+    /**
+     * @author Anna
+     */
     //creates directories
     private void createAppDirectory(){
         File directory = new File(getAppDirectoryPath());
@@ -206,6 +237,10 @@ public class Persistence implements IPersistence{
             System.out.println("App directory already exists");
         }
     }
+
+    /**
+     * @author Anna
+     */
     private void createPostsDirectory(){
         File directory = new File(getPostsDirectoryPath());
         if (!directory.exists()){
@@ -216,10 +251,21 @@ public class Persistence implements IPersistence{
         }
     }
 
+    /**
+     * @author Anna
+     *
+     * @return
+     */
     //creates directory names
     private String getAppDirectoryPath(){
         return FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separatorChar + "TDA367_Journal";
     }
+
+    /**
+     * @author Anna
+     *
+     * @return
+     */
     private String getPostsDirectoryPath(){
         return this.getAppDirectoryPath() + File.separatorChar + "Posts";
     }

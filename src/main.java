@@ -36,7 +36,12 @@ public class main {
 
         /* ~~Testing save & load~~ */
         /*
+        /**
+         * @author Anna
+         */
+        /*
         Controller controller = new Controller();
+
         model = controller.getModel();
 
         //save
@@ -64,7 +69,6 @@ public class main {
         System.out.println(post.getText());
         System.out.println(post.getTags());
         System.out.println(post.getConditions());
-
         /*
         *    Testing of DailyPost's methods
         */
