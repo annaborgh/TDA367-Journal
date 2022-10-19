@@ -44,10 +44,7 @@ public class Controller {
 
     //-----------------------Statistics logic start-----------------------
 
-    LineChart moodChart;
-    LineChart dayRatingChart;
-    PieChart tagsChart;
-    PieChart conditionChart;
+
 
     /*final CategoryAxis xAxis = new CategoryAxis();
     final NumberAxis yAxis = new NumberAxis();
