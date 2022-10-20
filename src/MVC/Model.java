@@ -49,6 +49,18 @@ public class Model {
 
         posts.put(currentDate, post);
     }
+    public void makePost(LocalDate d,String text, int grade, ArrayList<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
+        IDay post = new DailyPost();
+
+        post.setDate(d);
+        post.setText(text);
+        post.setGrade(grade);
+        post.setTags(tags);
+        post.setActiveMoods(moods);
+        post.setConditions(EConditions);
+
+        posts.put(d, post);
+    }
 
     public ILock getLockType() {
         return lockType;
@@ -135,6 +147,8 @@ public class Model {
             lockState = true;
         }
     }
+
+
 
     //-----------------------"Lock model" end-----------------------
 

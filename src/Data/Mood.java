@@ -7,9 +7,12 @@ public class Mood implements IMood {
     int moodLimitLower = 0;
     String moodName = "PlaceholderName";
 
+    public Mood(String name, int rating) {
+        this.moodName=name;
+        this.moodRating=rating;
+    }
     public Mood() {
     }
-
     @Override
     public String getMoodName() {
         return this.moodName;
