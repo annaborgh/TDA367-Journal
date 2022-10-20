@@ -105,14 +105,13 @@ public class Controller {
     private LocalDate currentDate = LocalDate.now();
     private String password = "1234";
 
-
-    public void Model(Model model) {
-        this.model = model;
+    public Controller() {
+        this.startUp();
     }
 
-    public void init(Model model) {
+    public void init(Model modelParam) {
 
-        if (model.getLockActive()==true){
+        if (model.getLockActive()){
             pinAnchorPane.toFront();
         }
 
@@ -306,19 +305,12 @@ public class Controller {
         }
     }
 
-    //private Model model;
-
-    public Controller() {
-        this.startUp();
-    }
-
     private void startUp(){
         this.model = new Model();
-        model.makePost(currentDate,"hej", 3, model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
-        model.makePost(currentDate.minusDays(1),"test", 1, model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
-        model.makePost(currentDate.plusDays(1),"test", 5, model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
 
-        populatePost(model.getPosts().get(LocalDate.now()).getText());
+        if(model.getPosts().size() != 0){
+            populatePost(model.getPosts().get(LocalDate.now()).getText());
+        }
     }
 
     //matching shutdown-method goes here
@@ -347,13 +339,13 @@ public class Controller {
     XYChart.Series series2 = new XYChart.Series();
     XYChart.Series series3 = new XYChart.Series();
     XYChart.Series series4 = new XYChart.Series();*/
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Controller c = new Controller();
         //c.getModel().makePost("a",3,new ArrayList<>(), new ArrayList<>(Arrays.asList(new Mood("MISCONTENTTOCONTENT",10),new Mood("SADTOHAPPY",12),new Mood("SCAREDTOSAFE",25),new Mood("DISGUSTEDTOSURPRISED",57))),new ArrayList<>());
         //c.getModel().makePost(LocalDate.now().minusDays(1),"a",3,new ArrayList<>(), new ArrayList<>(Arrays.asList(new Mood("MISCONTENTTOCONTENT",20),new Mood("SADTOHAPPY",20),new Mood("SCAREDTOSAFE",10),new Mood("DISGUSTEDTOSURPRISED",38))),new ArrayList<>());
         c.populateGradeChart();
 
-    }
+    }*/
     /*private void populateChart(){ //Split into more methods later potentially
         LocalDate date = model.currentDate;
     LineChart lineChart;
