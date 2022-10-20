@@ -12,9 +12,10 @@ import java.util.HashMap;
 
 public class main extends Application {
 
-    public static void main(String[] args){
+    Model model = new Model();
+    /*public static void main(String[] args){
 
-        Model model = new Model();
+
 
         // Testing logic for the lock
 
@@ -126,7 +127,7 @@ public class main extends Application {
 
 
 
-    }
+    //}
     public void start(Stage stage) throws Exception {
         Model model = new Model();
         Controller controller = new Controller();
