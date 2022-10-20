@@ -1,5 +1,6 @@
 package src.MVC;
 
+import javafx.scene.control.DatePicker;
 import src.Data.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,17 +8,18 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Model {
+    private static Model instance = null;
     private final List<ITag> allTags = new ArrayList<>();
     private ILock lockType;
     private HashMap<LocalDate, IDay> posts = new HashMap<>();
-    private final LocalDate currentDate;
+    private LocalDate currentDate;
     private final IPersistence persistence;
 
     /**
      * Variables for the lock.
      */
     public PinLock lock;
-    private boolean lockActive = false;
+    private boolean lockActive = true;
     private boolean lockState = true;
 
     public Model() {
@@ -31,35 +33,23 @@ public class Model {
         posts = persistence.loadPosts();
     }
 
-    protected void shutdown(){
+    public void shutdown(){
         //save posts
         persistence.savePosts(posts);
         posts.clear();
     }
 
-    public void makePost(String text, int grade, ArrayList<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
+    public void makePost(LocalDate date, String text, int grade, List<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
         IDay post = new DailyPost();
 
-        post.setDate(currentDate);
+        post.setDate(date);
         post.setText(text);
         post.setGrade(grade);
         post.setTags(tags);
         post.setActiveMoods(moods);
         post.setConditions(EConditions);
 
-        posts.put(currentDate, post);
-    }
-    public void makePost(LocalDate d,String text, int grade, ArrayList<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
-        IDay post = new DailyPost();
-
-        post.setDate(d);
-        post.setText(text);
-        post.setGrade(grade);
-        post.setTags(tags);
-        post.setActiveMoods(moods);
-        post.setConditions(EConditions);
-
-        posts.put(d, post);
+        posts.put(date, post);
     }
 
     public ILock getLockType() {
@@ -78,6 +68,11 @@ public class Model {
         return posts;
     }
 
+    public void setDefaultDate(DatePicker datePicker){
+        datePicker.setValue(currentDate);
+
+    }
+
     /**
      *
      * @return
@@ -92,6 +87,17 @@ public class Model {
      */
     public boolean getLockState(){
         return this.lockState;
+    }
+    /**
+     *
+     * @return
+     */
+    public boolean getLockActive(){
+        return this.lockActive;
+    }
+
+    public void setLockActive(Boolean lockActive){
+        this.lockActive = lockActive;
     }
 
     //-----------------------"Lock model" start--------------------
@@ -147,8 +153,6 @@ public class Model {
             lockState = true;
         }
     }
-
-
 
     //-----------------------"Lock model" end-----------------------
 

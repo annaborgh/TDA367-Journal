@@ -1,4 +1,8 @@
 package src;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import src.Data.*;
 import src.MVC.*;
 
@@ -6,7 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class main {
+public class main extends Application {
 
     public static void main(String[] args){
 
@@ -15,7 +19,7 @@ public class main {
         // Testing logic for the lock
 
 
-        System.out.println(model.getLock());
+        /*System.out.println(model.getLock());
         model.createPinLock("1234");
         System.out.println(model.getLock());
         System.out.println("If lockstate is true then lock is locked, othewise unlocked");
@@ -28,7 +32,7 @@ public class main {
 
         /* ~~Testing save & load~~ */
 
-        Controller controller = new Controller();
+        /*Controller controller = new Controller();
         model = controller.getModel();
 
         //save
@@ -121,6 +125,31 @@ public class main {
          */
 
 
+
+    }
+    public void start(Stage stage) throws Exception {
+        Model model = new Model();
+        Controller controller = new Controller();
+
+        FXMLLoader fxmlLoader = new FXMLLoader(main.class.getResource("MVC/scenebuilder.fxml"));
+        fxmlLoader.setController(controller);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+
+        controller.init(model);
+
+        stage.setTitle("Min Dagbok");
+        stage.setScene(scene);
+        stage.show();
+
+        //Runtime.getRuntime().addShutdownHook(new Thread(()-> model.shutdown()));
+
+        /*Parent root = (Parent) FXMLLoader.load(main.class.getResource("MVC/scenebuilder.fxml"));
+        Scene scene = new Scene(root);
+        scene.setRoot(root);
+        stage.setScene(scene);
+        stage.show();
+
+    controller.init(controller.getModel());*/
 
     }
 }
