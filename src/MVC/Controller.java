@@ -173,7 +173,11 @@ public class Controller {
 
         IDay temp = model.getPosts().get(chosenDate);
         //temp.setDate(currentDate);
-        this.dailyPostTextField.setText(temp.getText());
+        if (temp.getText().trim().length() > 0){
+            this.dailyPostTextField.setText(temp.getText());
+        } else {
+            this.dailyPostTextField.setText("");
+        }
         datePicker.setValue(chosenDate);
         onGradeChanged(model.getPosts().get(chosenDate).getGrade());
         System.out.println(model.getPosts().get(chosenDate).getDate());
