@@ -17,29 +17,286 @@ import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import src.Data.DailyPost;
+import src.Data.ECondition;
+import src.Data.IDay;
+import src.Data.IMood;
 
-
-
-
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class Controller {
+
+    @FXML private AnchorPane dailyPostAnchorPane;
+    @FXML private AnchorPane miniCalendarAnchorPane; //Finns inte?
+    @FXML private AnchorPane moodAnchorPane;
+    @FXML private AnchorPane preferencesAnchorPane;
+    @FXML private AnchorPane statisticsAnchorPane;
+    @FXML private AnchorPane tagsAnchorPane;
+    @FXML private AnchorPane pinAnchorPane;
+
+    @FXML private Button calendarButton;
+    @FXML private Button changeCodeButton;
+    @FXML private Button moodsButton;
+    @FXML private Button myJournalButton;
+    @FXML private Button newPostButton;
+    @FXML private Button nextDayButton;
+    @FXML private Button searchButton; //Finns inte??
+    @FXML private Button seeTagsButton;
+    @FXML private Button statisticsButton;
+    @FXML private Button preferencesButton; //Dates?
+    @FXML private Button previousDayButton; //Dates??
+    @FXML private Button checkPasswordButton;
+
+    @FXML private CheckBox activeLockCheckBox;
+
+    @FXML private FlowPane tagsFlowPane;
+
+    @FXML private GridPane ratingGridPane;
+
+    @FXML private ImageView preferencesImageView;
+
+    @FXML private Label lockSettingsLabel;
+    @FXML private Label lockTypeLabel;
+    @FXML private Label tagsLabel;
+    @FXML private Label changeCodeLabel;
+    @FXML private Label moodSliderFourLabel;
+    @FXML private Label moodSliderOneLabel;
+    @FXML private Label moodSliderThreeLabel;
+    @FXML private Label moodSliderTwoLabel;
+    @FXML private Label myTagsLabel;
+    @FXML private Label preferencesLabel;
+
+    @FXML private ListView<?> tagsListView;
+
+    @FXML private PasswordField newCodePasswordField;
+    @FXML private PasswordField pinPasswordField;
+
+    @FXML private RadioButton oneRatingRadioButton;
+    @FXML private RadioButton twoRatingRadioButton;
+    @FXML private RadioButton threeRatingRadioButton;
+    @FXML private RadioButton fourRatingRadioButton;
+    @FXML private RadioButton fiveRatingRadioButton;
+    @FXML private RadioButton passwordLockRadioButton;
+    @FXML private RadioButton patternLockRadioButton;
+    @FXML private RadioButton pinLockRadioButton;
+
+    @FXML private Slider moodSliderFour;
+    @FXML private Slider moodSliderOne;
+    @FXML private Slider moodSliderThree;
+    @FXML private Slider moodSliderTwo;
+    @FXML private ToggleGroup Lock;
+    @FXML private ToggleGroup Grade;
+    @FXML private TextField dailyPostTextField = new TextField();
+    @FXML private DatePicker datePicker;
+
     private Model model;
+    private IDay dp;
+    private LocalDate currentDate = LocalDate.now();
+    private String password = "1234";
 
     public Controller() {
         this.startUp();
     }
 
+    public void init(Model modelParam) {
+
+        if (model.getLockActive()){
+            pinAnchorPane.toFront();
+        }
+
+        lockActive();
+        ArrayList<IMood> moods = new ArrayList<>();
+        ArrayList<ECondition> eConditions = new ArrayList<>();
+        model.setDefaultDate(datePicker);
+
+        if (model.getPosts().get(model.getCurrentDate()) == null) {
+            model.makePost(currentDate,"",0, model.getAllTags(), moods, eConditions);
+        }
+
+        populatePost(currentDate);
+        //password = changePassword();
+        newCodePasswordField.setText(password);
+    }
+
+    private void onGradeChanged(int grade){
+        System.out.println(grade);
+        if (grade == 0){
+            oneRatingRadioButton.setSelected(false);
+            twoRatingRadioButton.setSelected(false);
+            threeRatingRadioButton.setSelected(false);
+            fourRatingRadioButton.setSelected(false);
+            fiveRatingRadioButton.setSelected(false);
+        }
+        else if (grade == 1){
+            oneRatingRadioButton.setSelected(true);
+        }
+        else if (grade == 2){
+            twoRatingRadioButton.setSelected(true);
+        }
+        else if (grade == 3){
+            threeRatingRadioButton.setSelected(true);
+        }
+        else if (grade == 4){
+            fourRatingRadioButton.setSelected(true);
+        }
+        else if (grade == 5){
+            fiveRatingRadioButton.setSelected(true);
+        }
+
+    }
+
+    @FXML public void populatePost(LocalDate chosenDate){
+        if (model.getPosts().get(chosenDate) == null){
+            ArrayList<IMood> moods = new ArrayList<>();
+            ArrayList<ECondition> eConditions = new ArrayList<>();
+            model.makePost(chosenDate,"",0, model.getAllTags(), moods, eConditions);
+        }
+
+        IDay temp = model.getPosts().get(chosenDate);
+
+        if (temp.getText().trim().length() > 0){
+            this.dailyPostTextField.setText(temp.getText());
+        } else {
+            this.dailyPostTextField.setText("");
+        }
+        datePicker.setValue(chosenDate);
+        onGradeChanged(model.getPosts().get(chosenDate).getGrade());
+        System.out.println(model.getPosts().get(chosenDate).getDate());
+    }
+
+    public void lockActive(){
+        if (model.getLockActive()){
+            activeLockCheckBox.fire();
+        }
+        else{
+            activeLockCheckBox.setSelected(false);
+        }
+    }
+    @FXML public void changeLockActive(){
+        model.setLockActive(activeLockCheckBox.isSelected());
+    }
+
+    public int isGrade(){
+        int grade;
+        if (oneRatingRadioButton.isSelected()){
+            grade = 1;
+            System.out.println(grade);
+            return grade;
+        }
+        else if(twoRatingRadioButton.isSelected()){
+            grade=2;
+            System.out.println(grade);
+            return grade;
+        }
+        else if(threeRatingRadioButton.isSelected()){
+            grade=3;
+            System.out.println(grade);
+            return grade;
+        }
+        else if(fourRatingRadioButton.isSelected()){
+            grade=4;
+            System.out.println(grade);
+            return grade;
+        }
+        else if(fiveRatingRadioButton.isSelected()){
+            grade=5;
+            System.out.println(grade);
+            return grade;
+        }
+        else {
+            grade = 0;
+            System.out.println(grade);
+            return grade;
+        }
+    }
+
+    @FXML public void changePassword(){
+        password = newCodePasswordField.getText();
+        System.out.println(password);
+    }
+
+    @FXML public void nextDay(){
+        model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
+        currentDate = currentDate.plusDays(1);
+        populatePost(currentDate);
+    }
+    @FXML public void previousDay(){
+        model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
+        currentDate = currentDate.minusDays(1);
+        populatePost(currentDate);
+    }
+    @FXML public void pickedDate(){
+        currentDate = datePicker.getValue();
+        populatePost(currentDate);
+    }
+
+    @FXML public void goToMoods() {
+        moodAnchorPane.toFront();
+    }
+    @FXML public void goToTags(){
+        tagsAnchorPane.toFront();
+    }
+    @FXML public void closeMoods(){
+        moodAnchorPane.toBack();
+    }
+    @FXML public void closeTags(){
+        tagsAnchorPane.toBack();
+    }
+    @FXML public void closePin(){
+        pinAnchorPane.toBack();
+    }
+    @FXML public void goToStats(){
+        statisticsAnchorPane.toFront();
+        model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
+    }
+    @FXML public void goToPrefs(){
+        preferencesAnchorPane.toFront();
+        model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
+    }
+    @FXML public void goToPosts(){
+        dailyPostAnchorPane.toFront();
+        model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
+
+    }
+    @FXML public void pinButtonPushed(){
+        System.out.println(pinPasswordField.getText());
+        if (pinPasswordField.getText().equals(password)){
+            pinAnchorPane.toBack();
+            dailyPostAnchorPane.toFront();
+        }
+    }
+
     private void startUp(){
         this.model = new Model();
+
+        if(model.getPosts().size() != 0){
+            populatePost(model.getPosts().get(LocalDate.now()).getText());
+        }
     }
 
     //matching shutdown-method goes here
     public void shutdown(){
+        model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
         model.shutdown();
     }
 
     public Model getModel() {
         return model;
+    }
+
+    public void populatePost(String post) {
+        dailyPostTextField.setText(post);
     }
 
     //-----------------------Statistics logic start-----------------------
@@ -52,13 +309,13 @@ public class Controller {
     XYChart.Series series2 = new XYChart.Series();
     XYChart.Series series3 = new XYChart.Series();
     XYChart.Series series4 = new XYChart.Series();*/
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Controller c = new Controller();
-        c.getModel().makePost("a",3,new ArrayList<>(), new ArrayList<>(Arrays.asList(new Mood("MISCONTENTTOCONTENT",10),new Mood("SADTOHAPPY",12),new Mood("SCAREDTOSAFE",25),new Mood("DISGUSTEDTOSURPRISED",57))),new ArrayList<>());
-        c.getModel().makePost(LocalDate.now().minusDays(1),"a",3,new ArrayList<>(), new ArrayList<>(Arrays.asList(new Mood("MISCONTENTTOCONTENT",20),new Mood("SADTOHAPPY",20),new Mood("SCAREDTOSAFE",10),new Mood("DISGUSTEDTOSURPRISED",38))),new ArrayList<>());
+        //c.getModel().makePost("a",3,new ArrayList<>(), new ArrayList<>(Arrays.asList(new Mood("MISCONTENTTOCONTENT",10),new Mood("SADTOHAPPY",12),new Mood("SCAREDTOSAFE",25),new Mood("DISGUSTEDTOSURPRISED",57))),new ArrayList<>());
+        //c.getModel().makePost(LocalDate.now().minusDays(1),"a",3,new ArrayList<>(), new ArrayList<>(Arrays.asList(new Mood("MISCONTENTTOCONTENT",20),new Mood("SADTOHAPPY",20),new Mood("SCAREDTOSAFE",10),new Mood("DISGUSTEDTOSURPRISED",38))),new ArrayList<>());
         c.populateGradeChart();
 
-    }
+    }*/
     /*private void populateChart(){ //Split into more methods later potentially
         LocalDate date = model.currentDate;
     LineChart lineChart;
