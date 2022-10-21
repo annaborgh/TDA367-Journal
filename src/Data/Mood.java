@@ -1,10 +1,5 @@
 package src.Data;
 
-/**
- * @author Adam Wikström
- *
- * Class that creates objects of type Mood.
- */
 public class Mood implements IMood {
 
     int moodRating = -1;
@@ -12,57 +7,34 @@ public class Mood implements IMood {
     int moodLimitLower = 0;
     String moodName = "PlaceholderName";
 
-    /**
-     * Constructor of Mood.
-     */
-    public Mood() {
-
+    public Mood(String name, int rating) {
+        this.moodName=name;
+        this.moodRating=rating;
     }
-
-    /**
-     * @author Adam Wikström
-     *
-     * Getter method for the Mood's name.
-     *
-     * @return A String containing the Mood's name.
-     */
+    public Mood() {
+    }
     @Override
     public String getMoodName() {
-
         return this.moodName;
     }
 
-    /**
-     * @author Adam Wikström
-     *
-     * Getter method for the Mood's current rating.
-     *
-     * @return An int of the Mood's current rating.
-     */
     @Override
     public int getMoodRating() {
         return moodRating;
     }
 
-    /**
-     * @author Adam Wikström
-     *
-     * A method to set the Mood's rating.
-     *
-     * @param newMood   An int which contains the Mood's rating.
-     */
     @Override
-    public void setMoodRating(int newMood) {
-        this.moodRating = newMood;
+    public void setMoodRating(int newRating){
+        if (newRating <= this.moodLimitUpper && newRating >= moodLimitLower){
+            this.moodRating = newRating;
+        }
+        // Temporary else statement for testing purposes.
+        else {
+            System.out.println("INVALID MOOD RATING! INT MUST BE IN RANGE [0, 100]");
+            System.out.println("You attempted to change mood rating to " + newRating);
+        }
     }
 
-    /**
-     * @author Adam Wikström
-     *
-     * A method to set the Mood's name.
-     *
-     * @param name  A String which contains the Mood's name.
-     */
     @Override
     public void setName(String name) {
         moodName = name;

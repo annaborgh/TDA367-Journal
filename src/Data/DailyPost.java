@@ -190,6 +190,7 @@ public class DailyPost implements IDay {
      */
     @Override
     public void addActiveMood(IMood mood) {
+
         activeMoods.add(mood);
     }
 

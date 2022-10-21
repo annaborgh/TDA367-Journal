@@ -1,88 +1,55 @@
 package src.MVC;
 
+import javafx.scene.control.DatePicker;
 import src.Data.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * @author Adam Wikström
- * @author Anna Borgh
- * @author Wilma Nordlund
- *
- * TODO
- */
 public class Model {
-    /**
-     * General variables.
-     */
+    private static Model instance = null;
     private final List<ITag> allTags = new ArrayList<>();
     private ILock lockType;
     private HashMap<LocalDate, IDay> posts = new HashMap<>();
-    private final LocalDate currentDate;
+    private LocalDate currentDate;
     private final IPersistence persistence;
 
     /**
      * Variables for the lock.
      */
     public PinLock lock;
-    private boolean lockActive = false;
+    private boolean lockActive = true;
     private boolean lockState = true;
 
-    /**
-     * General variables.
-     * Variables for date and persistence.
-     */
     public Model() {
         currentDate = LocalDate.now();
         persistence = new Persistence();
         init();
     }
 
-    /**
-     * @author Anna Borgh
-     *
-     * A method to load posts.
-     */
     private void init(){
         //load posts
         posts = persistence.loadPosts();
     }
 
-    /**
-     * @author Anna Borgh
-     *
-     * A method to save posts.
-     */
-    protected void shutdown(){
+    public void shutdown(){
         //save posts
         persistence.savePosts(posts);
         posts.clear();
     }
 
-    /**
-     * @author Anna Borgh
-     *
-     * A method to make a new post.
-     *
-     * @param text  A String which contains the text.
-     * @param grade An int which contains the grade.
-     * @param tags  An ArrayList with tag objects.
-     * @param moods An ArrayList with the mood objects.
-     * @param EConditions   An ArrayList with the EConditions.
-     */
-    public void makePost(String text, int grade, ArrayList<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
+    public void makePost(LocalDate date, String text, int grade, List<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
         IDay post = new DailyPost();
 
-        post.setDate(currentDate);
+        post.setDate(date);
         post.setText(text);
         post.setGrade(grade);
         post.setTags(tags);
         post.setActiveMoods(moods);
         post.setConditions(EConditions);
 
-        posts.put(currentDate, post);
+        posts.put(date, post);
     }
 
     public ILock getLockType() {
@@ -90,7 +57,7 @@ public class Model {
     }
 
     public List<ITag> getAllTags() {
-        return this.allTags;
+        return allTags;
     }
 
     public LocalDate getCurrentDate() {
@@ -101,42 +68,47 @@ public class Model {
         return posts;
     }
 
+    public void setDefaultDate(DatePicker datePicker){
+        datePicker.setValue(currentDate);
+
+    }
+
     /**
-     * @author Adam Wikström
-     * @author Wilma Nordlund
      *
-     * Getter for the lock.
-     *
-     * @return A PinLock which contains the lock.
+     * @return
      */
     public PinLock getLock(){
         return this.lock;
     }
 
     /**
-     * @author Adam Wikström
-     * @author Wilma Nordlund
      *
-     * Getter for the lock state.
-     *
-     * @return A boolean which contains the LockState on the lock.
+     * @return
      */
     public boolean getLockState(){
         return this.lockState;
+    }
+    /**
+     *
+     * @return
+     */
+    public boolean getLockActive(){
+        return this.lockActive;
+    }
+
+    public void setLockActive(Boolean lockActive){
+        this.lockActive = lockActive;
     }
 
     //-----------------------"Lock model" start--------------------
 
     /**
-     * @author Adam Wikström
-     * @author Wilma Nordlund
-     *
      * Method to create the pin lock.
      *
-     * @param pinCode   The pin code that is to be assigned to the pin lock.
+     * @param pinCode The pin code that is to be assigned to the pin lock.
      */
     public void createPinLock(String pinCode) {
-        if(lock == null) {
+        if(lock != null) {
             if (checkValidInput(pinCode)) {
                 this.lock = new PinLock(pinCode);
                 lockActive = true;
@@ -145,14 +117,10 @@ public class Model {
     }
 
     /**
-     * @author Adam Wikström
-     * @author Wilma Nordlund
-     *
-     * Method to check if attempted pincode for new lock is valid,
-     * i.e. only contains numbers.
+     * Method to check if attempted pincode for new lock is valid, i.e. only contains numbers.
      *
      * @param inp   The input given.
-     * @return A boolean symbolizing if input is valid.
+     * @return      A boolean symbolizing if input is valid.
      */
     private boolean checkValidInput(String inp){
         for (int i = 0; i < inp.length(); i++){
@@ -164,13 +132,8 @@ public class Model {
     }
 
     /**
-     * @author Adam Wikström
-     * @author Wilma Nordlund
-     *
-     * Method to unlock the lock. To unlock the lock,
-     * the input must be the same as the pin code.
-     * If the input is correct,
-     * lock state is turned off - the lock unlocks.
+     * Method to unlock the lock. To unlock the lock, the input must be the same as the pin code.
+     * If the input is correct, lock state is turned off - the lock unlocks.
      *
      * @param inp   The input given.
      */
@@ -183,9 +146,6 @@ public class Model {
     }
 
     /**
-     * @author Adam Wikström
-     * @author Wilma Nordlund
-     *
      * Method to lock the lock.
      */
     public void lockLock(){
