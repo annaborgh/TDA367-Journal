@@ -3,6 +3,7 @@ package src.MVC;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.junit.*;
 import src.Data.*;
 
 import javax.swing.filechooser.FileSystemView;
@@ -13,6 +14,8 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static org.junit.Assert.*;
 
 /**
  * @author Adam Wikström
@@ -26,14 +29,14 @@ public class PersistenceTest {
     private HashMap<LocalDate, IDay> posts = new HashMap<>();
 
 
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
 
     /**
      * Method to test the loadPost method in the Persistance Class
      */
     @Test
-    public void testLoadPosts(){
+    public void testLoadPosts() throws IOException {
+        Path pathToDelete = Path.of(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separatorChar + "TDA367_Journal");
+        boolean res = deleteDirectory(pathToDelete.toFile());
         persistence.loadPosts();
     }
 
@@ -42,8 +45,11 @@ public class PersistenceTest {
      */
     @Test
     public void testSavePosts() throws IOException {
+        Path pathToDelete = Path.of(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separatorChar + "TDA367_Journal");
 
-        deleteDirectory();
+        boolean result = deleteDirectory(pathToDelete.toFile());
+
+        assertTrue(result);
         // Creating a post to save
         ArrayList<ITag> testListTags = new ArrayList<>();
         ITag testTag = new Tag("testTag", model.getAllTags().size() + 1);
@@ -59,6 +65,7 @@ public class PersistenceTest {
         model.makePost(LocalDate.now(),"TestPost123", 0, testListTags, testListMoods, testListEConditions);
 
         // Saving the post
+        result = deleteDirectory(pathToDelete.toFile());
         persistence.savePosts(model.getPosts());
 
     }
@@ -68,19 +75,17 @@ public class PersistenceTest {
      * Method to delete the save directory of the project if it exists
      * @throws IOException  Exception is thrown if the directory to be deleted doesn't exist
      */
-    private void deleteDirectory() throws IOException {
+    private boolean deleteDirectory(File directoryToBeDeleted) throws IOException {
 
-        File directory = new File(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separatorChar + "TDA367_Journal" + File.separatorChar + "Posts");
+        File[] allContents = directoryToBeDeleted.listFiles();
 
-        if(directory.listFiles().length > 0){
-            for (int i = 0; i < directory.listFiles().length; i++){
-                directory.listFiles()[i].delete();
+        if(allContents != null){
+            for (File file : allContents){
+                deleteDirectory(file);
             }
 
         }
-        System.out.println(directory.listFiles());
-        Files.delete(Path.of(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separatorChar + "TDA367_Journal" + File.separatorChar + "Posts"));
-        Files.delete(Path.of(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separatorChar + "TDA367_Journal"));
+        return directoryToBeDeleted.delete();
 
     }
 
