@@ -287,6 +287,7 @@ public class Controller {
 
     //matching shutdown-method goes here
     public void shutdown(){
+        model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
         model.shutdown();
     }
 
