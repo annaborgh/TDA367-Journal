@@ -14,6 +14,12 @@ public class MoodTest {
     IMood testMood = new Mood();
 
     /**
+     *
+     */
+    //@Test
+
+
+    /**
      * Method to test the setters of the Mood class
      */
     @Test

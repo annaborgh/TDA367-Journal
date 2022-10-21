@@ -9,11 +9,9 @@ import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -62,8 +60,8 @@ public class PersistenceTest {
 
         // Saving the post
         persistence.savePosts(model.getPosts());
-    }
 
+    }
 
 
     /**
@@ -72,15 +70,15 @@ public class PersistenceTest {
      */
     private void deleteDirectory() throws IOException {
 
-        File directory = new File(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separatorChar + "TDA367_Journal");
-        File[] templist = directory.listFiles();
-        if(templist.length == 1){
-            for (int i = 0; i < templist[0].listFiles().length; i++){
-                templist[0].listFiles()[i].delete();
+        File directory = new File(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separatorChar + "TDA367_Journal" + File.separatorChar + "Posts");
+
+        if(directory.listFiles().length > 0){
+            for (int i = 0; i < directory.listFiles().length; i++){
+                directory.listFiles()[i].delete();
             }
 
         }
-
+        System.out.println(directory.listFiles());
         Files.delete(Path.of(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separatorChar + "TDA367_Journal" + File.separatorChar + "Posts"));
         Files.delete(Path.of(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separatorChar + "TDA367_Journal"));
 

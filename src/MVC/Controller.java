@@ -1,22 +1,5 @@
 package src.MVC;
 
-import javafx.scene.chart.*;
-/*import javafx.scene.chart.LineChart;
-import javafx.scene.chart.PieChart;*/
-import javafx.util.Pair;
-import src.Data.*;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.PieChart;
-import src.Data.DailyPost;
-import src.Data.IDay;
-import src.Data.IMood;
-
-import java.time.LocalDate;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;
@@ -25,15 +8,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import src.Data.DailyPost;
-import src.Data.ECondition;
-import src.Data.IDay;
-import src.Data.IMood;
+import javafx.util.Pair;
+import src.Data.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Controller {
 
@@ -118,7 +101,7 @@ public class Controller {
         lockActive();
         ArrayList<IMood> moods = new ArrayList<>();
         ArrayList<ECondition> eConditions = new ArrayList<>();
-        model.setDefaultDate(datePicker);
+        datePicker.setValue(LocalDate.now());
 
         if (model.getPosts().get(model.getCurrentDate()) == null) {
             model.makePost(currentDate,"",0, model.getAllTags(), moods, eConditions);
@@ -339,13 +322,7 @@ public class Controller {
     XYChart.Series series2 = new XYChart.Series();
     XYChart.Series series3 = new XYChart.Series();
     XYChart.Series series4 = new XYChart.Series();*/
-    /*public static void main(String[] args) {
-        Controller c = new Controller();
-        //c.getModel().makePost("a",3,new ArrayList<>(), new ArrayList<>(Arrays.asList(new Mood("MISCONTENTTOCONTENT",10),new Mood("SADTOHAPPY",12),new Mood("SCAREDTOSAFE",25),new Mood("DISGUSTEDTOSURPRISED",57))),new ArrayList<>());
-        //c.getModel().makePost(LocalDate.now().minusDays(1),"a",3,new ArrayList<>(), new ArrayList<>(Arrays.asList(new Mood("MISCONTENTTOCONTENT",20),new Mood("SADTOHAPPY",20),new Mood("SCAREDTOSAFE",10),new Mood("DISGUSTEDTOSURPRISED",38))),new ArrayList<>());
-        c.populateGradeChart();
 
-    }*/
     /*private void populateChart(){ //Split into more methods later potentially
         LocalDate date = model.currentDate;
     LineChart lineChart;

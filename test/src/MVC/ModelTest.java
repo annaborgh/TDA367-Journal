@@ -121,6 +121,19 @@ public class ModelTest {
     }
 
     /**
+     *  Method to test set- and getLockActive
+     */
+    @Test
+    public void testLockActive(){
+        assertTrue(model.getLockActive());
+        model.setLockActive(false);
+        assertFalse(model.getLockActive());
+    }
+
+
+
+
+    /**
      * Method to delete the save directory of the project if it exists
      * @throws IOException  Exception is thrown if the directory to be deleted doesn't exist
      */
