@@ -53,7 +53,7 @@ public class ModelTest {
         ArrayList<ITag> testListTags = new ArrayList<>();
         ArrayList<IMood> testListMoods = new ArrayList<>();
         ArrayList<ECondition> testListEConditions = new ArrayList<>();
-        model.makePost("TestPost123", 0, testListTags, testListMoods, testListEConditions);
+        model.makePost(LocalDate.now(), "TestPost123", 0, testListTags, testListMoods, testListEConditions);
         assertTrue(model.getPosts().containsKey(LocalDate.now()));
     }
 
@@ -78,7 +78,7 @@ public class ModelTest {
         ArrayList<ITag> testListTags = new ArrayList<>();
         ArrayList<IMood> testListMoods = new ArrayList<>();
         ArrayList<ECondition> testListEConditions = new ArrayList<>();
-        model.makePost("TestPost123", 0, testListTags, testListMoods, testListEConditions);
+        model.makePost(LocalDate.now(), "TestPost123", 0, testListTags, testListMoods, testListEConditions);
 
         assertTrue(model.getPosts().containsKey(LocalDate.now()));
 

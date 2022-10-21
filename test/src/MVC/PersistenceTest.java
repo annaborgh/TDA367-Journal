@@ -58,7 +58,7 @@ public class PersistenceTest {
         ArrayList<ECondition> testListEConditions = new ArrayList<>();
         testListEConditions.add(ECondition.HOT);
 
-        model.makePost("TestPost123", 0, testListTags, testListMoods, testListEConditions);
+        model.makePost(LocalDate.now(),"TestPost123", 0, testListTags, testListMoods, testListEConditions);
 
         // Saving the post
         persistence.savePosts(model.getPosts());
