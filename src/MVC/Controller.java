@@ -153,18 +153,10 @@ public class Controller {
         else if (grade == 5){
             fiveRatingRadioButton.setSelected(true);
         }
-        /*switch (grade){
-            case 1: oneRatingRadioButton.fire();
-            case 2: twoRatingRadioButton.fire();
-            case 3: threeRatingRadioButton.fire();
-            case 4: fourRatingRadioButton.fire();
-            case 5: fiveRatingRadioButton.fire();
-            case 0: Grade.selectToggle(null);
-        }*/
+
     }
 
     @FXML public void populatePost(LocalDate chosenDate){
-        //onGradeChanged();
         if (model.getPosts().get(chosenDate) == null){
             ArrayList<IMood> moods = new ArrayList<>();
             ArrayList<ECondition> eConditions = new ArrayList<>();
@@ -172,7 +164,7 @@ public class Controller {
         }
 
         IDay temp = model.getPosts().get(chosenDate);
-        //temp.setDate(currentDate);
+
         if (temp.getText().trim().length() > 0){
             this.dailyPostTextField.setText(temp.getText());
         } else {
@@ -181,28 +173,10 @@ public class Controller {
         datePicker.setValue(chosenDate);
         onGradeChanged(model.getPosts().get(chosenDate).getGrade());
         System.out.println(model.getPosts().get(chosenDate).getDate());
-        /*if (temp.getGrade()==0){
-            temp.setGrade(0);
-        }
-        else if (temp.getGrade()==1){
-            temp.setGrade(1);
-        }
-        else if (temp.getGrade()==2){
-            temp.setGrade(2);
-        }
-        else if (temp.getGrade()==3){
-            temp.setGrade(3);
-        }
-        else if (temp.getGrade()==4){
-            temp.setGrade(4);
-        }
-        else if (temp.getGrade()==5){
-            temp.setGrade(5);
-        }*/
     }
 
     public void lockActive(){
-        if (model.getLockActive()==true){
+        if (model.getLockActive()){
             activeLockCheckBox.fire();
         }
         else{
@@ -210,12 +184,7 @@ public class Controller {
         }
     }
     @FXML public void changeLockActive(){
-        if (activeLockCheckBox.isSelected()){
-            model.setLockActive(true);
-        }
-        else{
-            model.setLockActive(false);
-        }
+        model.setLockActive(activeLockCheckBox.isSelected());
     }
 
     public int isGrade(){
@@ -268,7 +237,6 @@ public class Controller {
         populatePost(currentDate);
     }
     @FXML public void pickedDate(){
-        //model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>()); //Funkar ej av någon anledning
         currentDate = datePicker.getValue();
         populatePost(currentDate);
     }
