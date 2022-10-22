@@ -157,7 +157,7 @@ public class Model {
 
     //-----------------------"Lock model" end-----------------------
     //-----------------------Statistics logic start-----------------
-    Pair<ArrayList<LocalDate>,ArrayList<HashMap<String,Integer>>>  intervalToDataMap(ETimeInterval ti){
+    public Pair<ArrayList<LocalDate>,ArrayList<HashMap<String,Integer>>>  intervalToDataMap(ETimeInterval ti){
         HashMap<LocalDate,HashMap<String,Integer>> dates = new HashMap<>();
         Pair<ArrayList<LocalDate>,ArrayList<HashMap<String,Integer>>> dataPair = new Pair<>(new ArrayList<>(),new ArrayList<>());
         if(ti==null) return dataPair;
@@ -245,7 +245,7 @@ public class Model {
 
         return dataPair;
     }
-    Pair<ArrayList<LocalDate>,ArrayList<Integer>> intervalToGradeData(ETimeInterval ti){
+    public Pair<ArrayList<LocalDate>,ArrayList<Integer>> intervalToGradeData(ETimeInterval ti){
         HashMap<LocalDate,HashMap<String,Integer>> dates = new HashMap<>();
         Pair<ArrayList<LocalDate>,ArrayList<Integer>> dataPair = new Pair<>(new ArrayList<>(),new ArrayList<>());
         if(ti==null) return dataPair;
@@ -308,7 +308,9 @@ public class Model {
                         dataPair.getKey().add(d);
                         dataPair.getValue().add(0);
                     }
+
                     weeklyRating = tmpWeeklyRating.getValue()/tmpWeeklyRating.getKey();
+
 
                     dataPair.getKey().add(d);
                     dataPair.getValue().add(weeklyRating);
@@ -323,6 +325,7 @@ public class Model {
 
         return dataPair;
     }
+
     public Map<ECondition, Integer> getConditionData() {
         Map<ECondition, Integer> conditionCountMap = new HashMap<>();
         for (ECondition e:ECondition.values()) {
