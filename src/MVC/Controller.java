@@ -113,7 +113,7 @@ Mood sliders
     @FXML
     private Tab statisticsGradeTab;
     @FXML
-    private LineChart<LocalDate, Integer> statisticsGradeTabChart;
+    private LineChart<LocalDate, Number> statisticsGradeTabChart;
     @FXML
     private Button statisticsGradeTabWeekBtn;
     @FXML
@@ -123,7 +123,7 @@ Mood sliders
     @FXML
     private Tab statisticsMoodTab;
     @FXML
-    private LineChart<LocalDate, Integer> statisticsMoodTabChart;
+    private LineChart<LocalDate, Number> statisticsMoodTabChart;
     @FXML
     private Button statisticsMoodTabWeekBtn;
     @FXML
@@ -156,7 +156,9 @@ Mood sliders
     }
 
     public void init(Model modelParam) {
-
+        xAxis.setLabel("Date");
+        statisticsGradeTabChart = new LineChart<LocalDate,Number>((Axis)xAxis,yAxis);
+        statisticsMoodTabChart = new LineChart<LocalDate,Number>((Axis)xAxis,yAxis);;
         if (model.getLockActive()){
             pinAnchorPane.toFront();
         }
@@ -349,12 +351,15 @@ Mood sliders
 
 
 
-    /*final CategoryAxis xAxis = new CategoryAxis();
+    final CategoryAxis xAxis = new CategoryAxis();
     final NumberAxis yAxis = new NumberAxis();
-    XYChart.Series series1 = new XYChart.Series();
-    XYChart.Series series2 = new XYChart.Series();
-    XYChart.Series series3 = new XYChart.Series();
-    XYChart.Series series4 = new XYChart.Series();*/
+    XYChart.Series mood1series = new XYChart.Series();
+    XYChart.Series mood2series = new XYChart.Series();
+    XYChart.Series mood3series = new XYChart.Series();
+    XYChart.Series mood4series = new XYChart.Series();
+
+    XYChart.Series gradeSeries = new XYChart.Series();
+
     /*public static void main(String[] args) {
         Controller c = new Controller();
         //c.getModel().makePost("a",3,new ArrayList<>(), new ArrayList<>(Arrays.asList(new Mood("MISCONTENTTOCONTENT",10),new Mood("SADTOHAPPY",12),new Mood("SCAREDTOSAFE",25),new Mood("DISGUSTEDTOSURPRISED",57))),new ArrayList<>());
@@ -404,8 +409,9 @@ Mood sliders
     public void populateGradeChart(){
         ETimeInterval ti = ETimeInterval.MONTH;
         Pair<ArrayList<LocalDate>,ArrayList<Integer>> pair =model.intervalToGradeData(ti);
-        
-
+        pair.getKey().forEach(e -> {gradeSeries.getData().add(new XYChart.Data(e, pair.getValue().get(pair.getKey().indexOf(e))));});
+        statisticsGradeTabChart.getData().clear();
+        statisticsGradeTabChart.getData().add(gradeSeries);
 
     }
 

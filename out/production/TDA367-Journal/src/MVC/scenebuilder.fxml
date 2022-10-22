@@ -309,9 +309,9 @@
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Button fx:id="statisticsMoodTabWeekBtn1" mnemonicParsing="false" prefHeight="102.0" prefWidth="372.0" style="-fx-background-color: E8EBFF;" text="Vecka" />
-                                                      <Button fx:id="statisticsMoodTabMonthBtn1" mnemonicParsing="false" prefHeight="102.0" prefWidth="372.0" style="-fx-background-color: E8EBFF;" text="Månad" GridPane.columnIndex="1" />
-                                                      <Button fx:id="statisticsMoodTabYearBtn1" mnemonicParsing="false" prefHeight="102.0" prefWidth="372.0" style="-fx-background-color: E8EBFF;" text="År" GridPane.columnIndex="2" />
+                                                      <Button fx:id="statisticsMoodTabWeekBtn" mnemonicParsing="false" prefHeight="102.0" prefWidth="372.0" style="-fx-background-color: E8EBFF;" text="Vecka" />
+                                                      <Button fx:id="statisticsMoodTabMonthBtn" mnemonicParsing="false" prefHeight="102.0" prefWidth="372.0" style="-fx-background-color: E8EBFF;" text="Månad" GridPane.columnIndex="1" />
+                                                      <Button fx:id="statisticsMoodTabYearBtn" mnemonicParsing="false" prefHeight="102.0" prefWidth="372.0" style="-fx-background-color: E8EBFF;" text="År" GridPane.columnIndex="2" />
                                                    </children>
                                                 </GridPane>
                                              </children>
