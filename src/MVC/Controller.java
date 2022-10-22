@@ -1,5 +1,7 @@
 package src.MVC;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.chart.*;
 /*import javafx.scene.chart.LineChart;
 import javafx.scene.chart.PieChart;*/
@@ -111,7 +113,7 @@ Mood sliders
     @FXML
     private Tab statisticsGradeTab;
     @FXML
-    private LineChart<LocalDatej, Integer> statisticsGradeTabChart;
+    private LineChart<LocalDate, Integer> statisticsGradeTabChart;
     @FXML
     private Button statisticsGradeTabWeekBtn;
     @FXML
@@ -388,7 +390,15 @@ Mood sliders
     private void populateConditionChart(){
         Map<ECondition, Integer> conditionCountMap = model.getConditionData();
 
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList();
 
+        conditionCountMap.keySet().forEach(
+                k->pieChartData.
+                        add(new PieChart.Data(k.toString(),conditionCountMap.get(k)))
+        );
+        statisticsConditionTabChart.getData().setAll(pieChartData);
+        statisticsConditionTabChart.setTitle("Humör");
 
     }
     public void populateGradeChart(){
@@ -422,7 +432,17 @@ Mood sliders
 
     }*/
     private void populateTagsChart(){
-        model.getTagData();
+        HashMap<Object,Long> tagsCountMap = new HashMap<>(model.getTagData());
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList();
+
+        tagsCountMap.keySet().forEach(
+                k->pieChartData.
+                        add(new PieChart.Data(k.toString(),tagsCountMap.get(k)))
+        );
+        statisticsTagTabChart.getData().setAll(pieChartData);
+        statisticsTagTabChart.setTitle("Taggar");
+
     }
     //-----------------------Statistics logic end-----------------------
 }
