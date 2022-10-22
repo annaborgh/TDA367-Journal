@@ -67,6 +67,7 @@ public class PersistenceTest {
         // Saving the post
         result = deleteDirectory(pathToDelete.toFile());
         persistence.savePosts(model.getPosts());
+        persistence.savePosts(model.getPosts());
 
     }
 
