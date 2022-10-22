@@ -19,12 +19,13 @@ public class Journal extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(Journal.class.getResource("MVC/scenebuilder.fxml"));
         fxmlLoader.setController(controller);
-        Scene scene = new Scene(fxmlLoader.load(), 900, 600);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 635);
 
         controller.init(model);
 
         stage.setTitle("Min Dagbok");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
 
     }
