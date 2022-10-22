@@ -1,9 +1,10 @@
-package src.MVC;
+package test.src.MVC;
 
 import org.junit.Test;
 import src.Data.ECondition;
 import src.Data.IMood;
 import src.Data.ITag;
+import src.MVC.Model;
 
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
@@ -12,9 +13,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 /**
  * @author Adam Wikström

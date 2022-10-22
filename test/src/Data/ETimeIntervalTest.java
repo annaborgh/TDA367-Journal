@@ -1,8 +1,9 @@
-package src.Data;
+package test.src.Data;
 
 import org.junit.Test;
+import src.Data.ETimeInterval;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Adam Wikström

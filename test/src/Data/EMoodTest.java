@@ -1,8 +1,9 @@
-package src.Data;
+package test.src.Data;
 
 import org.junit.Test;
+import src.Data.EMood;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Adam Wikström
@@ -16,6 +17,7 @@ public class EMoodTest {
      */
     @Test
     public void testEMood(){
-       assertEquals("MISCONTENTTOCONTENT", EMood.MISCONTENTTOCONTENT.toString());
+       assertEquals("MISCONTENTTOCONTENT",
+               EMood.MISCONTENTTOCONTENT.toString());
     }
 }
