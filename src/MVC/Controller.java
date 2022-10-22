@@ -398,7 +398,7 @@ Mood sliders
                         add(new PieChart.Data(k.toString(),conditionCountMap.get(k)))
         );
         statisticsConditionTabChart.getData().setAll(pieChartData);
-        statisticsConditionTabChart.setTitle("Humör");
+        statisticsConditionTabChart.setTitle("Tillstånd");
 
     }
     public void populateGradeChart(){
