@@ -1,5 +1,7 @@
 package src.MVC;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.*;
@@ -108,12 +110,22 @@ Mood sliders
 
 
 
+
+
+
     @FXML
     private TabPane statisticsTabPane;
+    final CategoryAxis xAxis = new CategoryAxis();
+    final NumberAxis yAxis = new NumberAxis();
+    XYChart.Series mood1series = new XYChart.Series();
+    XYChart.Series mood2series = new XYChart.Series();
+    XYChart.Series mood3series = new XYChart.Series();
+    XYChart.Series mood4series = new XYChart.Series();
     @FXML
     private Tab statisticsGradeTab;
+
     @FXML
-    private LineChart<LocalDate, Number> statisticsGradeTabChart;
+    private LineChart<String, Number> statisticsGradeTabChart= new LineChart<String,Number>(xAxis,yAxis);;
     @FXML
     private Button statisticsGradeTabWeekBtn;
     @FXML
@@ -123,7 +135,7 @@ Mood sliders
     @FXML
     private Tab statisticsMoodTab;
     @FXML
-    private LineChart<LocalDate, Number> statisticsMoodTabChart;
+    private LineChart<String, Number> statisticsMoodTabChart = new LineChart<String,Number>(xAxis,yAxis);
     @FXML
     private Button statisticsMoodTabWeekBtn;
     @FXML
@@ -155,10 +167,35 @@ Mood sliders
         this.startUp();
     }
 
-    public void init(Model modelParam) {
+    @FXML
+    public void initialize() {
+
         xAxis.setLabel("Date");
-        statisticsGradeTabChart = new LineChart<LocalDate,Number>((Axis)xAxis,yAxis);
-        statisticsMoodTabChart = new LineChart<LocalDate,Number>((Axis)xAxis,yAxis);;
+
+        statisticsGradeTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                populateGradeChart();
+        }
+        });
+        statisticsConditionTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                populateConditionChart();
+            }
+        });
+        statisticsTagTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                populateTagsChart();
+            }
+        });
+        statisticsMoodTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                populateMoodChart();
+            }
+        });
+    }
+
+    public void init(Model modelParam) {
+
         if (model.getLockActive()){
             pinAnchorPane.toFront();
         }
@@ -351,14 +388,8 @@ Mood sliders
 
 
 
-    final CategoryAxis xAxis = new CategoryAxis();
-    final NumberAxis yAxis = new NumberAxis();
-    XYChart.Series mood1series = new XYChart.Series();
-    XYChart.Series mood2series = new XYChart.Series();
-    XYChart.Series mood3series = new XYChart.Series();
-    XYChart.Series mood4series = new XYChart.Series();
 
-    XYChart.Series gradeSeries = new XYChart.Series();
+
 
     /*public static void main(String[] args) {
         Controller c = new Controller();
@@ -390,7 +421,17 @@ Mood sliders
     private void populateMoodChart(){
         ETimeInterval t = ETimeInterval.YEAR;
         Pair<ArrayList<LocalDate>,ArrayList<HashMap<String,Integer>>> data = model.intervalToDataMap(t);
-
+        ArrayList<LocalDate> dates = data.getKey();
+        ArrayList<HashMap<String,Integer>> moods = data.getValue();
+        XYChart.Series<String,Number> gradeSeries = new XYChart.Series<String,Number>();
+        for (int i = 0; i < dates.size(); i++) {
+            gradeSeries.getData().add(new XYChart.Data<>(dates.get(i).toString(),1));
+            System.out.println("mood data: "+moods.get(i));
+        }
+        statisticsMoodTabChart.getData().clear();
+        statisticsMoodTabChart.getData().add(gradeSeries);
+        System.out.println(statisticsMoodTabChart.getData().size());
+        statisticsMoodTabChart.setVisible(true);
     }
     private void populateConditionChart(){
         Map<ECondition, Integer> conditionCountMap = model.getConditionData();
@@ -407,11 +448,31 @@ Mood sliders
 
     }
     public void populateGradeChart(){
+        //Create series here??
+        XYChart.Series<String,Number> gradeSeries = new XYChart.Series<String,Number>();
+
         ETimeInterval ti = ETimeInterval.MONTH;
-        Pair<ArrayList<LocalDate>,ArrayList<Integer>> pair =model.intervalToGradeData(ti);
-        pair.getKey().forEach(e -> {gradeSeries.getData().add(new XYChart.Data(e, pair.getValue().get(pair.getKey().indexOf(e))));});
+        Pair<ArrayList<LocalDate>,ArrayList<Integer>> pair = model.intervalToGradeData(ti);
+       /* System.out.println("dates: "+pair.getKey());
+        System.out.println("data: "+pair.getValue());*/
+        /*pair.getKey().forEach(e -> {
+            System.out.println("e: "+e);
+            gradeSeries.getData().add(
+                    new XYChart.Data(e.toString(), pair.getValue().get(pair.getKey().indexOf(e)))
+            );
+        });*/
+        System.out.println(pair.getValue());
+        for (int i = 0; i < pair.getKey().size(); i++) {
+
+            gradeSeries.getData().add(
+                    new XYChart.Data( LocalDate.now().minusDays(i).toString(),pair.getValue().get(i))
+            );
+        }
         statisticsGradeTabChart.getData().clear();
         statisticsGradeTabChart.getData().add(gradeSeries);
+
+        statisticsMoodTabChart.setVisible(true);
+
 
     }
 

@@ -254,9 +254,9 @@
                                 </AnchorPane>
                         <AnchorPane fx:id="statisticsAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="613.0" style="-fx-background-color: white;">
                            <children>
-                              <TabPane fx:id="statisticsTabPane" layoutX="3.0" layoutY="120.0" prefHeight="515.0" prefWidth="612.0" style="-fx-background-color: white; -fx-tab-min-width: 10em; -fx-tab-min-height: 3em;" tabClosingPolicy="UNAVAILABLE">
+                              <TabPane fx:id="statisticsTabPane"  layoutX="3.0" layoutY="120.0" prefHeight="515.0" prefWidth="612.0" style="-fx-background-color: white; -fx-tab-min-width: 10em; -fx-tab-min-height: 3em;" tabClosingPolicy="UNAVAILABLE">
                                  <tabs>
-                                    <Tab fx:id="statisticsGradeTab" style="-fx-background-color: E8EBFF;" text="Betyg">
+                                    <Tab fx:id="statisticsGradeTab"   style="-fx-background-color: E8EBFF;" text="Betyg">
                                        <content>
                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="525.0" prefWidth="415.0">
                                              <children>

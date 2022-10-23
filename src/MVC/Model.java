@@ -236,16 +236,12 @@ public class Model {
                     dates.put(d, weeklyMoodMap);
                     dataPair.getKey().add(d);
                     dataPair.getValue().add(weeklyMoodMap);
-                    System.out.println(weeklyMoodMap );
                 }
-                System.out.println(dates);
                 break;
             }
 
 
         }
-
-        System.out.println("dataDates: " + dataPair.getValue().size()+ " dataValues: " + dataPair.getKey().size());
 
         return dataPair;
     }
@@ -323,7 +319,7 @@ public class Model {
 
         }
 
-        System.out.println("dataDates: " + dataPair.getValue()+ " dataValues: " + dataPair.getKey());
+
 
         return dataPair;
     }
