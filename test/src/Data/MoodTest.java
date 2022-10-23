@@ -1,6 +1,8 @@
-package src.Data;
+package Data;
 
 import org.junit.Test;
+import src.Data.IMood;
+import src.Data.Mood;
 
 import static org.junit.Assert.*;
 

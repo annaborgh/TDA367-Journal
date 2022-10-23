@@ -1,4 +1,4 @@
-package test.src.MVC;
+package MVC;
 
 import org.junit.Test;
 import src.Data.*;

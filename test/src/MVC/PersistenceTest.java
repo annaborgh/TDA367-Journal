@@ -1,10 +1,12 @@
-package src.MVC;
+package MVC;
 
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.*;
 import src.Data.*;
+import src.MVC.Model;
+import src.MVC.Persistence;
 
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;

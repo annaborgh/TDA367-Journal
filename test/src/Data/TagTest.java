@@ -1,6 +1,8 @@
-package src.Data;
+package Data;
 
 import org.junit.Test;
+import src.Data.ITag;
+import src.Data.Tag;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,8 @@
-package src.Data;
+package Data;
 
 import org.junit.Test;
+import src.Data.ILock;
+import src.Data.PinLock;
 
 import static org.junit.Assert.*;
 

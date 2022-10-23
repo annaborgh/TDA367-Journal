@@ -1,4 +1,4 @@
-package test.src.Data;
+package Data;
 
 import org.junit.Test;
 import src.Data.EMood;
