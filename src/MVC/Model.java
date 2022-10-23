@@ -255,7 +255,7 @@ public class Model {
                 for (int i = 0; i < 7; i++) {
                     LocalDate d = currentDate.minusDays(i);
                     DailyPost dailyPost = (DailyPost) getPosts().get(d);
-                    if (dailyPost == null){
+                    if (dailyPost == null || dailyPost.getGrade() == 0){
                         dataPair.getKey().add(d);
                         dataPair.getValue().add(null);
                         continue;
@@ -272,7 +272,7 @@ public class Model {
                 for (int i = 0; i < currentDate.getMonth().length(currentDate.isLeapYear()); i++) {
                     LocalDate d = currentDate.minusDays(i);
                     DailyPost dailyPost = (DailyPost) getPosts().get(d);
-                    if (dailyPost == null){
+                    if (dailyPost == null|| dailyPost.getGrade() == 0){
                         dataPair.getKey().add(d);
                         dataPair.getValue().add(null);
                         continue;

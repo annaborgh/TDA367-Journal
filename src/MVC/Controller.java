@@ -463,9 +463,10 @@ Mood sliders
         });*/
         System.out.println(pair.getValue());
         for (int i = 0; i < pair.getKey().size(); i++) {
-
+            Integer inte = pair.getValue().get(i);
+            if(inte==null) inte = 0;
             gradeSeries.getData().add(
-                    new XYChart.Data( LocalDate.now().minusDays(i).toString(),pair.getValue().get(i))
+                    new XYChart.Data( LocalDate.now().minusDays(i).toString(),inte)
             );
         }
         statisticsGradeTabChart.getData().clear();
