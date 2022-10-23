@@ -116,7 +116,8 @@ Mood sliders
     @FXML
     private TabPane statisticsTabPane;
     final CategoryAxis xAxis = new CategoryAxis();
-    final NumberAxis yAxis = new NumberAxis();
+    final NumberAxis yAxisMood = new NumberAxis();
+    final NumberAxis yAxisGrade = new NumberAxis();
     XYChart.Series mood1series = new XYChart.Series();
     XYChart.Series mood2series = new XYChart.Series();
     XYChart.Series mood3series = new XYChart.Series();
@@ -125,7 +126,7 @@ Mood sliders
     private Tab statisticsGradeTab;
 
     @FXML
-    private LineChart<String, Number> statisticsGradeTabChart= new LineChart<String,Number>(xAxis,yAxis);;
+    private LineChart<String, Number> statisticsGradeTabChart= new LineChart<String,Number>(xAxis,yAxisGrade);;
     @FXML
     private Button statisticsGradeTabWeekBtn;
     @FXML
@@ -135,7 +136,7 @@ Mood sliders
     @FXML
     private Tab statisticsMoodTab;
     @FXML
-    private LineChart<String, Number> statisticsMoodTabChart = new LineChart<String,Number>(xAxis,yAxis);
+    private LineChart<String, Number> statisticsMoodTabChart = new LineChart<String,Number>(xAxis,yAxisMood);
     @FXML
     private Button statisticsMoodTabWeekBtn;
     @FXML
@@ -165,11 +166,17 @@ Mood sliders
 
     public Controller() {
         this.startUp();
+        model.makeLotsOfPosts();
     }
 
     @FXML
     public void initialize() {
-
+        yAxisGrade.setLowerBound(1);
+        yAxisGrade.setUpperBound(5);
+        yAxisGrade.setAutoRanging(false);
+        yAxisMood.setLowerBound(1);
+        yAxisMood.setAutoRanging(false);
+        yAxisMood.setUpperBound(100);
         xAxis.setLabel("Date");
 
         statisticsGradeTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -428,6 +435,7 @@ Mood sliders
             gradeSeries.getData().add(new XYChart.Data<>(dates.get(i).toString(),1));
             System.out.println("mood data: "+moods.get(i));
         }
+
         statisticsMoodTabChart.getData().clear();
         statisticsMoodTabChart.getData().add(gradeSeries);
         System.out.println(statisticsMoodTabChart.getData().size());

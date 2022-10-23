@@ -4,11 +4,10 @@ import javafx.scene.control.DatePicker;
 import javafx.util.Pair;
 import src.Data.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static src.Data.EMood.*;
 
 public class Model {
     private static Model instance = null;
@@ -160,6 +159,38 @@ public class Model {
 
 
     //-----------------------"Lock model" end-----------------------
+    public void makeLotsOfPosts(){
+        ArrayList<ITag> alltags = new ArrayList<>(Arrays.asList(new Tag("Tag1",1),new Tag("Tag2",2),new Tag("Tag3",3),new Tag("Tag4",4),new Tag("Tag5",5)));
+        LocalDate currDate =  LocalDate.now();
+        double randomdouble = Math.random();
+        //Populate recent month
+        int tagAmount = alltags.size();
+        for (int i = 0; i < currDate.getMonth().length(currDate.isLeapYear()); i++) {
+            ITag tag =  alltags.get((int) Math.floor(Math.random()*tagAmount));
+            ECondition eCondition = ECondition.values()[(int) Math.floor(Math.random()*ECondition.values().length)];
+            ArrayList<IMood> moods = new ArrayList<>(Arrays.asList(
+                    new Mood(MISCONTENTTOCONTENT.toString(), (int) Math.round(Math.random()*100)),
+                    new Mood(SADTOHAPPY.toString(), (int) Math.round(Math.random()*100)),
+                    new Mood(SCAREDTOSAFE.toString(), (int) Math.round(Math.random()*100)),
+                    new Mood(DISGUSTEDTOSURPRISED.toString(), (int) Math.round(Math.random()*100))
+            ));
+
+            makePost(currDate.minusDays(i),"Journal log for day"+currDate.toString()+" today has been...", (int) Math.round(5*randomdouble),new ArrayList<>(Arrays.asList(tag)),moods,new ArrayList<>(Arrays.asList(eCondition)));
+        }
+        for (int i = 0; i < 52; i++) {
+            ITag tag =  alltags.get((int) Math.floor(Math.random()*tagAmount));
+            ECondition eCondition = ECondition.values()[1];
+            ArrayList<IMood> moods = new ArrayList<>(Arrays.asList(
+                    new Mood(MISCONTENTTOCONTENT.toString(), (int) Math.round(Math.random()*100)),
+                    new Mood(SADTOHAPPY.toString(), (int) Math.round(Math.random()*100)),
+                    new Mood(SCAREDTOSAFE.toString(), (int) Math.round(Math.random()*100)),
+                    new Mood(DISGUSTEDTOSURPRISED.toString(), (int) Math.round(Math.random()*100))
+            ));
+
+            makePost(currDate.minusWeeks(i),"Journal log for day"+currDate.toString()+" today has been...", (int) Math.round(5*randomdouble),new ArrayList<>(Arrays.asList(tag)),moods,new ArrayList<>(Arrays.asList(eCondition)));
+        }
+        System.out.println(getPosts());
+    }
     //-----------------------Statistics logic start-----------------
     Pair<ArrayList<LocalDate>,ArrayList<HashMap<String,Integer>>>  intervalToDataMap(ETimeInterval ti){
         HashMap<LocalDate,HashMap<String,Integer>> dates = new HashMap<>();
