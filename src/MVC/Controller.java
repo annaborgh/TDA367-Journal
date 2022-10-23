@@ -27,15 +27,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import src.Data.DailyPost;
-import src.Data.ECondition;
-import src.Data.IDay;
-import src.Data.IMood;
+import javafx.util.Pair;
+import src.Data.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Controller {
 
@@ -166,7 +166,7 @@ Mood sliders
         lockActive();
         ArrayList<IMood> moods = new ArrayList<>();
         ArrayList<ECondition> eConditions = new ArrayList<>();
-        model.setDefaultDate(datePicker);
+        datePicker.setValue(LocalDate.now());
 
         if (model.getPosts().get(model.getCurrentDate()) == null) {
             model.makePost(currentDate,"",0, model.getAllTags(), moods, eConditions);
@@ -335,7 +335,6 @@ Mood sliders
 
     //matching shutdown-method goes here
     public void shutdown(){
-        model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
         model.shutdown();
     }
 

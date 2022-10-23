@@ -3,6 +3,7 @@ package src.MVC;
 import javafx.scene.control.DatePicker;
 import javafx.util.Pair;
 import src.Data.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,11 +72,6 @@ public class Model {
         return posts;
     }
 
-    public void setDefaultDate(DatePicker datePicker){
-        datePicker.setValue(currentDate);
-
-    }
-
     /**
      *
      * @return
@@ -111,7 +107,7 @@ public class Model {
      * @param pinCode The pin code that is to be assigned to the pin lock.
      */
     public void createPinLock(String pinCode) {
-        if(lock != null) {
+        if(lock == null) {
             if (checkValidInput(pinCode)) {
                 this.lock = new PinLock(pinCode);
                 lockActive = true;
@@ -141,7 +137,7 @@ public class Model {
      * @param inp   The input given.
      */
     public void unlockLock(String inp){
-        if (lockActive) {
+        if (lockActive && lock != null) {
             if (inp == lock.getPinCode()) {
                 lockState = false;
             }
@@ -161,7 +157,7 @@ public class Model {
 
     //-----------------------"Lock model" end-----------------------
     //-----------------------Statistics logic start-----------------
-    Pair<ArrayList<LocalDate>,ArrayList<HashMap<String,Integer>>>  intervalToDataMap(ETimeInterval ti){
+    public Pair<ArrayList<LocalDate>,ArrayList<HashMap<String,Integer>>>  intervalToDataMap(ETimeInterval ti){
         HashMap<LocalDate,HashMap<String,Integer>> dates = new HashMap<>();
         Pair<ArrayList<LocalDate>,ArrayList<HashMap<String,Integer>>> dataPair = new Pair<>(new ArrayList<>(),new ArrayList<>());
         if(ti==null) return dataPair;
@@ -249,7 +245,7 @@ public class Model {
 
         return dataPair;
     }
-    Pair<ArrayList<LocalDate>,ArrayList<Integer>> intervalToGradeData(ETimeInterval ti){
+    public Pair<ArrayList<LocalDate>,ArrayList<Integer>> intervalToGradeData(ETimeInterval ti){
         HashMap<LocalDate,HashMap<String,Integer>> dates = new HashMap<>();
         Pair<ArrayList<LocalDate>,ArrayList<Integer>> dataPair = new Pair<>(new ArrayList<>(),new ArrayList<>());
         if(ti==null) return dataPair;
@@ -312,7 +308,9 @@ public class Model {
                         dataPair.getKey().add(d);
                         dataPair.getValue().add(0);
                     }
-                    weeklyRating = tmpWeeklyRating.getValue()/tmpWeeklyRating.getKey();
+
+                    //weeklyRating = tmpWeeklyRating.getValue()/tmpWeeklyRating.getKey();
+
 
                     dataPair.getKey().add(d);
                     dataPair.getValue().add(weeklyRating);
@@ -327,6 +325,7 @@ public class Model {
 
         return dataPair;
     }
+
     public Map<ECondition, Integer> getConditionData() {
         Map<ECondition, Integer> conditionCountMap = new HashMap<>();
         for (ECondition e:ECondition.values()) {

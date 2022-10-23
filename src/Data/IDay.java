@@ -1,12 +1,17 @@
 package src.Data;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Adam Wikström
+ * @author Julia Ekeblad
+ *
+ * Interface for DailyPost objects.
+ */
 public interface IDay {
-    List<ECondition> getConditions();
+
     LocalDate getDate();
 
     String getText();
@@ -39,5 +44,5 @@ public interface IDay {
 
     void setConditions(List<ECondition> conditions);
 
-    void addCondition(ECondition condition);
+    List<ECondition> getConditions();
 }

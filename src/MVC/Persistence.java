@@ -6,21 +6,38 @@ import javax.swing.filechooser.FileSystemView;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
 import static java.nio.charset.StandardCharsets.ISO_8859_1;
 
+/**
+ * @author Anna Borgh
+ *
+ * Class for persistence functionality. TODO
+ */
 public class Persistence implements IPersistence{
     private final Charset charsetLatin = ISO_8859_1;
     private final String typeSeparator = ";";
     private final String inlineSeparator = ",";
 
+    /**
+     * Constructor of Persistence.
+     *
+     * The constructor is empty, since... TODO
+     */
     public Persistence() {
     }
 
+    /**
+     * @author Anna Borgh
+     *
+     * A method to save posts to text files.
+     *
+     * @param posts A HashMap of LocalDate and DailyPost objects,
+     *              that is the posts to be saved to text files.
+     */
     //saves posts to text files in MyDocuments
     public void savePosts(HashMap<LocalDate, IDay> posts) {
         createAppDirectory();
@@ -83,6 +100,13 @@ public class Persistence implements IPersistence{
         }
     }
 
+    /**
+     * @author Anna Borgh
+     *
+     * A method to load posts from text files in MyDocuments.
+     *
+     * @return The posts that are to be loaded.
+     */
     //loads posts from text files in MyDocuments
     public HashMap<LocalDate, IDay> loadPosts(){
         HashMap<LocalDate, IDay> posts = new HashMap<>();
@@ -102,7 +126,18 @@ public class Persistence implements IPersistence{
 
         return posts;
     }
-    private IDay loadPost(File file){
+
+    /**
+     * @author Anna Borgh
+     *
+     * A method to... TODO
+     *
+     * Was private, changed to protected for testing purposes
+     *
+     * @param file  A File to be loaded.
+     * @return The posts from MyDocuments.
+     */
+    protected IDay loadPost(File file){
 
         try {
             FileInputStream fileInput = new FileInputStream(file);
@@ -188,6 +223,16 @@ public class Persistence implements IPersistence{
         }
     }
 
+    /**
+     * @author Anna Borgh
+     *
+     * A method... TODO
+     *
+     * @param   reader A BufferReader.
+     * @param   line  A String.
+     * @return The line which consists of a String.
+     * @throws  IOException  TODO
+     */
     private String findNewLine(BufferedReader reader, String line) throws IOException {
         line = reader.readLine();
         if (Objects.equals(line, typeSeparator)){
@@ -196,6 +241,13 @@ public class Persistence implements IPersistence{
         return line;
     }
 
+    /**
+     * @author Anna Borgh
+     *
+     * A method that is to create a directory for the program.
+     *
+     * The method creates a directory if it does not already exist.
+     */
     //creates directories
     private void createAppDirectory(){
         File directory = new File(getAppDirectoryPath());
@@ -206,6 +258,15 @@ public class Persistence implements IPersistence{
             System.out.println("App directory already exists");
         }
     }
+
+    /**
+     * @author Anna Borgh
+     *
+     * A method that is to create a directory for the files
+     * containing posts from the program.
+     *
+     * The method creates a directory if it does not already exist.
+     */
     private void createPostsDirectory(){
         File directory = new File(getPostsDirectoryPath());
         if (!directory.exists()){
@@ -216,10 +277,25 @@ public class Persistence implements IPersistence{
         }
     }
 
+    /**
+     * @author Anna Borgh
+     *
+     * Getter for the directory path for the program.
+     *
+     * @return The directory path, which consists of... TODO
+     */
     //creates directory names
     private String getAppDirectoryPath(){
         return FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separatorChar + "TDA367_Journal";
     }
+
+    /**
+     * @author Anna Borgh
+     *
+     * Getter for the directory path for the program's posts.
+     *
+     * @return The directory path, which consists of... TODO
+     */
     private String getPostsDirectoryPath(){
         return this.getAppDirectoryPath() + File.separatorChar + "Posts";
     }
