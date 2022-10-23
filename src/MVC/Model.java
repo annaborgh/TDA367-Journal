@@ -162,7 +162,6 @@ public class Model {
     public void makeLotsOfPosts(){
         ArrayList<ITag> alltags = new ArrayList<>(Arrays.asList(new Tag("Tag1",1),new Tag("Tag2",2),new Tag("Tag3",3),new Tag("Tag4",4),new Tag("Tag5",5)));
         LocalDate currDate =  LocalDate.now();
-        double randomdouble = Math.random();
         //Populate recent month
         int tagAmount = alltags.size();
         for (int i = 0; i < currDate.getMonth().length(currDate.isLeapYear()); i++) {
@@ -174,8 +173,9 @@ public class Model {
                     new Mood(SCAREDTOSAFE.toString(), (int) Math.round(Math.random()*100)),
                     new Mood(DISGUSTEDTOSURPRISED.toString(), (int) Math.round(Math.random()*100))
             ));
-
-            makePost(currDate.minusDays(i),"Journal log for day"+currDate.toString()+" today has been...", (int) Math.round(5*randomdouble),new ArrayList<>(Arrays.asList(tag)),moods,new ArrayList<>(Arrays.asList(eCondition)));
+            int randomGrade =(int) Math.round(5*Math.random());
+            makePost(currDate.minusDays(i),"Journal log for day"+currDate.toString()+" today has been...", randomGrade,new ArrayList<>(Arrays.asList(tag)),moods,new ArrayList<>(Arrays.asList(eCondition)));
+            System.out.println(randomGrade);
         }
         for (int i = 0; i < 52; i++) {
             ITag tag =  alltags.get((int) Math.floor(Math.random()*tagAmount));
@@ -186,10 +186,10 @@ public class Model {
                     new Mood(SCAREDTOSAFE.toString(), (int) Math.round(Math.random()*100)),
                     new Mood(DISGUSTEDTOSURPRISED.toString(), (int) Math.round(Math.random()*100))
             ));
-
-            makePost(currDate.minusWeeks(i),"Journal log for day"+currDate.toString()+" today has been...", (int) Math.round(5*randomdouble),new ArrayList<>(Arrays.asList(tag)),moods,new ArrayList<>(Arrays.asList(eCondition)));
+            int randomGrade =(int) Math.round(5*Math.random());
+            makePost(currDate.minusWeeks(i),"Journal log for day"+currDate.toString()+" today has been...", randomGrade,new ArrayList<>(Arrays.asList(tag)),moods,new ArrayList<>(Arrays.asList(eCondition)));
         }
-        System.out.println(getPosts());
+
     }
     //-----------------------Statistics logic start-----------------
     Pair<ArrayList<LocalDate>,ArrayList<HashMap<String,Integer>>>  intervalToDataMap(ETimeInterval ti){
@@ -359,13 +359,14 @@ public class Model {
         for (ECondition e:ECondition.values()) {
             conditionCountMap.put(e,0);
         }
-        getPosts().values().stream().map(e->{
+
+
+        getPosts().values().forEach(e->{
             List<ECondition> conditions = e.getConditions();
             for (ECondition eCondition: conditions) {
                 int x = conditionCountMap.get(eCondition).intValue();
-                conditionCountMap.put(eCondition, x++);
+                conditionCountMap.put(eCondition, ++x);
             }
-            return conditionCountMap;
         });
         return conditionCountMap;
 
@@ -377,7 +378,7 @@ public class Model {
                 .collect(Collectors.groupingBy(p -> p.getTags(),
                         Collectors.counting()));
         for (int x = 0; x < tags.size(); x++){
-            chartData.putIfAbsent(tags.get(x),0L);
+            chartData.putIfAbsent(tags.get(x).getTitle(),0L);
         }
         System.out.println(tags);
         return chartData;

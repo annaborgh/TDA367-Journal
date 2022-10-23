@@ -118,10 +118,7 @@ Mood sliders
     final CategoryAxis xAxis = new CategoryAxis();
     final NumberAxis yAxisMood = new NumberAxis();
     final NumberAxis yAxisGrade = new NumberAxis();
-    XYChart.Series mood1series = new XYChart.Series();
-    XYChart.Series mood2series = new XYChart.Series();
-    XYChart.Series mood3series = new XYChart.Series();
-    XYChart.Series mood4series = new XYChart.Series();
+
     @FXML
     private Tab statisticsGradeTab;
 
@@ -426,6 +423,10 @@ Mood sliders
     //This method returns a hashmap with the correct dates and values that will be in the x and y axis of the chart respectively.
 
     private void populateMoodChart(){
+        XYChart.Series mood1series = new XYChart.Series();
+        XYChart.Series mood2series = new XYChart.Series();
+        XYChart.Series mood3series = new XYChart.Series();
+        XYChart.Series mood4series = new XYChart.Series();
         ETimeInterval t = ETimeInterval.YEAR;
         Pair<ArrayList<LocalDate>,ArrayList<HashMap<String,Integer>>> data = model.intervalToDataMap(t);
         ArrayList<LocalDate> dates = data.getKey();
@@ -463,20 +464,34 @@ Mood sliders
         Pair<ArrayList<LocalDate>,ArrayList<Integer>> pair = model.intervalToGradeData(ti);
        /* System.out.println("dates: "+pair.getKey());
         System.out.println("data: "+pair.getValue());*/
-        /*pair.getKey().forEach(e -> {
+        /*for (int i = 0; i < pair.getKey().size(); i++) {
+
+            Integer inte = pair.getValue().get(i);
+
+            if (inte == null) inte = 0;
+
+            gradeSeries.getData().add(
+                    new XYChart.Data(pair.getKey().get(i).toString(), inte)
+            );
+        }*/
+        pair.getKey().forEach(e -> {
+            Integer inte = pair.getValue().get(pair.getKey().indexOf(e));
+
+            if(inte==null) inte = 0;
+
             System.out.println("e: "+e);
             gradeSeries.getData().add(
-                    new XYChart.Data(e.toString(), pair.getValue().get(pair.getKey().indexOf(e)))
+                    new XYChart.Data(e.toString(), inte )
             );
-        });*/
-        System.out.println(pair.getValue());
+        });
+        /*System.out.println(pair.getValue());
         for (int i = 0; i < pair.getKey().size(); i++) {
             Integer inte = pair.getValue().get(i);
             if(inte==null) inte = 0;
             gradeSeries.getData().add(
                     new XYChart.Data( LocalDate.now().minusDays(i).toString(),inte)
             );
-        }
+        }*/
         statisticsGradeTabChart.getData().clear();
         statisticsGradeTabChart.getData().add(gradeSeries);
 
