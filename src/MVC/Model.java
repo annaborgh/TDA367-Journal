@@ -222,14 +222,15 @@ public class Model {
                 LocalDate currentDate = LocalDate.now();
                 for (int i = 0; i < currentDate.getMonth().length(currentDate.isLeapYear()); i++) {
                     LocalDate d = currentDate.minusDays(i);
-                    DailyPost dailyPost = (DailyPost) getPosts().get(d);
-                    if (dailyPost == null){
+                    ;
+                    if (getPosts().get(d) == null){
                         dataPair.getKey().add(d);
                         dataPair.getValue().add(null);
                         continue;
                     }
+                    DailyPost dailyPost = (DailyPost) getPosts().get(d);
                     HashMap<String, Integer> tmpMap= new HashMap<>();
-                    getPosts().get(d).getActiveMoods().forEach(e->{
+                    dailyPost.getActiveMoods().forEach(e->{
                         tmpMap.put(e.getMoodName(),e.getMoodRating());
                     });
 
@@ -240,7 +241,6 @@ public class Model {
                 break;
             }
             case YEAR -> {
-
                 for (int i = 0; i < 52; i++) {
                     LocalDate d = LocalDate.now().minusWeeks(i);
                     /*HashMap<EMood,IMood> weeklyMoodMap;*/
@@ -339,7 +339,9 @@ public class Model {
                         dataPair.getKey().add(d);
                         dataPair.getValue().add(0);
                     }
-                    weeklyRating = tmpWeeklyRating.getValue()/tmpWeeklyRating.getKey();
+                    int divisor = tmpWeeklyRating.getKey();
+                    if(divisor==0)divisor=1;
+                    weeklyRating = tmpWeeklyRating.getValue()/divisor;
 
                     dataPair.getKey().add(d);
                     dataPair.getValue().add(weeklyRating);

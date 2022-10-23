@@ -39,6 +39,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static src.Data.EMood.*;
+
 public class Controller {
 
     @FXML private AnchorPane dailyPostAnchorPane;
@@ -168,6 +170,12 @@ Mood sliders
 
     @FXML
     public void initialize() {
+        statisticsGradeTabWeekBtn.setOnAction(event -> populateGradeChart(ETimeInterval.WEEK));
+        statisticsGradeTabMonthBtn.setOnAction(event -> populateGradeChart(ETimeInterval.MONTH));
+        statisticsGradeTabYearBtn.setOnAction(event -> populateGradeChart(ETimeInterval.YEAR));
+        statisticsMoodTabWeekBtn.setOnAction(event -> populateMoodChart(ETimeInterval.WEEK));
+        statisticsMoodTabMonthBtn.setOnAction(event -> populateMoodChart(ETimeInterval.MONTH));
+        statisticsMoodTabYearBtn.setOnAction(event -> populateMoodChart(ETimeInterval.YEAR));
         yAxisGrade.setLowerBound(1);
         yAxisGrade.setUpperBound(5);
         yAxisGrade.setAutoRanging(false);
@@ -178,7 +186,7 @@ Mood sliders
 
         statisticsGradeTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
-                populateGradeChart();
+                populateGradeChart(ETimeInterval.YEAR);
         }
         });
         statisticsConditionTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
@@ -193,7 +201,7 @@ Mood sliders
         });
         statisticsMoodTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
-                populateMoodChart();
+                populateMoodChart(ETimeInterval.YEAR);
             }
         });
     }
@@ -422,24 +430,27 @@ Mood sliders
 
     //This method returns a hashmap with the correct dates and values that will be in the x and y axis of the chart respectively.
 
-    private void populateMoodChart(){
-        XYChart.Series mood1series = new XYChart.Series();
-        XYChart.Series mood2series = new XYChart.Series();
-        XYChart.Series mood3series = new XYChart.Series();
-        XYChart.Series mood4series = new XYChart.Series();
-        ETimeInterval t = ETimeInterval.YEAR;
+    private void populateMoodChart(ETimeInterval t){
+        XYChart.Series mood1series = new XYChart.Series(); //MISCONTENTTOCONTENT
+        XYChart.Series mood2series = new XYChart.Series(); //SADTOHAPPY
+        XYChart.Series mood3series = new XYChart.Series(); //SCAREDTOSAFE
+        XYChart.Series mood4series = new XYChart.Series(); //DISGUSTEDTOSURPRISED
         Pair<ArrayList<LocalDate>,ArrayList<HashMap<String,Integer>>> data = model.intervalToDataMap(t);
         ArrayList<LocalDate> dates = data.getKey();
         ArrayList<HashMap<String,Integer>> moods = data.getValue();
         XYChart.Series<String,Number> gradeSeries = new XYChart.Series<String,Number>();
         for (int i = 0; i < dates.size(); i++) {
-            gradeSeries.getData().add(new XYChart.Data<>(dates.get(i).toString(),1));
-            System.out.println("mood data: "+moods.get(i));
+            mood1series.getData().add(new XYChart.Data<>(dates.get(i).toString(),moods.get(i).get(MISCONTENTTOCONTENT.toString())));
+            mood2series.getData().add(new XYChart.Data<>(dates.get(i).toString(),moods.get(i).get(SADTOHAPPY.toString())));
+            mood3series.getData().add(new XYChart.Data<>(dates.get(i).toString(),moods.get(i).get(SCAREDTOSAFE.toString())));
+            mood4series.getData().add(new XYChart.Data<>(dates.get(i).toString(),moods.get(i).get(DISGUSTEDTOSURPRISED.toString())));
         }
 
         statisticsMoodTabChart.getData().clear();
-        statisticsMoodTabChart.getData().add(gradeSeries);
-        System.out.println(statisticsMoodTabChart.getData().size());
+        statisticsMoodTabChart.getData().add(mood1series);
+        statisticsMoodTabChart.getData().add(mood2series);
+        statisticsMoodTabChart.getData().add(mood3series);
+        statisticsMoodTabChart.getData().add(mood4series);
         statisticsMoodTabChart.setVisible(true);
     }
     private void populateConditionChart(){
@@ -456,11 +467,10 @@ Mood sliders
         statisticsConditionTabChart.setTitle("Tillstånd");
 
     }
-    public void populateGradeChart(){
+    public void populateGradeChart(ETimeInterval ti){
         //Create series here??
         XYChart.Series<String,Number> gradeSeries = new XYChart.Series<String,Number>();
 
-        ETimeInterval ti = ETimeInterval.MONTH;
         Pair<ArrayList<LocalDate>,ArrayList<Integer>> pair = model.intervalToGradeData(ti);
        /* System.out.println("dates: "+pair.getKey());
         System.out.println("data: "+pair.getValue());*/
@@ -477,7 +487,7 @@ Mood sliders
         pair.getKey().forEach(e -> {
             Integer inte = pair.getValue().get(pair.getKey().indexOf(e));
 
-            if(inte==null) inte = 0;
+            if(inte==null ) inte = 0;
 
             System.out.println("e: "+e);
             gradeSeries.getData().add(
