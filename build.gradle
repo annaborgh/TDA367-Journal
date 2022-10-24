@@ -1,0 +1,10 @@
+plugins {
+    id 'java'
+}
+plugins {
+    id 'application' 
+}
+application {
+    mainClass = "Journal"
+}
+mainClassName = "main.java.main"

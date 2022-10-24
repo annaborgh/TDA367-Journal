@@ -341,7 +341,6 @@ public class Model {
 
                     //weeklyRating = tmpWeeklyRating.getValue()/tmpWeeklyRating.getKey();
 
-
                     dataPair.getKey().add(d);
                     dataPair.getValue().add(weeklyRating);
                 }
