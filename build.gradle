@@ -11,7 +11,7 @@ application {
     mainClassName = 'main.java.start'
 }
 repositories {
-    jcenter
+    jcenter()
 }
 dependencies {
     testImplementation 'junit:junit:4'
