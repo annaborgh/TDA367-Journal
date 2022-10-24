@@ -355,6 +355,7 @@ public class Controller {
     }
     @FXML public void goToStats(){
         statisticsAnchorPane.toFront();
+        populateGradeChart(ETimeInterval.YEAR);
         model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
     }
     @FXML public void goToPrefs(){
