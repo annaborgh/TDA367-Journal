@@ -171,11 +171,10 @@ public class Model {
             ));
             int randomGrade =(int) Math.round(5*Math.random());
             makePost(currDate.minusDays(i),"Journal log for day"+currDate.toString()+" today has been...", randomGrade,new ArrayList<>(Arrays.asList(tag)),moods,new ArrayList<>(Arrays.asList(eCondition)));
-            System.out.println(randomGrade);
         }
         for (int i = 0; i < 52; i++) {
             ITag tag =  alltags.get((int) Math.floor(Math.random()*tagAmount));
-            ECondition eCondition = ECondition.values()[1];
+            ECondition eCondition = ECondition.values()[(int) Math.floor(Math.random()*ECondition.values().length)];
             ArrayList<IMood> moods = new ArrayList<>(Arrays.asList(
                     new Mood(MISCONTENTTOCONTENT.toString(), (int) Math.round(Math.random()*100)),
                     new Mood(SADTOHAPPY.toString(), (int) Math.round(Math.random()*100)),
@@ -381,7 +380,6 @@ public class Model {
         for (int x = 0; x < tags.size(); x++){
             chartData.putIfAbsent(tags.get(x).getTitle(),0L);
         }
-        System.out.println(tags);
         return chartData;
     }
     //-----------------------Statistics logic end-----------------
