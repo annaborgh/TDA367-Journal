@@ -16,9 +16,14 @@ public class MoodTest {
     IMood testMood = new Mood();
 
     /**
-     *
+     * Method to test mood constructor
      */
-    //@Test
+    @Test
+    public void testMoodConstructor(){
+        Mood testMood = new Mood("Name", 68);
+        assertEquals("Name", testMood.getMoodName());
+        assertEquals(68, testMood.getMoodRating());
+    }
 
 
     /**
