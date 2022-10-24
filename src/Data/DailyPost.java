@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Class that creates objects of type DailyPost.
+ *
  * @author Adam Wikström
  * @author Julia Ekeblad
- *
- * Class that creates objects of type DailyPost.
  */
 public class DailyPost implements IDay {
 
@@ -30,12 +30,13 @@ public class DailyPost implements IDay {
     }
 
     /**
-     * @author Adam Wikström
-     * @author Anna Borgh
-     *
      * A method to get the date of the object.
      *
      * @return A LocalDate.
+     *
+     * @author Adam Wikström
+     * @author Anna Borgh
+     * @author Julia Ekeblad
      */
     @Override
     public LocalDate getDate() {
@@ -43,12 +44,13 @@ public class DailyPost implements IDay {
     }
 
     /**
-     * @author Adam Wikström
-     * @author Anna Borgh
-     *
      * A method to get the text assigned to the object.
      *
      * @return A String which contains the text of the object.
+     *
+     * @author Adam Wikström
+     * @author Anna Borgh
+     * @author Julia Ekeblad
      */
     @Override
     public String getText() {
@@ -56,12 +58,13 @@ public class DailyPost implements IDay {
     }
 
     /**
-     * @author Adam Wikström
-     * @author Anna Borgh
-     *
      * A method to get the grade assigned to the object.
      *
      * @return An int which contains the object's grade.
+     *
+     * @author Adam Wikström
+     * @author Anna Borgh
+     * @author Julia Ekeblad
      */
     @Override
     public int getGrade() {
@@ -69,24 +72,25 @@ public class DailyPost implements IDay {
     }
 
     /**
-     * @author Adam Wikström
-     * @author Anna Borgh
-     *
      * A method to get a list of the moods assigned to the object.
      *
      * @return A List of IMoods.
+     *
+     * @author Adam Wikström
+     * @author Anna Borgh
      */
     public List<IMood> getActiveMoods() {
         return this.activeMoods;
     }
 
     /**
-     * @author Adam Wikström
-     * @author Anna Borgh
-     *
      * A method to get a list of the tags assigned to the object.
      *
      * @return A List of ITags.
+     *
+     * @author Adam Wikström
+     * @author Anna Borgh
+     * @author Julia Ekeblad
      */
     @Override
     public List<ITag> getTags() {
@@ -94,83 +98,87 @@ public class DailyPost implements IDay {
     }
 
     /**
-     * @author Adam Wikström
-     * @author Anna Borgh
-     *
      * A method to get the conditions assigned to the object.
      *
      * @return A List of EConditions.
+     *
+     * @author Adam Wikström
+     * @author Anna Borgh
      */
     public List<ECondition> getConditions(){
         return this.conditions;
     }
 
     /**
-     * @author Adam Wikström
-     * @author Anna Borgh
-     *
      * A method to set the date of the object.
      *
      * @param date  A LocalDate which is the new date.
+     *
+     * @author Adam Wikström
+     * @author Anna Borgh
+     * @author Julia Ekeblad
      */
     public void setDate(LocalDate date){
         this.date = date;
     }
 
     /**
-     * @author Adam Wikström
-     * @author Anna Borgh
-     *
      * A method to set the text of the object.
      *
      * @param text  A String which is the new text.
+     *
+     * @author Adam Wikström
+     * @author Anna Borgh
+     * @author Julia Ekeblad
      */
     public void setText(String text){
         this.text = text;
     }
 
     /**
-     * @author Adam Wikström
-     * @author Anna Borgh
-     *
      * A method to set the grade of the object.
      *
      * @param grade An int which is the new grade.
+     *
+     * @author Adam Wikström
+     * @author Anna Borgh
+     * @author Julia Ekeblad
      */
     public void setGrade(int grade){
         this.grade = grade;
     }
 
     /**
-     * @author Adam Wikström
-     * @author Anna Borgh
-     *
      * A method to set/add moods to the object.
      *
      * @param moods A List of IMoods.
+     *
+     * @author Adam Wikström
+     * @author Anna Borgh
      */
     public void setActiveMoods(List<IMood> moods){
         this.activeMoods.addAll(moods);
     }
 
     /**
-     * @author Adam Wikström
-     * @author Anna Borgh
-     *
      * A method to set/add tags to the object.
      *
      * @param tags  A List of ITags.
+     *
+     * @author Adam Wikström
+     * @author Anna Borgh
+     * @author Julia Ekeblad
      */
     public void setTags(List<ITag> tags){
         this.tags.addAll(tags);
     }
 
     /**
-     * @author Adam Wikström
-     *
      * A method to set/add conditions to the object.
      *
      * @param conditions    A List of EConditions.
+     *
+     * @author Adam Wikström
      */
     @Override
     public void setConditions(List<ECondition> conditions){
@@ -182,11 +190,10 @@ public class DailyPost implements IDay {
     }
 
     /**
-     * @author Adam Wikström
-     *
      * A method to add a mood to the list ActiveMoods.
      *
      * @param mood  An IMood.
+     * @author Adam Wikström
      */
     @Override
     public void addActiveMood(IMood mood) {
@@ -195,11 +202,11 @@ public class DailyPost implements IDay {
     }
 
     /**
-     * @author Adam Wikström
-     *
      * A method to remove IMoods from the list ActiveMoods.
      *
      * @param mood  An IMood.
+     *
+     * @author Adam Wikström
      */
     @Override
     public void removeActiveMood(IMood mood) {
@@ -207,12 +214,13 @@ public class DailyPost implements IDay {
     }
 
     /**
-     * @author Adam Wikström
-     *
      * A method to create a new tag.
      *
      * @param tagName   A String which is the new tag name.
      * @return A Tag which implements ITag.
+     *
+     * @author Adam Wikström
+     * @author Julia Ekeblad
      */
     @Override
     public ITag createTag(String tagName){
@@ -222,12 +230,13 @@ public class DailyPost implements IDay {
     }
 
     /**
-     * @author Adam Wikström
-     * @author Anna Borgh
-     *
      * A method to add a tag to the list of ITags.
      *
      * @param tag   A Tag object that is to be added to the list of ITags.
+     *
+     * @author Adam Wikström
+     * @author Anna Borgh
+     * @author Julia Ekeblad
      */
     @Override
     public void addTag(ITag tag) {
@@ -237,12 +246,13 @@ public class DailyPost implements IDay {
     }
 
     /**
-     * @author Adam Wikström
-     * @author Anna Borgh
-     *
      * A method to remove tags from the list ITags.
      *
      * @param tag   A Tag of type ITag.
+     *
+     * @author Adam Wikström
+     * @author Anna Borgh
+     * @author Julia Ekeblad
      */
     @Override
     public void removeTag(ITag tag) {

@@ -7,16 +7,16 @@ import src.Data.Mood;
 import static org.junit.Assert.*;
 
 /**
- * @author Adam Wikström
+ * Class for JUnit tests of the Mood Class.
  *
- * Class for JUnit tests of the Mood Class
+ * @author Adam Wikström
  */
 public class MoodTest {
 
     IMood testMood = new Mood();
 
     /**
-     * Method to test mood constructor
+     * Method to test mood constructor.
      */
     @Test
     public void testMoodConstructor(){
@@ -27,7 +27,7 @@ public class MoodTest {
 
 
     /**
-     * Method to test the setters of the Mood class
+     * Method to test the setters of the Mood class.
      */
     @Test
     public void testMoodSetters(){
@@ -43,7 +43,7 @@ public class MoodTest {
     }
 
     /**
-     * Method to test the getters of the Mood class
+     * Method to test the getters of the Mood class.
      */
     @Test
     public void testMoodGetters() {

@@ -14,6 +14,7 @@ import static java.nio.charset.StandardCharsets.ISO_8859_1;
 
 /**
  * Class that handles persistent data management for the Journal.
+ *
  * @author Anna Borgh
  */
 public class Persistence implements IPersistence{
@@ -33,6 +34,7 @@ public class Persistence implements IPersistence{
      *
      * @param posts A HashMap of LocalDate and DailyPost objects,
      *              that is the posts to be saved to text files.
+     *
      * @author Anna Borgh
      */
     public void savePosts(HashMap<LocalDate, IDay> posts) {
@@ -101,6 +103,7 @@ public class Persistence implements IPersistence{
      * A method to load posts from text files located in directory specified by {@link #getPostsDirectoryPath()}.
      *
      * @return A hashmap containing the loaded DailyPost objects as values and their dates as keys.
+     *
      * @author Anna Borgh
      */
     //loads posts from text files in MyDocuments
@@ -127,8 +130,9 @@ public class Persistence implements IPersistence{
      * A method that loads each individual file and creates a DailyPost object from its data.
      * Was private, changed to protected for testing purposes.
      *
-     * @param file  A File to be loaded
-     * @return The loaded DailyPost
+     * @param file  A File to be loaded.
+     * @return The loaded DailyPost.
+     *
      * @author Anna Borgh
      */
     protected IDay loadPost(File file){
@@ -224,7 +228,8 @@ public class Persistence implements IPersistence{
      * @param   reader A BufferReader.
      * @param   line  A String.
      * @return The line which consists of a String.
-     * @throws  IOException  TODO
+     * @throws IOException, see findNewLine.
+     *
      * @author Anna Borgh
      */
     private String findNewLine(BufferedReader reader, String line) throws IOException {
@@ -238,6 +243,7 @@ public class Persistence implements IPersistence{
     /**
      *  The method creates the program's main directory, if it does not already exist. The directory is named "TDA367_Journal"
      *  and is located in My Documents or equivalent. The path is specified by {@link #getAppDirectoryPath()}.
+     *
      * @author Anna Borgh
      */
     private void createAppDirectory(){
@@ -254,6 +260,7 @@ public class Persistence implements IPersistence{
      * The method creates the "Posts" directory, if it does not already exist. Its location is specified by
      * {@link #getPostsDirectoryPath()}. By default, this is inside a directory called TDA367_Journal located in My
      * Documents or equivalent.
+     *
      * @author Anna Borgh
      */
     private void createPostsDirectory(){
@@ -269,7 +276,8 @@ public class Persistence implements IPersistence{
     /**
      * Finds and returns the path of the program's main directory in My Documents or equivalent.
      *
-     * @return A String that specifies the directory path
+     * @return A String that specifies the directory path.
+     *
      * @author Anna Borgh
      */
     private String getAppDirectoryPath(){
@@ -281,6 +289,7 @@ public class Persistence implements IPersistence{
      * saved as text files in {@link #savePosts(HashMap)}.
      *
      * @return A String that specifies the directory path.
+     *
      * @author Anna Borgh
      */
     private String getPostsDirectoryPath(){

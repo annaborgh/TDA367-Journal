@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Interface for DailyPost objects.
+ *
  * @author Adam Wikström
  * @author Julia Ekeblad
- *
- * Interface for DailyPost objects.
  */
 public interface IDay {
 

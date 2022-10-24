@@ -1,11 +1,11 @@
 package src.Data;
 
 /**
- * @author Adam Wikström
- *
  * Interface for Tag objects.
+ *
+ * @author Adam Wikström
+ * @author Julia Ekeblad
  */
-
 public interface ITag {
 
     String getTitle();

@@ -7,15 +7,15 @@ import src.Data.PinLock;
 import static org.junit.Assert.*;
 
 /**
- * @author Adam Wikström
+ * Class for JUnit tests of the PinLock class.
  *
- * Class for JUnit tests of the PinLock class
+ * @author Adam Wikström
  */
 public class PinLockTest {
 
     ILock pinLock = new PinLock("1234");
     /**
-     * Method to test the constructor of the PinLock Class
+     * Method to test the constructor of the PinLock Class.
      */
     @Test
     public void testConstructor(){
@@ -27,7 +27,7 @@ public class PinLockTest {
     }
 
     /**
-     * Method to test the getters of the PinLock class
+     * Method to test the getters of the PinLock class.
      */
     @Test
     public void testGetters(){
@@ -37,7 +37,7 @@ public class PinLockTest {
     }
 
     /**
-     * Method to test the setters of the PinLock class
+     * Method to test the setters of the PinLock class.
      */
     @Test
     public void testSetters(){

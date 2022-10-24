@@ -41,6 +41,15 @@ import java.util.stream.Collectors;
 
 import static src.Data.EMood.*;
 
+/**
+ * The controller class.
+ *
+ * @author Adam Wikström
+ * @author Anna Borgh
+ * @author Julia Ekeblad
+ * @author Tarek Chorfi
+ * @author Wilma Nordlund
+ */
 public class Controller {
 
     @FXML private AnchorPane dailyPostAnchorPane;
@@ -163,11 +172,24 @@ public class Controller {
     private LocalDate currentDate = LocalDate.now();
     private String password = "1234";
 
+    /**
+     * @author Julia Ekeblad
+     * @author Tarek Chorfi
+     */
     public Controller() {
         this.startUp();
         model.makeLotsOfPosts();
     }
 
+    /**
+     * Adds correct labels to the mood sliders on the mood modal panel.
+     * Adds event listeners to the time interval buttons for the line charts in the statistics anchorpane.
+     * Adds event listeners for tab changes in statistics.
+     * The yAxis bound setters don’t appear to work.
+     *
+     * @author Julia Ekeblad
+     * @author Tarek Chorfi
+     */
     @FXML
     public void initialize() {
 
@@ -211,6 +233,11 @@ public class Controller {
         });
     }
 
+    /**
+     * The init method.
+     *
+     * @param modelParam A Model.
+     */
     public void init(Model modelParam) {
 
         if (model.getLockActive()){
@@ -231,6 +258,13 @@ public class Controller {
         newCodePasswordField.setText(password);
     }
 
+    /**
+     * Method for changing a grade.
+     *
+     * @param grade An int.
+     *
+     * @author Julia Ekeblad
+     */
     private void onGradeChanged(int grade){
         if (grade == 0){
             oneRatingRadioButton.setSelected(false);
@@ -257,6 +291,13 @@ public class Controller {
 
     }
 
+    /**
+     * A method to populate the post.
+     *
+     * @param chosenDate A LocalDate.
+     *
+     * @author Julia Ekeblad
+     */
     @FXML public void populatePost(LocalDate chosenDate){
         if (model.getPosts().get(chosenDate) == null){
             ArrayList<IMood> moods = new ArrayList<>();
@@ -276,6 +317,11 @@ public class Controller {
         System.out.println(model.getPosts().get(chosenDate).getDate());
     }
 
+    /**
+     * A method to see if the lock is active.
+     *
+     * @author Julia Ekeblad
+     */
     public void lockActive(){
         if (model.getLockActive()){
             activeLockCheckBox.fire();
@@ -288,6 +334,13 @@ public class Controller {
         model.setLockActive(activeLockCheckBox.isSelected());
     }
 
+    /**
+     * A method for getting a grade.
+     *
+     * @return The grade.
+     *
+     * @author Julia Ekeblad
+     */
     public int isGrade(){
         int grade;
         if (oneRatingRadioButton.isSelected()){
@@ -322,26 +375,56 @@ public class Controller {
         }
     }
 
+    /**
+     * Method for changing password.
+     *
+     * @author Julia Ekeblad
+     */
     @FXML public void changePassword(){
         password = newCodePasswordField.getText();
         System.out.println(password);
     }
 
+    /**
+     * A method for the next day.
+     *
+     * @author Julia Ekeblad
+     */
     @FXML public void nextDay(){
         model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
         currentDate = currentDate.plusDays(1);
         populatePost(currentDate);
     }
+
+    /**
+     * A method for previous day.
+     * Which means that it is similar to nextDay, apart from "minusDays"/"plusDays".
+     *
+     * @author Julia Ekeblad
+     */
     @FXML public void previousDay(){
         model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
         currentDate = currentDate.minusDays(1);
         populatePost(currentDate);
     }
+
+    /**
+     * A method for the date picker.
+     *
+     * @author Julia Ekeblad
+     */
     @FXML public void pickedDate(){
         currentDate = datePicker.getValue();
         populatePost(currentDate);
     }
 
+    /**
+     * Opens the current entry’s mood slider modal panel.
+     * The different sliders show the correct value but manipulation is not yet implemented.
+     *
+     * @author Julia Ekeblad
+     * @author Tarek Chorfi
+     */
     @FXML public void goToMoods() {
 
         int mood1 =0;
@@ -372,20 +455,46 @@ public class Controller {
     @FXML public void closePin(){
         pinAnchorPane.toBack();
     }
+
+    /**
+     * Opens the statistics anchorpane and populates the grade chart.
+     * Also saves the current post.
+     *
+     * @author Julia Ekeblad
+     * @author Tarek Chorfi
+     */
     @FXML public void goToStats(){
         statisticsAnchorPane.toFront();
         populateGradeChart(ETimeInterval.YEAR);
         model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
     }
+
+    /**
+     * A method to go to preferences/settings.
+     *
+     * @author Julia Ekeblad
+     */
     @FXML public void goToPrefs(){
         preferencesAnchorPane.toFront();
         model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
     }
+
+    /**
+     * A method to go to the posts.
+     *
+     * @author Julia Ekeblad
+     */
     @FXML public void goToPosts(){
         dailyPostAnchorPane.toFront();
         model.makePost(currentDate,dailyPostTextField.getText(),isGrade(),model.getAllTags(), new ArrayList<IMood>(),new ArrayList<ECondition>());
 
     }
+
+    /**
+     * A method for the pin password input.
+     *
+     * @author Julia Ekeblad
+     */
     @FXML public void pinButtonPushed(){
         System.out.println(pinPasswordField.getText());
         if (pinPasswordField.getText().equals(password)){
@@ -411,6 +520,13 @@ public class Controller {
         return model;
     }
 
+    /**
+     * A method to populate the post.
+     *
+     * @param post A String.
+     *
+     * @author Julia Ekeblad
+     */
     public void populatePost(String post) {
         dailyPostTextField.setText(post);
     }
@@ -418,7 +534,20 @@ public class Controller {
     //-----------------------Statistics logic start-----------------------
 
 
-
+    /**
+     * This method calls on intervalToDataMap from the model to get the relevant data,
+     * and then goes through each element and adds it to 4 different series that represent the 4 different moods
+     * which is then added to the mood chart on the mood tab in the statistics anchorpane and thus statistical data is shown.
+     *
+     * The data sent to the chart was in the reversed order for some reason so a reversion of the chart data was needed.
+     * For some reason there was a duplication error shown if I reversed the series and then added it to the chart.
+     * So I had to make a new series with the reversed data from the previous series.
+     * That’s why the ending looks a bit cluttered.
+     *
+     * @param t An ETimeInterval.
+     *
+     * @author Tarek Chorfi
+     */
     private void populateMoodChart(ETimeInterval t){
         XYChart.Series mood1series = new XYChart.Series(); //MISCONTENTTOCONTENT
         XYChart.Series mood2series = new XYChart.Series(); //SADTOHAPPY
@@ -471,6 +600,13 @@ public class Controller {
         statisticsMoodTabChart.getData().add(mood4srs);
         statisticsMoodTabChart.setVisible(true);
     }
+
+    /**
+     * Calls the method getConditionData from the model,
+     * and then adds the data to the condition pie chart.
+     *
+     * @author Tarek Chorfi
+     */
     private void populateConditionChart(){
         Map<ECondition, Integer> conditionCountMap = model.getConditionData();
 
@@ -485,6 +621,17 @@ public class Controller {
         statisticsConditionTabChart.setTitle("Tillstånd");
 
     }
+
+    /**
+     * This method calls on intervalToGradeData from the model to get the relevant data and then goes through each element,
+     * and adds it to a series object that represent the grade for each day which is then added to the grade chart on the grade tab in the statistics anchorpane,
+     * and thus statistical data is shown.
+     * Same duplication error as populateMoodChart, hence the cluttered code in the ending.
+     *
+     * @param ti An ETimeInterval.
+     *
+     * @author Tarek Chorfi
+     */
     public void populateGradeChart(ETimeInterval ti){
         XYChart.Series<String,Number> gradeSeries = new XYChart.Series<String,Number>();
 
@@ -516,6 +663,11 @@ public class Controller {
     }
 
 
+    /**
+     * Calls the method getTagsData from the model and then adds the data to the tags pie chart.
+     *
+     * @author Tarek Chorfi
+     */
     private void populateTagsChart(){
         HashMap<Object,Long> tagsCountMap = new HashMap<>(model.getTagData());
         ObservableList<PieChart.Data> pieChartData =

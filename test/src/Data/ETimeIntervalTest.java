@@ -6,14 +6,14 @@ import src.Data.ETimeInterval;
 import static org.junit.Assert.assertEquals;
 
 /**
- * @author Adam Wikström
+ * Class for JUnit tests of the ETimeInterval.
  *
- * Class for JUnit tests of the ETimeInterval
+ * @author Adam Wikström
  */
 public class ETimeIntervalTest {
 
     /**
-     * Method to test ETimeInterval
+     * Method to test ETimeInterval.
      */
     @Test
     public void testETime(){

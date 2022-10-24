@@ -9,16 +9,16 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * @author Adam Wikström
+ * Class for JUnit tests of the DailyPost Class.
  *
- * Class for JUnit tests of the DailyPost Class
+ * @author Adam Wikström
  */
 public class DailyPostTest {
 
     DailyPost post = new DailyPost();
 
     /**
-     * Method to test all methods in DailyPost handling the date variable
+     * Method to test all methods in DailyPost handling the date variable.
      */
     @Test
     public void testDate() {
@@ -34,7 +34,7 @@ public class DailyPostTest {
     }
 
     /**
-     * Method to test all methods in DailyPost handling the Text variable
+     * Method to test all methods in DailyPost handling the Text variable.
      */
     @Test
     public void testText(){
@@ -51,7 +51,7 @@ public class DailyPostTest {
     }
 
     /**
-     * Method to test all methods in DailyPost handling the Grade variable
+     * Method to test all methods in DailyPost handling the Grade variable.
      */
     @Test
     public void testGrade(){
@@ -66,7 +66,7 @@ public class DailyPostTest {
     }
 
     /**
-     * Method to test all methods in DailyPost handling the ActiveMoods list
+     * Method to test all methods in DailyPost handling the ActiveMoods list.
      */
     @Test
     public void testActiveMoods(){
@@ -96,7 +96,7 @@ public class DailyPostTest {
     }
 
     /**
-     * Method to test all methods in DailyPost handling the Tags list
+     * Method to test all methods in DailyPost handling the Tags list.
      */
     @Test
     public void testTags(){
@@ -142,7 +142,7 @@ public class DailyPostTest {
     }
 
     /**
-     * Method to test all methods in DailyPost handling the Conditions list
+     * Method to test all methods in DailyPost handling the Conditions list.
      */
     @Test
     public void testConditions(){

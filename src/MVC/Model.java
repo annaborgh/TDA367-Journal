@@ -10,6 +10,13 @@ import java.util.stream.Collectors;
 
 import static src.Data.EMood.*;
 
+/**
+ * @author Adam Wikström
+ * @author Anna Borgh
+ * @author Julia Ekeblad
+ * @author Tarek Chorfi
+ * @author Wilma Nordlund
+ */
 public class Model {
     private static Model instance = null;
     private final List<ITag> allTags = new ArrayList<>();
@@ -20,6 +27,9 @@ public class Model {
 
     /**
      * Variables for the lock.
+     *
+     * @author Adam Wikström
+     * @author Wilma Nordlund
      */
     public PinLock lock;
     private boolean lockActive = true;
@@ -31,17 +41,36 @@ public class Model {
         init();
     }
 
+    /**
+     * @author Anna Borgh
+     */
     private void init(){
         //load posts
         posts = persistence.loadPosts();
     }
 
+    /**
+     * @author Anna Borgh
+     */
     public void shutdown(){
         //save posts
         persistence.savePosts(posts);
         posts.clear();
     }
 
+    /**
+     * A method for making posts.
+     *
+     * @param date A LocalDate.
+     * @param text A String.
+     * @param grade An int.
+     * @param tags A List of ITags.
+     * @param moods An ArrayList of IMood.
+     * @param EConditions An ArrayList of ECondition.
+     *
+     * @author Adam Wikström
+     * @author Anna Borgh
+     */
     public void makePost(LocalDate date, String text, int grade, List<ITag> tags, ArrayList<IMood> moods, ArrayList<ECondition> EConditions){
         IDay post = new DailyPost();
 
@@ -55,45 +84,98 @@ public class Model {
         posts.put(date, post);
     }
 
+    /**
+     * A getter for the type of lock.
+     *
+     * @return The type of lock (ILock).
+     *
+     * @author Adam Wikström
+     * @author Wilma Nordlund
+     */
     public ILock getLockType() {
         return lockType;
     }
 
+    /**
+     * A getter for all the tags.
+     *
+     * @return A List of ITags.
+     *
+     * @author Adam Wikström
+     */
     public List<ITag> getAllTags() {
         return allTags;
     }
 
+
+    /**
+     * A getter for the current date.
+     *
+     * @return the current date, which is a LocalDate.
+     *
+     * @author Adam Wikström
+     */
     public LocalDate getCurrentDate() {
         return currentDate;
     }
 
+    /**
+     * A getter for the posts.
+     *
+     * @return The posts, which are a HashMap of LocalDate and IDay.
+     *
+     * @author Adam Wikström
+     */
     public HashMap<LocalDate, IDay> getPosts() {
         return posts;
     }
 
     /**
+     * A getter for the specific lock.
      *
-     * @return
+     * @return The lock, which is a PinLock.
+     *
+     * @author Adam Wikström
+     * @author Wilma Nordlund
      */
     public PinLock getLock(){
         return this.lock;
     }
 
     /**
+     * A getter for the lock state, which can either be true or false.
      *
-     * @return
+     * @return The lock state, which is a boolean.
+     *
+     * @author Adam Wikström
+     * @author Wilma Nordlund
      */
     public boolean getLockState(){
         return this.lockState;
     }
+
     /**
+     * A getter for active lock.
      *
-     * @return
+     * @return Boolean.
+     *
+     * @author Adam Wikström
+     * @author Julia Ekeblad
+     * @author Wilma Nordlund
      */
     public boolean getLockActive(){
         return this.lockActive;
     }
 
+    /**
+     * A setter for active lock.
+     *
+     * @param lockActive    Boolean.
+     *
+     * @author Adam Wikström
+     * @author Julia Ekeblad
+     * @author Wilma Nordlund
+     */
     public void setLockActive(Boolean lockActive){
         this.lockActive = lockActive;
     }
@@ -104,6 +186,9 @@ public class Model {
      * Method to create the pin lock.
      *
      * @param pinCode The pin code that is to be assigned to the pin lock.
+     *
+     * @author Adam Wikström
+     * @author Wilma Nordlund
      */
     public void createPinLock(String pinCode) {
         if(lock == null) {
@@ -118,7 +203,10 @@ public class Model {
      * Method to check if attempted pincode for new lock is valid, i.e. only contains numbers.
      *
      * @param inp   The input given.
-     * @return      A boolean symbolizing if input is valid.
+     * @return A boolean symbolizing if input is valid.
+     *
+     * @author Adam Wikström
+     * @author Wilma Nordlund
      */
     private boolean checkValidInput(String inp){
         for (int i = 0; i < inp.length(); i++){
@@ -134,6 +222,9 @@ public class Model {
      * If the input is correct, lock state is turned off - the lock unlocks.
      *
      * @param inp   The input given.
+     *
+     * @author Adam Wikström
+     * @author Wilma Nordlund
      */
     public void unlockLock(String inp){
         if (lockActive && lock != null) {
@@ -145,6 +236,9 @@ public class Model {
 
     /**
      * Method to lock the lock.
+     *
+     * @author Adam Wikström
+     * @author Wilma Nordlund
      */
     public void lockLock(){
         if(lockActive) {
@@ -155,6 +249,14 @@ public class Model {
 
 
     //-----------------------"Lock model" end-----------------------
+
+    /**
+     * Quite self explanatory, this method populates the model with a lot of sample data.
+     * Nothing too fancy, just making sure every field has a valid non-null value.
+     * This method’s purpose is just for displaying that the statistics logic works and also the graphical representation in the controller/view.
+     *
+     * @author Tarek Chorfi
+     */
     public void makeLotsOfPosts(){
         ArrayList<ITag> alltags = new ArrayList<>(Arrays.asList(new Tag("Tag1",1),new Tag("Tag2",2),new Tag("Tag3",3),new Tag("Tag4",4),new Tag("Tag5",5)));
         LocalDate currDate =  LocalDate.now();
@@ -187,6 +289,16 @@ public class Model {
 
     }
     //-----------------------Statistics logic start-----------------
+
+    /**
+     * This method takes an ETimeInterval and returns a pair of lists where one list represents the dates,
+     * and one list represents the mood entries for each day.
+     *
+     * @param ti An ETimeInterval.
+     * @return A Pair of lists: one represents dates, and the other the mood entries for each day.
+     *
+     * @author Tarek Chorfi
+     */
     public Pair<ArrayList<LocalDate>,ArrayList<HashMap<String,Integer>>>  intervalToDataMap(ETimeInterval ti){
         HashMap<LocalDate,HashMap<String,Integer>> dates = new HashMap<>();
         Pair<ArrayList<LocalDate>,ArrayList<HashMap<String,Integer>>> dataPair = new Pair<>(new ArrayList<>(),new ArrayList<>());
@@ -271,6 +383,16 @@ public class Model {
 
         return dataPair;
     }
+
+    /**
+     * This method takes an ETimeInterval and returns a pair of lists,
+     * where one list represents the dates and one list represents the grade for each day.
+     *
+     * @param ti An ETimeInterval.
+     * @return A pair of lists: one for the dates and one for the grades.
+     *
+     * @author Tarek Chorfi
+     */
     public Pair<ArrayList<LocalDate>,ArrayList<Integer>> intervalToGradeData(ETimeInterval ti){
         HashMap<LocalDate,HashMap<String,Integer>> dates = new HashMap<>();
         Pair<ArrayList<LocalDate>,ArrayList<Integer>> dataPair = new Pair<>(new ArrayList<>(),new ArrayList<>());
@@ -354,6 +476,15 @@ public class Model {
         return dataPair;
     }
 
+    /**
+     * Streams through the models posts and counts the occurrence of every condition,
+     * and returns it as a Map of conditions as keys and integer values that represent the occurrence
+     * of that condition through all posts.
+     *
+     * @return A Map that represents the data from the conditions.
+     *
+     * @author Tarek Chorfi
+     */
     public Map<ECondition, Integer> getConditionData() {
         Map<ECondition, Integer> conditionCountMap = new HashMap<>();
         for (ECondition e:ECondition.values()) {
@@ -371,6 +502,15 @@ public class Model {
         return conditionCountMap;
 
     }
+
+    /**
+     * Streams through the models posts and counts the occurrence of every tag,
+     * and returns it as a Map of tags as keys and integer values that represent the occurrence	of that tag through all posts.
+     *
+     * @return A Map that represents the data from the tags.
+     *
+     * @author Tarek Chorfi
+     */
     public Map<Object, Long> getTagData(){
         ArrayList<ITag> tags = new ArrayList<>(getAllTags());
         /*HashMap<LocalDate, ArrayList<IMood>> tagsMap = model.getTagsMap();*/

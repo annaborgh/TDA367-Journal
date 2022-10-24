@@ -16,14 +16,14 @@ import java.util.Map;
 import static org.junit.Assert.*;
 
 /**
- * @author Adam Wikström
+ * Class for JUnit tests of the Model Class.
  *
- * Class for JUnit tests of the Model Class
+ * @author Adam Wikström
  */
 public class ModelTest {
 
     /**
-     * Method to test the Constructor of the Model Class
+     * Method to test the Constructor of the Model Class.
      */
     @Test
     public void testConstructorAndInit(){
@@ -37,7 +37,7 @@ public class ModelTest {
     Model model = new Model();
 
     /**
-     * Method to test the shutdown method of the Model Class
+     * Method to test the shutdown method of the Model Class.
      */
     @Test
     public void testShutdown(){
@@ -46,7 +46,7 @@ public class ModelTest {
     }
 
     /**
-     * Method to test the makePost method of the Model Class
+     * Method to test the makePost method of the Model Class.
      */
     @Test
     public void testMakePost(){
@@ -58,7 +58,7 @@ public class ModelTest {
     }
 
     /**
-     * Method to test the getters of the Model Class
+     * Method to test the getters of the Model Class.
      */
     @Test
     public void testGetters(){
@@ -85,7 +85,7 @@ public class ModelTest {
     }
 
     /**
-     * Method to test the createPinLock method of the Model Class
+     * Method to test the createPinLock method of the Model Class.
      */
     @Test
     public void testCreatePinLock(){
@@ -100,7 +100,7 @@ public class ModelTest {
     }
 
     /**
-     * Method to test the unlockLock method of the Model Class
+     * Method to test the unlockLock method of the Model Class.
      */
     @Test
     public void testUnlockLock(){
@@ -110,7 +110,7 @@ public class ModelTest {
     }
 
     /**
-     * Method to test the lockLock method of the Model Class
+     * Method to test the lockLock method of the Model Class.
      */
     @Test
     public void testLockLock(){
@@ -121,7 +121,7 @@ public class ModelTest {
     }
 
     /**
-     *  Method to test set- and getLockActive
+     * Method to test set- and getLockActive.
      */
     @Test
     public void testLockActive(){
@@ -131,7 +131,7 @@ public class ModelTest {
     }
 
     /**
-     *
+     * TODO
      */
     @Test
     public void testintervalToDataMap(){
@@ -142,7 +142,7 @@ public class ModelTest {
     }
 
     /**
-     *
+     * TODO
      */
     @Test
     public void testintervalToGradeData(){
@@ -153,7 +153,7 @@ public class ModelTest {
     }
 
     /**
-     *
+     * TODO
      */
     @Test
     public void testGetConditionData(){
@@ -162,7 +162,7 @@ public class ModelTest {
     }
 
     /**
-     *
+     * TODO
      */
     @Test
     public void testGetTagData(){
@@ -171,8 +171,8 @@ public class ModelTest {
     }
 
     /**
-     * Method to delete the save directory of the project if it exists
-     * @throws IOException  Exception is thrown if the directory to be deleted doesn't exist
+     * Method to delete the save directory of the project if it exists.
+     * @throws IOException  Exception is thrown if the directory to be deleted doesn't exist.
      */
     private void deleteDirectory() throws IOException {
         Files.deleteIfExists(Path.of(FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separatorChar + "TDA367_Journal"));

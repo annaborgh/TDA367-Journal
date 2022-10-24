@@ -1,10 +1,10 @@
 package src.Data;
 
 /**
+ * Interface for Mood classes.
+ *
  * @author Adam Wikström
  * @author Julia Ekeblad
- *
- * Interface for Mood classes.
  */
 public interface IMood {
     String getMoodName();

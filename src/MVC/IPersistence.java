@@ -6,9 +6,9 @@ import java.time.LocalDate;
 import java.util.HashMap;
 
 /**
- * @author Anna Borgh
- *
  * Interface for Persistence class.
+ *
+ * @author Anna Borgh
  */
 public interface IPersistence {
     void savePosts(HashMap<LocalDate, IDay> posts);

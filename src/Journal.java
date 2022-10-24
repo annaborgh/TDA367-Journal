@@ -5,6 +5,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import src.MVC.*;
 
+/**
+ * This is the class for main.
+ *
+ * @author Adam Wikström
+ * @author Anna Borgh
+ * @author Julia Ekeblad
+ * @author Tarek Chorfi
+ * @author Wilma Nordlund
+ */
 public class Journal extends Application {
     Model model;
     Controller controller;

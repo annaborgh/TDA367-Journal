@@ -10,16 +10,16 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * @author Adam Wikström
+ * Class for JUnit tests of the Tag Class.
  *
- * Class for JUnit tests of the Tag Class
+ * @author Adam Wikström
  */
 public class TagTest {
 
     List<ITag> testTagList = new ArrayList<>();
 
     /**
-     * Method to test the getters of the Tag class
+     * Method to test the getters of the Tag class.
      */
     @Test
     public void testTagGetters() {
@@ -45,7 +45,7 @@ public class TagTest {
     }
 
     /**
-     * Method to tst the setters of the Tag class
+     * Method to tst the setters of the Tag class.
      */
     @Test
     public void testTagSetters(){

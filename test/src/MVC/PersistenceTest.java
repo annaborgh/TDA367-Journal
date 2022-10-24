@@ -20,9 +20,9 @@ import java.util.HashMap;
 import static org.junit.Assert.*;
 
 /**
- * @author Adam Wikström
+ * Class for JUnit tests of the Persistance Class.
  *
- * Class for JUnit tests of the Persistance Class
+ * @author Adam Wikström
  */
 public class PersistenceTest {
 
@@ -33,7 +33,7 @@ public class PersistenceTest {
 
 
     /**
-     * Method to test the loadPost method in the Persistance Class
+     * Method to test the loadPost method in the Persistance Class.
      */
     @Test
     public void testLoadPosts() throws IOException {
@@ -43,7 +43,7 @@ public class PersistenceTest {
     }
 
     /**
-     * Method to test the savePosts method in the Persistance class
+     * Method to test the savePosts method in the Persistance class.
      */
     @Test
     public void testSavePosts() throws IOException {
@@ -75,8 +75,8 @@ public class PersistenceTest {
 
 
     /**
-     * Method to delete the save directory of the project if it exists
-     * @throws IOException  Exception is thrown if the directory to be deleted doesn't exist
+     * Method to delete the save directory of the project if it exists.
+     * @throws IOException  Exception is thrown if the directory to be deleted doesn't exist.
      */
     private boolean deleteDirectory(File directoryToBeDeleted) throws IOException {
 
