@@ -33,4 +33,4 @@ The path can look something like **cd /Users/user-name/Desktop/TDA367-Journal-ma
 
 For questions or other thoughts about the program, please contact Group 8. 
 
-Happy journalling! 
+Happy journaling! 
