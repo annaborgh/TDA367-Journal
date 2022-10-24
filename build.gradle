@@ -2,8 +2,16 @@ plugins {
     id 'java'
 }
 plugins {
+    id 'java-library'
+plugins {
     id 'application' 
 }
 application {
-    mainClassName = "main.java.start"
+    mainClassName = 'main.java.start'
+}
+repositories {
+    jcenter
+}
+dependencies {
+    testImplementation 'junit:junit:4'
 }
