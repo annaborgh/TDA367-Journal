@@ -5,6 +5,5 @@ plugins {
     id 'application' 
 }
 application {
-    mainClass = "Journal"
+    mainClassName = "main.java.main"
 }
-mainClassName = "main.java.main"
