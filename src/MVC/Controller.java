@@ -170,6 +170,11 @@ public class Controller {
 
     @FXML
     public void initialize() {
+
+        moodSliderOneLabel.setText(MISCONTENTTOCONTENT.toString());
+        moodSliderTwoLabel.setText(SADTOHAPPY.toString());
+        moodSliderThreeLabel.setText(SCAREDTOSAFE.toString());
+        moodSliderFourLabel.setText(DISGUSTEDTOSURPRISED.toString());
         statisticsGradeTabWeekBtn.setOnAction(event -> populateGradeChart(ETimeInterval.WEEK));
         statisticsGradeTabMonthBtn.setOnAction(event -> populateGradeChart(ETimeInterval.MONTH));
         statisticsGradeTabYearBtn.setOnAction(event -> populateGradeChart(ETimeInterval.YEAR));
@@ -227,7 +232,6 @@ public class Controller {
     }
 
     private void onGradeChanged(int grade){
-        System.out.println(grade);
         if (grade == 0){
             oneRatingRadioButton.setSelected(false);
             twoRatingRadioButton.setSelected(false);
@@ -339,6 +343,21 @@ public class Controller {
     }
 
     @FXML public void goToMoods() {
+
+        int mood1 =0;
+        int mood2 =0;
+        int mood3 =0;
+        int mood4 =0;
+        for (IMood m : model.getPosts().get(currentDate).getActiveMoods()) {
+            if(m.getMoodName().equals(MISCONTENTTOCONTENT.toString())) mood1 = m.getMoodRating();
+            if(m.getMoodName().equals(SADTOHAPPY.toString()))          mood2 = m.getMoodRating();
+            if(m.getMoodName().equals(SCAREDTOSAFE.toString()))        mood3 = m.getMoodRating();
+            if(m.getMoodName().equals(DISGUSTEDTOSURPRISED.toString()))mood4 = m.getMoodRating();
+        }
+        moodSliderOne.setValue(mood1);
+        moodSliderTwo.setValue(mood2);
+        moodSliderThree.setValue(mood3);
+        moodSliderFour.setValue(mood4);
         moodAnchorPane.toFront();
     }
     @FXML public void goToTags(){
@@ -476,7 +495,6 @@ public class Controller {
 
             if(inte==null ) inte = 0;
 
-            System.out.println("e: "+e);
             gradeSeries.getData().add(
                     new XYChart.Data(e.toString(), inte )
             );
