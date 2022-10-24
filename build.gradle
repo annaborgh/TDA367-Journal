@@ -16,3 +16,8 @@ repositories {
 dependencies {
     testImplementation 'junit:junit:4.7'
 }
+java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(17))
+        }
+    }
