@@ -13,9 +13,8 @@ import java.util.Objects;
 import static java.nio.charset.StandardCharsets.ISO_8859_1;
 
 /**
+ * Class that handles persistent data management for the Journal.
  * @author Anna Borgh
- *
- * Class for persistence functionality. TODO
  */
 public class Persistence implements IPersistence{
     private final Charset charsetLatin = ISO_8859_1;
@@ -24,21 +23,18 @@ public class Persistence implements IPersistence{
 
     /**
      * Constructor of Persistence.
-     *
-     * The constructor is empty, since... TODO
+     * The constructor is empty since the class only uses attributes with constant values.
      */
     public Persistence() {
     }
 
     /**
-     * @author Anna Borgh
-     *
-     * A method to save posts to text files.
+     * A method to save posts to text files in directory created by {@link #createPostsDirectory()}.
      *
      * @param posts A HashMap of LocalDate and DailyPost objects,
      *              that is the posts to be saved to text files.
+     * @author Anna Borgh
      */
-    //saves posts to text files in MyDocuments
     public void savePosts(HashMap<LocalDate, IDay> posts) {
         createAppDirectory();
         createPostsDirectory();
@@ -101,11 +97,11 @@ public class Persistence implements IPersistence{
     }
 
     /**
+     *
+     * A method to load posts from text files located in directory specified by {@link #getPostsDirectoryPath()}.
+     *
+     * @return A hashmap containing the loaded DailyPost objects as values and their dates as keys.
      * @author Anna Borgh
-     *
-     * A method to load posts from text files in MyDocuments.
-     *
-     * @return The posts that are to be loaded.
      */
     //loads posts from text files in MyDocuments
     public HashMap<LocalDate, IDay> loadPosts(){
@@ -128,14 +124,12 @@ public class Persistence implements IPersistence{
     }
 
     /**
+     * A method that loads each individual file and creates a DailyPost object from its data.
+     * Was private, changed to protected for testing purposes.
+     *
+     * @param file  A File to be loaded
+     * @return The loaded DailyPost
      * @author Anna Borgh
-     *
-     * A method to... TODO
-     *
-     * Was private, changed to protected for testing purposes
-     *
-     * @param file  A File to be loaded.
-     * @return The posts from MyDocuments.
      */
     protected IDay loadPost(File file){
 
@@ -224,14 +218,14 @@ public class Persistence implements IPersistence{
     }
 
     /**
-     * @author Anna Borgh
-     *
-     * A method... TODO
+     * A method that determines whether a line in a file contains a ";", which is considered invalid
+     * and results in a new line is picked, or a valid form of data, which is simply immediately returned.
      *
      * @param   reader A BufferReader.
      * @param   line  A String.
      * @return The line which consists of a String.
      * @throws  IOException  TODO
+     * @author Anna Borgh
      */
     private String findNewLine(BufferedReader reader, String line) throws IOException {
         line = reader.readLine();
@@ -242,13 +236,10 @@ public class Persistence implements IPersistence{
     }
 
     /**
+     *  The method creates the program's main directory, if it does not already exist. The directory is named "TDA367_Journal"
+     *  and is located in My Documents or equivalent. The path is specified by {@link #getAppDirectoryPath()}.
      * @author Anna Borgh
-     *
-     * A method that is to create a directory for the program.
-     *
-     * The method creates a directory if it does not already exist.
      */
-    //creates directories
     private void createAppDirectory(){
         File directory = new File(getAppDirectoryPath());
         if (!directory.exists()){
@@ -260,12 +251,10 @@ public class Persistence implements IPersistence{
     }
 
     /**
+     * The method creates the "Posts" directory, if it does not already exist. Its location is specified by
+     * {@link #getPostsDirectoryPath()}. By default, this is inside a directory called TDA367_Journal located in My
+     * Documents or equivalent.
      * @author Anna Borgh
-     *
-     * A method that is to create a directory for the files
-     * containing posts from the program.
-     *
-     * The method creates a directory if it does not already exist.
      */
     private void createPostsDirectory(){
         File directory = new File(getPostsDirectoryPath());
@@ -278,23 +267,21 @@ public class Persistence implements IPersistence{
     }
 
     /**
+     * Finds and returns the path of the program's main directory in My Documents or equivalent.
+     *
+     * @return A String that specifies the directory path
      * @author Anna Borgh
-     *
-     * Getter for the directory path for the program.
-     *
-     * @return The directory path, which consists of... TODO
      */
-    //creates directory names
     private String getAppDirectoryPath(){
         return FileSystemView.getFileSystemView().getDefaultDirectory().getPath() + File.separatorChar + "TDA367_Journal";
     }
 
     /**
+     * Finds and returns the path of the subdirectory "Posts" to the main program directory. This is where posts are
+     * saved as text files in {@link #savePosts(HashMap)}.
+     *
+     * @return A String that specifies the directory path.
      * @author Anna Borgh
-     *
-     * Getter for the directory path for the program's posts.
-     *
-     * @return The directory path, which consists of... TODO
      */
     private String getPostsDirectoryPath(){
         return this.getAppDirectoryPath() + File.separatorChar + "Posts";
