@@ -14,5 +14,5 @@ repositories {
     jcenter()
 }
 dependencies {
-    testImplementation 'junit:junit:4'
+    testImplementation 'junit:junit:4.7'
 }
