@@ -8,6 +8,10 @@ during the first study period in the second year of the Bachelor’s Program in 
 The GUI I simple and the program is supposed to be used as a journal, where you can write entries for each day, as well as being able to rate your day, and add moods and tags to your entries. 
 The ratings, moods and tags can be found under the statistics part of the program, and are supposed to give the user an overview of their mood and what affects it the most.
 
+(Please observe that the text below is the instruction that should be used when the script files are working properly, which they at the moment do not. 
+You can build the program from the command line, but not actually run it. Therefore, we suggest to run the program from an IDE such as IntelliJ.
+Make sure to have the proper configurations and to add JavaFX as a library in the project structure settings before running it.)
+
 There are easy ways to run the program without having to build it from an IDE. The recommended approach is this:
 
 1. Download the code by pressing the green button with the label **”Code”**, and then the option **”Download ZIP”**. 
