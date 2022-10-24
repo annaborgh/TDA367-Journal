@@ -96,13 +96,13 @@ public class Controller {
     @FXML private RadioButton passwordLockRadioButton;
     @FXML private RadioButton patternLockRadioButton;
     @FXML private RadioButton pinLockRadioButton;
-/*
-Mood sliders
-1:
-2:
-3:
-4:
-* */
+    /*
+    Mood sliders
+    1:
+    2:
+    3:
+    4:
+    * */
     @FXML private Slider moodSliderOne;
     @FXML private Slider moodSliderTwo;
     @FXML private Slider moodSliderThree;
@@ -187,7 +187,7 @@ Mood sliders
         statisticsGradeTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 populateGradeChart(ETimeInterval.YEAR);
-        }
+            }
         });
         statisticsConditionTab.selectedProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
@@ -439,17 +439,46 @@ Mood sliders
         ArrayList<HashMap<String,Integer>> moods = data.getValue();
         XYChart.Series<String,Number> gradeSeries = new XYChart.Series<String,Number>();
         for (int i = 0; i < dates.size(); i++) {
-            mood1series.getData().add(new XYChart.Data<>(dates.get(i).toString(),moods.get(i).get(MISCONTENTTOCONTENT.toString())));
-            mood2series.getData().add(new XYChart.Data<>(dates.get(i).toString(),moods.get(i).get(SADTOHAPPY.toString())));
-            mood3series.getData().add(new XYChart.Data<>(dates.get(i).toString(),moods.get(i).get(SCAREDTOSAFE.toString())));
-            mood4series.getData().add(new XYChart.Data<>(dates.get(i).toString(),moods.get(i).get(DISGUSTEDTOSURPRISED.toString())));
-        }
 
+                Integer inte = moods.get(i).get(MISCONTENTTOCONTENT.toString());
+                Integer inte2 = moods.get(i).get(SADTOHAPPY.toString());
+                Integer inte3 = moods.get(i).get(SCAREDTOSAFE.toString());
+                Integer inte4 = moods.get(i).get(DISGUSTEDTOSURPRISED.toString());
+
+
+                if(inte==null ) inte = 0;
+                if(inte2==null ) inte2 = 0;
+                if(inte3==null ) inte3 = 0;
+                if(inte4==null ) inte4 = 0;
+
+
+            mood1series.getData().add(new XYChart.Data<>(dates.get(i).toString(),inte));
+            mood2series.getData().add(new XYChart.Data<>(dates.get(i).toString(),inte2));
+            mood3series.getData().add(new XYChart.Data<>(dates.get(i).toString(),inte3));
+            mood4series.getData().add(new XYChart.Data<>(dates.get(i).toString(),inte4));
+
+        }
+        ArrayList ar1 = new ArrayList(mood1series.getData());
+        ArrayList ar2 = new ArrayList(mood2series.getData());
+        ArrayList ar3 = new ArrayList(mood3series.getData());
+        ArrayList ar4 = new ArrayList(mood4series.getData());
         statisticsMoodTabChart.getData().clear();
-        statisticsMoodTabChart.getData().add(mood1series);
-        statisticsMoodTabChart.getData().add(mood2series);
-        statisticsMoodTabChart.getData().add(mood3series);
-        statisticsMoodTabChart.getData().add(mood4series);
+        Collections.reverse(ar1);
+        Collections.reverse(ar2);
+        Collections.reverse(ar3);
+        Collections.reverse(ar4);
+        XYChart.Series mood1srs = new XYChart.Series(); //MISCONTENTTOCONTENT //not sure why this fixes the problem???
+        XYChart.Series mood2srs = new XYChart.Series();//SADTOHAPPY
+        XYChart.Series mood3srs = new XYChart.Series();//SCAREDTOSAFE
+        XYChart.Series mood4srs = new XYChart.Series();//DISGUSTEDTOSURPRISED
+        mood1srs.getData().addAll(ar1);
+        mood2srs.getData().addAll(ar2);
+        mood3srs.getData().addAll(ar3);
+        mood4srs.getData().addAll(ar4);
+        statisticsMoodTabChart.getData().add(mood1srs);
+        statisticsMoodTabChart.getData().add(mood2srs);
+        statisticsMoodTabChart.getData().add(mood3srs);
+        statisticsMoodTabChart.getData().add(mood4srs);
         statisticsMoodTabChart.setVisible(true);
     }
     private void populateConditionChart(){
@@ -509,9 +538,9 @@ Mood sliders
 
     }
 
-   /* public void populateDayRatingChart(){
-        //this code below
-        *//*Map<Integer, Long> chartData = model.getPosts().values().stream()
+    /* public void populateDayRatingChart(){
+         //this code below
+         *//*Map<Integer, Long> chartData = model.getPosts().values().stream()
                 .collect(Collectors.groupingBy(p -> p.getGrade(),
                         Collectors.counting()));
         for (int x = 1; x <= 5; x++){
