@@ -8,7 +8,7 @@ plugins {
     id 'application' 
 }
 application {
-    mainClassName = 'Journal'
+    mainClassName = 'Journal.java'
 }
 repositories {
     jcenter()
