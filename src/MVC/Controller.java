@@ -400,36 +400,6 @@ public class Controller {
 
 
 
-
-
-
-    /*public static void main(String[] args) {
-        Controller c = new Controller();
-        //c.getModel().makePost("a",3,new ArrayList<>(), new ArrayList<>(Arrays.asList(new Mood("MISCONTENTTOCONTENT",10),new Mood("SADTOHAPPY",12),new Mood("SCAREDTOSAFE",25),new Mood("DISGUSTEDTOSURPRISED",57))),new ArrayList<>());
-        //c.getModel().makePost(LocalDate.now().minusDays(1),"a",3,new ArrayList<>(), new ArrayList<>(Arrays.asList(new Mood("MISCONTENTTOCONTENT",20),new Mood("SADTOHAPPY",20),new Mood("SCAREDTOSAFE",10),new Mood("DISGUSTEDTOSURPRISED",38))),new ArrayList<>());
-        c.populateGradeChart();
-
-    }*/
-    /*private void populateChart(){ //Split into more methods later potentially
-        LocalDate date = model.currentDate;
-    LineChart lineChart;
-    PieChart pieChart;
-
-    private void populateChart(){
-        LocalDate date = model.getCurrentDate();
-        HashMap<LocalDate, IDay> hm = model.getPosts();
-        //This will gather all data available.
-        *//*for (IDay value : hm.values()) {
-            dateList.add(value.getDate());
-            dayRatingList.add(value.getGrade());
-            moodList.add(value.getActiveMoods());
-        }*//*
-
-    }*/
-    //Assume functionality exists in model
-
-    //This method returns a hashmap with the correct dates and values that will be in the x and y axis of the chart respectively.
-
     private void populateMoodChart(ETimeInterval t){
         XYChart.Series mood1series = new XYChart.Series(); //MISCONTENTTOCONTENT
         XYChart.Series mood2series = new XYChart.Series(); //SADTOHAPPY
@@ -497,22 +467,10 @@ public class Controller {
 
     }
     public void populateGradeChart(ETimeInterval ti){
-        //Create series here??
         XYChart.Series<String,Number> gradeSeries = new XYChart.Series<String,Number>();
 
         Pair<ArrayList<LocalDate>,ArrayList<Integer>> pair = model.intervalToGradeData(ti);
-       /* System.out.println("dates: "+pair.getKey());
-        System.out.println("data: "+pair.getValue());*/
-        /*for (int i = 0; i < pair.getKey().size(); i++) {
 
-            Integer inte = pair.getValue().get(i);
-
-            if (inte == null) inte = 0;
-
-            gradeSeries.getData().add(
-                    new XYChart.Data(pair.getKey().get(i).toString(), inte)
-            );
-        }*/
         pair.getKey().forEach(e -> {
             Integer inte = pair.getValue().get(pair.getKey().indexOf(e));
 
@@ -523,14 +481,7 @@ public class Controller {
                     new XYChart.Data(e.toString(), inte )
             );
         });
-        /*System.out.println(pair.getValue());
-        for (int i = 0; i < pair.getKey().size(); i++) {
-            Integer inte = pair.getValue().get(i);
-            if(inte==null) inte = 0;
-            gradeSeries.getData().add(
-                    new XYChart.Data( LocalDate.now().minusDays(i).toString(),inte)
-            );
-        }*/
+
         ArrayList ar1 = new ArrayList(gradeSeries.getData());
         statisticsGradeTabChart.getData().clear();
         Collections.reverse(ar1);
@@ -540,35 +491,13 @@ public class Controller {
 
 
 
-        /*statisticsGradeTabChart.getData().add(gradeSeries);*/
 
         statisticsGradeTabChart.setVisible(true);
 
 
     }
 
-    /* public void populateDayRatingChart(){
-         //this code below
-         *//*Map<Integer, Long> chartData = model.getPosts().values().stream()
-                .collect(Collectors.groupingBy(p -> p.getGrade(),
-                        Collectors.counting()));
-        for (int x = 1; x <= 5; x++){
-            chartData.putIfAbsent(x,0L);
-        }*//*
 
-        ArrayList<Integer> intlist= new ArrayList<>();
-        intlist.add(1);intlist.add(1);intlist.add(2);intlist.add(4);intlist.add(4);intlist.add(4);intlist.add(5);
-
-        Map<Integer, Long> counters = intlist.stream()
-                .collect(Collectors.groupingBy(p -> p.intValue(),
-                        Collectors.counting()));
-        for (int x = 1; x <= 5; x++){
-            counters.putIfAbsent(x,0L);
-        }
-
-        System.out.println(counters);
-
-    }*/
     private void populateTagsChart(){
         HashMap<Object,Long> tagsCountMap = new HashMap<>(model.getTagData());
         ObservableList<PieChart.Data> pieChartData =
