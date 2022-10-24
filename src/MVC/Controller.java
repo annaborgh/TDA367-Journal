@@ -531,10 +531,18 @@ public class Controller {
                     new XYChart.Data( LocalDate.now().minusDays(i).toString(),inte)
             );
         }*/
+        ArrayList ar1 = new ArrayList(gradeSeries.getData());
         statisticsGradeTabChart.getData().clear();
-        statisticsGradeTabChart.getData().add(gradeSeries);
+        Collections.reverse(ar1);
+        XYChart.Series gradeSeriesReversed = new XYChart.Series();
+        gradeSeriesReversed.getData().addAll(ar1);
+        statisticsGradeTabChart.getData().add(gradeSeriesReversed);
 
-        statisticsMoodTabChart.setVisible(true);
+
+
+        /*statisticsGradeTabChart.getData().add(gradeSeries);*/
+
+        statisticsGradeTabChart.setVisible(true);
 
 
     }
