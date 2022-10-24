@@ -9,6 +9,11 @@ public class Mood implements IMood {
 
     public Mood() {
     }
+    public Mood(String name, int rating){
+        this.moodName = name;
+        this.moodRating = rating;
+    }
+
     @Override
     public String getMoodName() {
         return this.moodName;

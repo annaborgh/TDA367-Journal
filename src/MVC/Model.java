@@ -335,15 +335,11 @@ public class Model {
                         dataPair.getKey().add(d);
                         dataPair.getValue().add(0);
                     }
-<<<<<<< HEAD
                     int divisor = tmpWeeklyRating.getKey();
                     if(divisor==0)divisor=1;
                     weeklyRating = tmpWeeklyRating.getValue()/divisor;
-=======
 
                     //weeklyRating = tmpWeeklyRating.getValue()/tmpWeeklyRating.getKey();
-
->>>>>>> 5e7bcdb2afd29e3b37a14758bb4a61a52edb32b5
 
                     dataPair.getKey().add(d);
                     dataPair.getValue().add(weeklyRating);
